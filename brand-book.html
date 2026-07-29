@@ -299,6 +299,12 @@
   hr { border:none; border-top:1px solid var(--line); margin:72px 0; }
   .footer { font-size:13px; color:var(--faint); text-align:center; margin-top:96px; padding-top:40px; border-top:1px solid var(--line); letter-spacing:0.02em; }
 
+  /* === CHART PANEL (moldura do gviz) === */
+  .chart-panel { margin:24px 0; padding:26px 28px; border-radius:var(--r); background:var(--glass);
+    -webkit-backdrop-filter:blur(22px) saturate(155%); backdrop-filter:blur(22px) saturate(155%);
+    border:1px solid var(--glass-line); box-shadow:var(--shadow); }
+  .chart-title { font-size:11px; font-weight:600; color:var(--faint); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:16px; }
+
   /* ═══════════ GROWAI MOBILE SYSTEM v1 ═══════════ */
   html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   body, .container, .wrap, .container > *, .wrap > *, .section, .subsection, .timeline-content, .check-row > div { min-width:0; }
@@ -317,7 +323,7 @@
   @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
     .meta-bar > div, .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
     .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map, .note,
-    .kpi-grid, .voc-words span, .rot-card, .card, .advertorial {
+    .kpi-grid, .voc-words span, .rot-card, .card, .advertorial, .chart-panel {
       background:linear-gradient(180deg,#FFFFFF,#FBFCFE);
     }
     .callout     { background:linear-gradient(180deg,#FFF3E9,#FFF7F0); }
@@ -337,13 +343,13 @@
   @media (max-width:860px) {
     .meta-bar > div, .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
     .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map, .note, .callout, .opportunity,
-    .danger, .kpi-grid, .pill, .voc-words span, .rot-card, .card, .advertorial {
+    .danger, .kpi-grid, .pill, .voc-words span, .rot-card, .card, .advertorial, .chart-panel {
       -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
     }
     /* glass → sólido fosco (nunca filme translúcido sobre o glow do fundo) */
     .meta-bar > div, .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
     .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map, .note,
-    .kpi-grid, .voc-words span, .rot-card, .card, .advertorial, .sig-block, .kpi {
+    .kpi-grid, .voc-words span, .rot-card, .card, .advertorial, .sig-block, .kpi, .chart-panel {
       background:linear-gradient(180deg,#FFFFFF,#FBFCFE);
     }
     /* cards tintados → versão opaca (mesma família de cor GrowAI) */
@@ -417,6 +423,7 @@
     .cena { grid-template-columns:1fr; gap:4px; }
     .grid { grid-template-columns:minmax(0,1fr); }
     .card { padding:19px 18px; }
+    .chart-panel { padding:20px 16px; }
     .card .top, .rot-head, .swatch-row { flex-wrap:wrap; }
     .advertorial { padding:24px 18px; border-radius:18px; }
     .adv-headline { font-size:28px; }
@@ -443,7 +450,9 @@
     .js .reveal { opacity:1 !important; transform:none !important; transition:none !important; }
     body::before { display:none; }
     body { padding:24px; display:block; }
-    .winner, .kpi-grid, .note, .callout, .opportunity, .danger, .faq, .tier-card, .headline-card, .quote { break-inside:avoid; }
+    .winner, .kpi-grid, .note, .callout, .opportunity, .danger, .faq, .tier-card, .headline-card, .quote, .chart-panel { break-inside:avoid; }
+    .section-label, .subsection-title { break-after:avoid; }
+    .footer { margin-top:28px; padding-top:16px; }
   }
 </style>
 </head>
@@ -466,7 +475,7 @@
 </div>
 
   <h1 class="page-title reveal">O padrão GrowAI</h1>
-  <p class="page-subtitle reveal">Brand book da identidade visual — o estilo documentando a si mesmo. Cards de vidro fosco sobre glow laranja, Satoshi nos títulos, Inter no corpo, fundo frio. Este arquivo também é o template portátil: copie o <code>&lt;head&gt;</code>, a <code>&lt;style&gt;</code> completa e os dois <code>&lt;script&gt;</code> do fim, e adapte só o conteúdo.</p>
+  <p class="page-subtitle reveal">Brand book da identidade visual — o estilo documentando a si mesmo. Cards de vidro sobre glow laranja, Satoshi nos títulos, Inter no corpo, dados que viram forma pelo motor <strong>gviz</strong> e a lei editorial "o número lidera". Este arquivo também é o template portátil do documento: copie o <code>&lt;head&gt;</code>, a <code>&lt;style&gt;</code> completa e os <code>&lt;script&gt;</code> do fim, e adapte só o conteúdo. Pra deck, use o <code>deck-template.html</code> desta pasta.</p>
 
   <div class="meta-bar reveal">
     <div><strong>Artefato</strong> Brand book + template</div>
@@ -480,9 +489,12 @@
     <ol>
       <li><a href="#s1">Cores</a></li>
       <li><a href="#s2">Tipografia</a></li>
-      <li><a href="#s3">Liquid Glass — a técnica da casa</a></li>
+      <li><a href="#s3">Liquid Glass — a técnica de superfície</a></li>
+      <li><a href="#sG">GVIZ — a linguagem de dados</a></li>
+      <li><a href="#sE">Lei editorial</a></li>
       <li><a href="#s4">Componentes canônicos</a></li>
       <li><a href="#s5">Tabelas + Mobile System v1</a></li>
+      <li><a href="#sD">Documento vs Deck</a></li>
       <li><a href="#s6">Regras de layout</a></li>
       <li><a href="#s7">Exportar PDF</a></li>
     </ol>
@@ -549,7 +561,7 @@
 
   <!-- ═══════════════ 03 · LIQUID GLASS ═══════════════ -->
   <div class="section" id="s3">
-    <div class="section-label reveal"><span class="num">03</span>Liquid Glass — a técnica da casa</div>
+    <div class="section-label reveal"><span class="num">03</span>Liquid Glass — a técnica de superfície</div>
     <p class="reveal">Vidro fosco sobre glow. Quatro camadas, sempre nesta ordem:</p>
 
     <div class="reveal">
@@ -568,9 +580,80 @@
     <div class="note reveal"><strong>Fallbacks travados</strong> Sem suporte a blur → cards viram sólido branco-fosco. Abaixo de 860px → blur desligado à força (glitch do Safari iOS). Touch → sem hover-lift. Nunca "otimize" esses cortes embora.</div>
   </div>
 
-  <!-- ═══════════════ 04 · COMPONENTES ═══════════════ -->
+  <!-- ═══════════════ 04 · GVIZ ═══════════════ -->
+  <div class="section" id="sG">
+    <div class="section-label reveal"><span class="num">04</span>GVIZ — a linguagem de dados</div>
+    <p class="reveal">Onde a casa mostra número, mostra forma. O motor <code>gviz.js</code> (nesta pasta — copie o bloco inteiro pro <code>&lt;script&gt;</code>) desenha seis formas em SVG puro, com as regras embutidas: <strong>um destaque laranja por gráfico</strong>, série neutra em cinza frio, números em Satoshi tabular, zero gridlines. Tudo abaixo é o motor rodando de verdade, com dados de exemplo.</p>
+
+    <div class="chart-panel reveal">
+      <div class="chart-title">gviz.bars · comparação por período — o pico em destaque</div>
+      <div id="gvDemoBars"></div>
+    </div>
+
+    <div class="grid reveal" style="margin:16px 0;">
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">gviz.ring · UM percentual que decide</div>
+        <div style="max-width:250px; margin:0 auto;"><div id="gvDemoRing"></div></div>
+      </div>
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">gviz.funnel · onde o pipeline trava</div>
+        <div id="gvDemoFunnel"></div>
+      </div>
+    </div>
+
+    <div class="chart-panel reveal">
+      <div class="chart-title">gviz.hbars · ranking — o líder em destaque</div>
+      <div id="gvDemoHbars"></div>
+    </div>
+
+    <div class="grid reveal" style="margin:16px 0;">
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">gviz.share · composição 100%</div>
+        <div id="gvDemoShare"></div>
+      </div>
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">gviz.line · tendência com ponto-chave</div>
+        <div id="gvDemoLine"></div>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Chamada</th><th>Pra que dado</th><th>O destaque marca</th></tr></thead>
+        <tbody>
+          <tr><td><code>gviz.bars</code></td><td>comparação por período</td><td>o mês/ciclo que importa</td></tr>
+          <tr><td><code>gviz.hbars</code></td><td>ranking</td><td>o líder (ou o problema)</td></tr>
+          <tr><td><code>gviz.ring</code></td><td>um percentual único</td><td>o próprio arco</td></tr>
+          <tr><td><code>gviz.funnel</code></td><td>estágios de pipeline</td><td>o estágio onde trava</td></tr>
+          <tr><td><code>gviz.share</code></td><td>composição/concentração</td><td>a fatia que decide</td></tr>
+          <tr><td><code>gviz.line</code></td><td>tendência</td><td>o ponto de virada</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal"><strong>Regras do motor</strong> Formate os valores você mesmo via <code>vlabels</code> ("99,1k", "R$ 2.561") — o motor não sabe locale. Sem destaque? <code>highlight:-1</code>. Slide escuro? <code>dark:true</code>, mesma API. O SVG sai com <code>viewBox</code> + largura 100%: responsivo e vetorial no PDF de graça.</div>
+  </div>
+
+  <!-- ═══════════════ 05 · LEI EDITORIAL ═══════════════ -->
+  <div class="section" id="sE">
+    <div class="section-label reveal"><span class="num">05</span>Lei editorial</div>
+    <p class="reveal">O que separa material bom de parede de texto. Vale pra documento e pra deck:</p>
+
+    <div class="reveal">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><strong>O número lidera.</strong> Toda seção abre com o dado (kpi, gráfico ou stat) antes da prosa. O texto explica o que o olho já viu.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Tabela com mensagem vira gráfico.</strong> Se a tabela existe pra dizer "X é maior", "cresceu", "concentra", "trava aqui" — converta com o gviz. Tabela de verdade é só consulta.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Orçamento de texto.</strong> Documento: 1 visual + até 2 parágrafos curtos por seção. Deck: título ≤6 palavras, 1 linha de apoio, zero parágrafos.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Uma ideia por unidade.</strong> Uma seção = uma conclusão. Um slide = uma ideia. Precisou de "e também"? Divida.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Especificidade Hopkins.</strong> "47% em 14 dias" vence "resultados rápidos". Número real no visual, nunca decorativo.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body"><strong>Releia cortando.</strong> Cada frase sobreviveria num deck? Se não agrega decisão, corta.</div></div>
+    </div>
+
+    <div class="danger reveal"><strong>O teste da tabela</strong> Consegue apontar a célula que carrega a mensagem? Então isso é um gráfico mal vestido. Converta. Tabela fica só quando o leitor busca fatos linha a linha, coluna a coluna.</div>
+  </div>
+
+  <!-- ═══════════════ 06 · COMPONENTES ═══════════════ -->
   <div class="section" id="s4">
-    <div class="section-label reveal"><span class="num">04</span>Componentes canônicos</div>
+    <div class="section-label reveal"><span class="num">06</span>Componentes canônicos</div>
     <p class="reveal">Os nomes de classe são API — skills e o validador dependem deles. Todos ao vivo abaixo.</p>
 
     <div class="kpi-grid reveal">
@@ -600,9 +683,9 @@
     <div class="check-row reveal"><span class="check-icon">✓</span><div><strong>check-row</strong><br><span style="color:var(--muted);">Sanity check ou item verificado, com ícone verde e sombra da mesma família.</span></div></div>
   </div>
 
-  <!-- ═══════════════ 05 · TABELAS + MOBILE ═══════════════ -->
+  <!-- ═══════════════ 07 · TABELAS + MOBILE ═══════════════ -->
   <div class="section" id="s5">
-    <div class="section-label reveal"><span class="num">05</span>Tabelas + Mobile System v1</div>
+    <div class="section-label reveal"><span class="num">07</span>Tabelas + Mobile System v1</div>
     <p class="reveal">Toda tabela vive dentro de <code>table-wrap</code>. No desktop ela rola se precisar; abaixo de 640px o script responsivo a transforma em cards rotulados (redimensione esta janela pra ver).</p>
 
     <div class="table-wrap reveal">
@@ -624,9 +707,36 @@
     </ul>
   </div>
 
-  <!-- ═══════════════ 06 · LAYOUT ═══════════════ -->
+  <!-- ═══════════════ 08 · DOCUMENTO VS DECK ═══════════════ -->
+  <div class="section" id="sD">
+    <div class="section-label reveal"><span class="num">08</span>Documento vs Deck</div>
+    <p class="reveal">Dois formatos de primeira classe, mesma identidade. Escolha pelo uso: vai ser <strong>lido</strong> → documento; vai ser <strong>apresentado</strong> → deck. Na dúvida, faça o documento e destile o deck dele: mesmos gráficos, um quarto do texto.</p>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Aspecto</th><th>Documento</th><th>Deck</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Template</strong></td><td>este arquivo (<code>brand-book.html</code>)</td><td><code>deck-template.html</code></td></tr>
+          <tr><td><strong>Estrutura</strong></td><td>coluna 880px, toc, seções numeradas</td><td>seções 100vh com scroll-snap</td></tr>
+          <tr><td><strong>Fundo</strong></td><td>#F1F4F8 + glow sutil</td><td>maioria clara + 1–2 beats dark com glow forte</td></tr>
+          <tr><td><strong>Texto</strong></td><td>1 visual + ≤2 parágrafos por seção</td><td>título ≤6 palavras + 1 linha de apoio</td></tr>
+          <tr><td><strong>Gráficos</strong></td><td>chart-panel de vidro</td><td>gráfico é o herói do slide (<code>dark:true</code> nos escuros)</td></tr>
+          <tr><td><strong>Lockup</strong></td><td>topo do documento</td><td>capa e encerramento</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="winner reveal">
+      <div class="winner-label">O beat escuro do deck</div>
+      <div class="winner-name">O achado central vira slide dark</div>
+      <p>Um deck GrowAI tem 1–2 momentos em <strong>#0C0F14</strong> com glow laranja: o achado que muda a decisão e o encerramento. O gráfico entra em <code>dark:true</code>:</p>
+      <div style="margin-top:18px;"><div id="gvDemoDark"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ 09 · LAYOUT ═══════════════ -->
   <div class="section" id="s6">
-    <div class="section-label reveal"><span class="num">06</span>Regras de layout</div>
+    <div class="section-label reveal"><span class="num">09</span>Regras de layout</div>
     <ul class="reveal">
       <li><strong>Uma coluna, 880px:</strong> container centrado, densidade compacta — seções a 56px, não 120px.</li>
       <li><strong>Overline antes de tudo:</strong> toda seção abre com <code>section-label</code> numerado; todo card tem rótulo em caps.</li>
@@ -638,9 +748,9 @@
     </ul>
   </div>
 
-  <!-- ═══════════════ 07 · PDF ═══════════════ -->
+  <!-- ═══════════════ 10 · PDF ═══════════════ -->
   <div class="section" id="s7">
-    <div class="section-label reveal"><span class="num">07</span>Exportar PDF</div>
+    <div class="section-label reveal"><span class="num">10</span>Exportar PDF</div>
     <p class="reveal">HTML primeiro, PDF depois — o HTML é a fonte da verdade, o PDF é uma impressão dele. Use <strong>Playwright</strong>, nunca o <code>--print-to-pdf</code> do Chrome:</p>
     <pre class="reveal"><code>from playwright.sync_api import sync_playwright
 with sync_playwright() as p:
@@ -715,6 +825,180 @@ with sync_playwright() as p:
     requestAnimationFrame(frame);
   }
 })();
+</script>
+
+<!-- ═══════════════ GVIZ (motor de gráficos — SVG, tokens GrowAI) ═══════════════ -->
+<script>
+/* ═══════════ GVIZ — motor de gráficos GrowAI v1.1 (SVG, zero dependências) ═══════════
+   A técnica de dados da casa: todo número vira forma por aqui. Copie este bloco
+   VERBATIM pra dentro do <script> de cada artefato (documento ou deck).
+   Regras embutidas: UM destaque laranja (gradiente da marca + glow) por gráfico,
+   série neutra em cinza frio, números em Satoshi tabular, zero gridlines,
+   baseline em hairline. `dark:true` troca a paleta neutra pros slides escuros.
+   Determinístico: sem Math.random, mesmo input → mesmo desenho.
+   v1.1: funil proporcional (piso 8%) com rótulo externo quando não cabe; hbars
+   reserva largura real do maior vlabel (fim do clipping); colunas ancoram na
+   baseline (canto arredondado só no topo); texto dentro de barra sempre forte. */
+const gviz = (() => {
+  let n = 0;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const el$ = e => typeof e === 'string' ? document.getElementById(e) : e;
+  const pal = d => d ? {
+    bar: 'rgba(255,255,255,.20)', bar2: 'rgba(255,255,255,.32)', lab: '#9EA3B2', val: '#FFFFFF',
+    axis: 'rgba(255,255,255,.14)', valHi: '#FFB37A', ringBg: 'rgba(255,255,255,.14)', inBar: 'rgba(255,255,255,.92)'
+  } : {
+    bar: '#C9D1DE', bar2: '#DDE3EC', lab: '#5B6472', val: '#3A4150',
+    axis: '#E7EAF0', valHi: '#B33E0A', ringBg: '#E7EAF0', inBar: '#3A4150'
+  };
+  const F = {
+    num: "font-family:var(--display,'Satoshi',sans-serif);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em",
+    lab: "font-family:var(--sans,'Inter',sans-serif);font-weight:500"
+  };
+  const defs = id => `<defs>
+    <linearGradient id="gv${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF9A3D"/><stop offset=".55" stop-color="#FF6A1A"/><stop offset="1" stop-color="#E63C0A"/></linearGradient>
+    <linearGradient id="gh${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF9A3D"/><stop offset=".55" stop-color="#FF6A1A"/><stop offset="1" stop-color="#E63C0A"/></linearGradient>
+    <filter id="gf${id}" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+  </defs>`;
+  const wrap = (e, W, H, id, inner, label) => {
+    const t = el$(e); if (!t) return;
+    t.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label || 'gráfico')}" style="width:100%;height:auto;display:block">${defs(id)}${inner}</svg>`;
+  };
+  /* coluna ancorada na baseline: canto arredondado SÓ no topo */
+  const barTop = (x, y, w, h, r) => { r = Math.min(r, w / 2, h); return `M${x},${y + h} L${x},${y + r} Q${x},${y} ${x + r},${y} L${x + w - r},${y} Q${x + w},${y} ${x + w},${y + r} L${x + w},${y + h} Z`; };
+  /* barra horizontal: canto arredondado SÓ na ponta direita */
+  const barRight = (x, y, w, h, r) => { r = Math.min(r, h / 2, w); return `M${x},${y} L${x + w - r},${y} Q${x + w},${y} ${x + w},${y + r} L${x + w},${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} L${x},${y + h} Z`; };
+
+  /* Colunas — comparação/tendência mensal. highlight = índice do período que importa. */
+  function bars(e, o) {
+    const id = ++n, p = pal(o.dark), W = o.w || 640, H = o.h || 300, pb = 46, pt = 34;
+    const max = Math.max(...o.values), ph = H - pt - pb, cw = W / o.values.length;
+    let s = '';
+    o.values.forEach((v, i) => {
+      const bh = Math.max(4, v / max * ph), bw = cw * .56, x = i * cw + (cw - bw) / 2, y = H - pb - bh, hi = i === o.highlight;
+      const d = barTop(x, y, bw, bh, 9);
+      if (hi) s += `<path d="${d}" fill="url(#gv${id})" opacity=".5" filter="url(#gf${id})"/>`;
+      s += `<path d="${d}" fill="${hi ? `url(#gv${id})` : p.bar}"/>`;
+      s += `<text x="${i * cw + cw / 2}" y="${y - 10}" text-anchor="middle" font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(o.vlabels ? o.vlabels[i] : v)}</text>`;
+      s += `<text x="${i * cw + cw / 2}" y="${H - pb + 22}" text-anchor="middle" font-size="12" style="${F.lab};fill:${hi ? p.valHi : p.lab};${hi ? 'font-weight:600' : ''}">${esc(o.labels[i])}</text>`;
+    });
+    s += `<line x1="0" y1="${H - pb}" x2="${W}" y2="${H - pb}" stroke="${p.axis}" stroke-width="1"/>`;
+    wrap(e, W, H, id, s, o.aria);
+  }
+
+  /* Barras horizontais — ranking. Reserva a largura REAL do maior vlabel (sem clipping). */
+  function hbars(e, o) {
+    const id = ++n, p = pal(o.dark), W = o.w || 640, rowH = 44, gap = 14, labW = o.labw || 150;
+    const vls = o.values.map((v, i) => String(o.vlabels ? o.vlabels[i] : v));
+    const valW = Math.max(...vls.map(t => t.length)) * 8 + 20;
+    const H = o.values.length * (rowH + gap) - gap, max = Math.max(...o.values), bw = W - labW - valW - 16;
+    let s = '';
+    o.values.forEach((v, i) => {
+      const y = i * (rowH + gap), w = Math.max(4, v / max * bw), hi = i === o.highlight;
+      const d = barRight(labW, y + 6, w, rowH - 12, 8);
+      s += `<text x="${labW - 12}" y="${y + rowH / 2 + 4}" text-anchor="end" font-size="13" style="${F.lab};fill:${hi ? p.val : p.lab};${hi ? 'font-weight:600' : ''}">${esc(o.labels[i])}</text>`;
+      if (hi) s += `<path d="${d}" fill="url(#gh${id})" opacity=".5" filter="url(#gf${id})"/>`;
+      s += `<path d="${d}" fill="${hi ? `url(#gh${id})` : p.bar}"/>`;
+      s += `<text x="${labW + w + 12}" y="${y + rowH / 2 + 5}" font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(vls[i])}</text>`;
+    });
+    wrap(e, W, H, id, s, o.aria);
+  }
+
+  /* Anel — percentual único (conversão, share, "X% em N dias"). value 0–100. */
+  function ring(e, o) {
+    const id = ++n, p = pal(o.dark), S = o.s || 300, c = S / 2, r = c - 26, C = 2 * Math.PI * r;
+    const frac = Math.min(1, Math.max(0, o.value / 100));
+    const arc = x => `<circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="url(#gh${id})" stroke-width="22" stroke-linecap="round" stroke-dasharray="${C * frac} ${C}" transform="rotate(-90 ${c} ${c})" ${x || ''}/>`;
+    let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${p.ringBg}" stroke-width="22"/>`;
+    s += arc(`opacity=".5" filter="url(#gf${id})"`) + arc();
+    s += `<text x="${c}" y="${c + S * .03}" text-anchor="middle" font-size="${S * .21}" style="${F.num};fill:${p.val}">${esc(o.vlabel || (o.value + '%'))}</text>`;
+    if (o.label) s += `<text x="${c}" y="${c + S * .15}" text-anchor="middle" font-size="11.5" letter-spacing="1.6" style="${F.lab};fill:${p.lab};text-transform:uppercase">${esc(o.label)}</text>`;
+    wrap(e, S, S, id, s, o.aria);
+  }
+
+  /* Funil — estágios do pipeline. Largura ∝ valor (piso de 8%); quando o texto
+     não cabe dentro da barra, rótulo e valor saem pra DIREITA da barra. */
+  function funnel(e, o) {
+    const id = ++n, p = pal(o.dark), W = o.w || 560, rowH = 48, gap = 10;
+    const H = o.stages.length * (rowH + gap) - gap, max = Math.max(...o.stages.map(t => t.value));
+    let s = '';
+    o.stages.forEach((st, i) => {
+      const y = i * (rowH + gap), w = Math.max(W * .08, st.value / max * W), x = (W - w) / 2, hi = i === o.highlight;
+      const vv = String(st.vlabel != null ? st.vlabel : st.value);
+      if (hi) s += `<rect x="${x}" y="${y}" width="${w}" height="${rowH}" rx="11" fill="url(#gh${id})" opacity=".5" filter="url(#gf${id})"/>`;
+      s += `<rect x="${x}" y="${y}" width="${w}" height="${rowH}" rx="11" fill="${hi ? `url(#gh${id})` : p.bar}"/>`;
+      const lw = st.label.length * 6.9 + 16, vw = vv.length * 8 + 16;
+      if (lw + vw + 12 <= w) {
+        s += `<text x="${x + 16}" y="${y + rowH / 2 + 4}" font-size="12.5" style="${F.lab};fill:${hi ? 'rgba(255,255,255,.92)' : p.inBar}">${esc(st.label)}</text>`;
+        s += `<text x="${x + w - 16}" y="${y + rowH / 2 + 5}" text-anchor="end" font-size="15" style="${F.num};fill:${hi ? '#FFFFFF' : p.val}">${esc(vv)}</text>`;
+      } else {
+        /* fora da barra: escolhe o lado com mais espaço; se uma linha não couber, empilha em duas */
+        const rs = W - (x + w) - 12, ls = x - 12;
+        const side = rs >= ls ? { x: x + w + 12, a: 'start' } : { x: x - 12, a: 'end' };
+        const sp = Math.max(rs, ls);
+        if (lw + vw + 8 <= sp) {
+          s += `<text x="${side.x}" y="${y + rowH / 2 + 5}" text-anchor="${side.a}" font-size="12.5" style="${F.lab};fill:${p.lab}">${esc(st.label)} <tspan font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(vv)}</tspan></text>`;
+        } else {
+          s += `<text x="${side.x}" y="${y + rowH / 2 - 5}" text-anchor="${side.a}" font-size="12.5" style="${F.lab};fill:${p.lab}">${esc(st.label)}</text>`;
+          s += `<text x="${side.x}" y="${y + rowH / 2 + 14}" text-anchor="${side.a}" font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(vv)}</text>`;
+        }
+      }
+    });
+    wrap(e, W, H, id, s, o.aria);
+  }
+
+  /* Barra de composição 100% — concentração/participação (top 10, top 30, resto). */
+  function share(e, o) {
+    const id = ++n, p = pal(o.dark), W = o.w || 640, barH = 30, H = barH + 48;
+    const tot = o.segments.reduce((a, t) => a + t.value, 0);
+    let x = 0, s = `<clipPath id="gc${id}"><rect x="0" y="0" width="${W}" height="${barH}" rx="10"/></clipPath><g clip-path="url(#gc${id})">`;
+    o.segments.forEach((sg, i) => {
+      const w = sg.value / tot * W, hi = i === o.highlight;
+      s += `<rect x="${x}" y="0" width="${w}" height="${barH}" fill="${hi ? `url(#gh${id})` : (i % 2 ? p.bar2 : p.bar)}"/>`;
+      x += w;
+    });
+    s += '</g>';
+    let lx = 0; const lw = o.legw || W / o.segments.length;
+    o.segments.forEach((sg, i) => {
+      const hi = i === o.highlight;
+      s += `<circle cx="${lx + 5}" cy="${barH + 27}" r="5" fill="${hi ? '#FF6A1A' : (i % 2 ? p.bar2 : p.bar)}"/>`;
+      s += `<text x="${lx + 16}" y="${barH + 31}" font-size="12" style="${F.lab};fill:${p.lab}">${esc(sg.label)} <tspan style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(sg.vlabel != null ? sg.vlabel : sg.value)}</tspan></text>`;
+      lx += lw;
+    });
+    wrap(e, W, H, id, s, o.aria);
+  }
+
+  /* Linha — tendência com ponto-destaque. area:false desliga o preenchimento suave. */
+  function line(e, o) {
+    const id = ++n, p = pal(o.dark), W = o.w || 640, H = o.h || 260, pb = 40, pt = 30, px0 = 36;
+    const max = Math.max(...o.values), min = Math.min(...o.values), rng = (max - min) || 1;
+    const px = i => px0 + i * (W - 2 * px0) / (o.values.length - 1);
+    const py = v => pt + (1 - (v - min) / rng) * (H - pt - pb);
+    const pts = o.values.map((v, i) => `${px(i)},${py(v)}`).join(' ');
+    let s = '';
+    if (o.area !== false) s += `<polygon points="${px(0)},${H - pb} ${pts} ${px(o.values.length - 1)},${H - pb}" fill="url(#gv${id})" opacity=".10"/>`;
+    s += `<polyline points="${pts}" fill="none" stroke="${p.val}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    o.values.forEach((v, i) => {
+      const hi = i === o.highlight;
+      if (hi) s += `<circle cx="${px(i)}" cy="${py(v)}" r="12" fill="#FF6A1A" opacity=".35" filter="url(#gf${id})"/><circle cx="${px(i)}" cy="${py(v)}" r="6" fill="url(#gv${id})"/>`;
+      else s += `<circle cx="${px(i)}" cy="${py(v)}" r="4" fill="${p.val}"/>`;
+      s += `<text x="${px(i)}" y="${py(v) - 14}" text-anchor="middle" font-size="13.5" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(o.vlabels ? o.vlabels[i] : v)}</text>`;
+      s += `<text x="${px(i)}" y="${H - pb + 22}" text-anchor="middle" font-size="12" style="${F.lab};fill:${hi ? p.valHi : p.lab}">${esc(o.labels[i])}</text>`;
+    });
+    s += `<line x1="0" y1="${H - pb}" x2="${W}" y2="${H - pb}" stroke="${p.axis}"/>`;
+    wrap(e, W, H, id, s, o.aria);
+  }
+
+  return { bars, hbars, ring, funnel, share, line };
+})();
+
+/* demos do brand book — dados fictícios */
+gviz.bars('gvDemoBars', { labels:['jan','fev','mar','abr','mai'], values:[42,38,71,55,63], vlabels:['42k','38k','71k','55k','63k'], highlight:2, aria:'Demonstração de barras' });
+gviz.ring('gvDemoRing', { value:64, label:'do total em 7 dias', aria:'Demonstração de anel' });
+gviz.funnel('gvDemoFunnel', { w:520, stages:[ {label:'Leads', value:1200, vlabel:'1.200'}, {label:'Qualificados', value:480, vlabel:'480'}, {label:'Calls realizadas', value:190, vlabel:'190'}, {label:'Fechados', value:62, vlabel:'62'} ], highlight:2, aria:'Demonstração de funil' });
+gviz.hbars('gvDemoHbars', { labels:['Indicação','Tráfego pago','Orgânico'], values:[118,74,39], vlabels:['R$ 118k','R$ 74k','R$ 39k'], highlight:0, labw:130, aria:'Demonstração de ranking' });
+gviz.share('gvDemoShare', { segments:[ {label:'Top 10', value:34, vlabel:'34%'}, {label:'11–30', value:28, vlabel:'28%'}, {label:'Demais', value:38, vlabel:'38%'} ], highlight:0, legw:150, aria:'Demonstração de composição' });
+gviz.line('gvDemoLine', { labels:['jan','fev','mar','abr','mai','jun'], values:[12,14,13,18,22,27], vlabels:['12','14','13','18','22','27'], highlight:5, aria:'Demonstração de linha' });
+gviz.bars('gvDemoDark', { dark:true, h:240, labels:['sem 1','sem 2','sem 3','sem 4'], values:[8,12,9,21], highlight:3, aria:'Demonstração dark' });
 </script>
 </body>
 </html>
