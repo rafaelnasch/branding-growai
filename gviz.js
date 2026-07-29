@@ -157,5 +157,30 @@ const gviz = (() => {
     wrap(e, W, H, id, s, o.aria);
   }
 
-  return { bars, hbars, ring, funnel, share, line };
+  /* Fluxo — diagrama de etapas com conectores no MESMO sistema de coordenadas
+     (regra de diagramas da casa: seta nunca posicionada na mão sobre HTML).
+     steps: [{label, sub}] · highlight marca a etapa que importa. Rótulos curtos. */
+  function flow(e, o) {
+    const id = ++n, p = pal(o.dark), W = o.w || 640, boxH = 66, arrowW = 40, pad = 4;
+    const k = o.steps.length, boxW = (W - arrowW * (k - 1) - pad * 2) / k, H = boxH + 16;
+    const boxFill = o.dark ? 'rgba(255,255,255,.07)' : '#FFFFFF';
+    const boxLine = o.dark ? 'rgba(255,255,255,.13)' : '#E7EAF0';
+    let s = '';
+    o.steps.forEach((st, i) => {
+      const x = pad + i * (boxW + arrowW), y = 8, hi = i === o.highlight, cx = x + boxW / 2;
+      if (hi) s += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="13" fill="url(#gh${id})" opacity=".5" filter="url(#gf${id})"/>`;
+      s += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="13" fill="${hi ? `url(#gh${id})` : boxFill}" ${hi ? '' : `stroke="${boxLine}" stroke-width="1.5"`}/>`;
+      const ly = st.sub ? y + boxH / 2 - 5 : y + boxH / 2 + 5;
+      s += `<text x="${cx}" y="${ly}" text-anchor="middle" font-size="13.5" style="${F.lab};font-weight:600;fill:${hi ? '#FFFFFF' : (o.dark ? p.val : '#0C0F14')}">${esc(st.label)}</text>`;
+      if (st.sub) s += `<text x="${cx}" y="${y + boxH / 2 + 15}" text-anchor="middle" font-size="11.5" style="${F.lab};fill:${hi ? 'rgba(255,255,255,.85)' : p.lab}">${esc(st.sub)}</text>`;
+      if (i < k - 1) {
+        const ax = x + boxW + 7, ay = y + boxH / 2, ae = x + boxW + arrowW - 7;
+        s += `<line x1="${ax}" y1="${ay}" x2="${ae - 6}" y2="${ay}" stroke="${p.lab}" stroke-width="2" stroke-linecap="round"/>`;
+        s += `<path d="M${ae - 8},${ay - 5.5} L${ae},${ay} L${ae - 8},${ay + 5.5}" fill="none" stroke="${p.lab}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+      }
+    });
+    wrap(e, W, H, id, s, o.aria);
+  }
+
+  return { bars, hbars, ring, funnel, share, line, flow };
 })();

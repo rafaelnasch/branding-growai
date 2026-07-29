@@ -7,7 +7,7 @@ description: A identidade visual GrowAI — documentos, decks, PDFs, one-pagers 
 
 Um estilo de casa travado: premium, frio e tranquilo, com **cards de vidro fosco sobre glow laranja** e **dados que viram forma, não tabela**. Tudo abaixo vale para **todo** material GrowAI. Este arquivo é o estilo inteiro: paleta, tipografia, a técnica Liquid Glass, o motor de gráficos, a lei editorial, os dois formatos (documento e deck), mobile e PDF.
 
-**Abra PRIMEIRO:** [`brand-book.html`](brand-book.html) — o estilo documentando a si mesmo, com todos os componentes E os seis gráficos ao vivo. O `<head>` + `<style>` dele são o template portátil do **documento**. Pra **deck**, o esqueleto pronto é [`deck-template.html`](deck-template.html). O motor de gráficos vive em [`gviz.js`](gviz.js) — copie o bloco inteiro pro `<script>` de cada artefato. Quando estiver como esses arquivos parecem, está certo.
+**Abra PRIMEIRO:** [`brand-book.html`](brand-book.html) — o estilo documentando a si mesmo, com componentes, os sete gráficos e as seis formas ao vivo. O `<head>` + `<style>` dele são o template portátil do **documento**. Pra **deck**, o esqueleto pronto é [`deck-template.html`](deck-template.html). Os motores vivem em [`gviz.js`](gviz.js) (dados) e [`gforms.js`](gforms.js) (formas conceituais) — copie os blocos inteiros pro `<script>` de cada artefato. Quando estiver como esses arquivos parecem, está certo.
 
 ---
 
@@ -18,7 +18,7 @@ Um estilo de casa travado: premium, frio e tranquilo, com **cards de vidro fosco
 | Fundo principal | `#F1F4F8` (frio) | fundo padrão de todo documento |
 | Superfícies | `#FFFFFF` · `#F6F8FA` | superfícies sólidas quando o glass não cabe |
 | Tinta | `#0C0F14` (títulos) · `#3A4150` (corpo) | hierarquia por cor, não por tamanho |
-| Muted / Faint | `#5B6472` · `#8A93A3` | apoio · overlines e rótulos |
+| Muted / Faint | `#5B6472` · `#67717F` | apoio · overlines e rótulos (o faint subiu de `#8A93A3` pra `#67717F` — contraste AA ~4,5:1 nos micro-rótulos) |
 | Linhas | `#E7EAF0` · `#EEF1F5` | divisores, baseline de gráfico |
 | **Laranja GrowAI** | `#FF6A1A` | O accent. Gradiente da marca: `#FF9A3D → #FF6A1A → #E63C0A` |
 | Laranja de apoio | `#C8470C` (deep) · `#B33E0A` (texto legível) · `#FFF1E8` (soft) | rótulos, links, valores destacados |
@@ -40,6 +40,8 @@ Nenhuma outra cor. **PROIBIDO azul/violeta** (`#2D5BFF`, `#7C5CFF` — paleta le
 | **Mono** | VOC literal, código, hex | Nunca em heading, nunca em número de gráfico |
 
 **Padrão overline (assinatura da casa):** 10.5–12px, `uppercase`, `letter-spacing: 0.08–0.13em`, weight 600, cor faint. Abre TODA seção, card, painel de gráfico e metadado.
+
+**Notação de número gigante:** nos stats, a unidade vai rebaixada (`R$ 324<span style="font-size:.45em"> mil</span>`); em headline corrida, por extenso ("R$ 607 mil"). Nunca as duas formas no MESMO componente.
 
 Imports (copie sempre os dois):
 ```html
@@ -93,12 +95,14 @@ Onde a casa mostra número, mostra **forma**. O motor é [`gviz.js`](gviz.js) �
 | `gviz.funnel(el, {stages: [{label, value, vlabel}], highlight})` | estágios de pipeline | o estágio onde trava, em laranja |
 | `gviz.share(el, {segments: [{label, value, vlabel}], highlight, legw})` | composição 100% (concentração) | top 10 em gradiente |
 | `gviz.line(el, {labels, values, vlabels, highlight, area})` | tendência com ponto-chave | último ponto em laranja |
+| `gviz.flow(el, {steps: [{label, sub}], highlight})` | diagrama de etapas (jornada, processo) | a etapa que importa |
 
 Regras embutidas no motor (não contorne):
 
 - **Um destaque por gráfico.** `highlight` marca UM índice — gradiente da marca + glow. Todo o resto fica no neutro frio. Sem destaque? Passe `highlight: -1`.
 - **Números em Satoshi 700 tabular, rótulos em Inter.** Formate valores você mesmo via `vlabels` (`"99,1k"`, `"R$ 2.561"`) — o motor não sabe locale.
 - **Zero gridlines.** Só a baseline em hairline. O valor está escrito em cima de cada forma; grade é ruído.
+- **Rótulos de funil curtos** (≤ 18 caracteres). Quando o texto não cabe na barra, o motor o tira pra fora sozinho (pro lado com mais espaço, até em duas linhas) — mas rótulo curto sempre fica melhor.
 - **`dark: true`** troca a paleta neutra pros slides/cards escuros. Mesma API.
 - O SVG sai com `viewBox` + `width:100%` — responsivo e vetorial no PDF de graça.
 
@@ -119,6 +123,29 @@ Todo gráfico vive num painel de vidro com overline:
 ```
 
 (Inclua `.chart-panel` nas listas de fallback sólido do `@supports` e do `≤860px`, junto com `.kpi-grid` — o brand book já traz pronto.)
+
+## GFORMS — a ilustração da casa
+
+Onde a ROBO tem o dot-matrix, a GrowAI tem **formas de pontos e gradiente**. Quando o slide precisa de uma FORMA (conceito, não dado), ela sai do motor [`gforms.js`](gforms.js) — nunca de banco de imagem, nunca de emoji. Copie o bloco verbatim junto com o gviz e chame:
+
+| Forma | Conceito que representa |
+|---|---|
+| `gforms.orbe(el, {s, dark})` | núcleo, foco, o produto no centro (eco do logo) |
+| `gforms.aneis(el, {s, dark})` | crescimento, expansão, alcance |
+| `gforms.horizonte(el, {w, h, dark})` | começo, lançamento — A assinatura de capa e closer de todo deck |
+| `gforms.campo(el, {w, h, step, dark})` | mercado, audiência, base — com a zona quente em laranja |
+| `gforms.seta(el, {w, h, step, dark})` | transformação, direção, próximo passo |
+| `gforms.onda(el, {w, h, step, dark})` | momentum, tendência |
+
+Regras: **uma forma por slide**, coadjuvante do título — nunca atrás de texto corrido (o texto vence os pontos: forma fica abaixo, ao lado ou com zona oca); o foco laranja da forma É o destaque do slide, não some outro; tudo determinístico (ruído por seno, nunca `Math.random`); forma nova = função de ~20 linhas no mesmo padrão (pontos + neutro frio + UM foco em gradiente).
+
+## Diagramas e conectores (TRAVADA)
+
+Nunca posicione uma seta "na mão" sobre HTML com coordenadas absolutas. Três caminhos, nesta ordem de preferência:
+
+1. Conectores e caixas no **MESMO SVG** — é o que o `gviz.flow` faz; use-o pra jornadas e processos.
+2. A seta ganha a **própria célula de grid** entre as caixas (`grid-template-columns: 1fr auto 1fr`).
+3. Endpoints medidos em **runtime** com `getBoundingClientRect()`.
 
 ## Lei editorial (TRAVADA)
 
@@ -161,6 +188,10 @@ Nomes de classe são API — skills e validador dependem deles. Nunca renomeie.
 
 **Count-up:** `<div class="big-num" data-count="58" data-suffix="%">58%</div>` — o valor final SEMPRE escrito no HTML. Em valores monetários grandes, não use `data-count` (imprime `324213.88` sem separador). Em decimais pt-BR, também não: o count-up escreve ponto (`6.2%`), nunca vírgula — escreva `6,2%` estático. Anime só inteiros limpos (147, 65, 13).
 
+## Ícones (SVG inline, nunca emoji)
+
+Lucide/Heroicons outline: `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`, `stroke-width="2"`, `stroke-linecap="round"`, `stroke-linejoin="round"`. Tamanhos: 16–18px em listas e trust rows, 20–24px em destaques. Cor: herda do texto via `currentColor` com `opacity:.75` em contexto neutro; accent (`#B33E0A` no claro) só no item destacado. **Seis ícones prontos pra copiar** vivem no brand book (seção 08 — alvo, tendência, check, calendário, pessoas, raio). Emojis só em relatório interno (✅ ⚠️ ❌), jamais em material apresentável.
+
 ## Mobile System v1 (TRAVADO)
 
 Todo material legível e sem recorte entre **320 e 430 px**: breakpoint canônico `640px`; meta-bar/KPIs/grids empilham; **tabelas viram cards** via o script `data-growai-responsive="v1"` (copie literal); gráficos gviz escalam sozinhos (viewBox); `overflow-wrap:anywhere` global; mídia `max-width:100%`. **PROIBIDO** `overflow-x:hidden` global pra mascarar layout quebrado. Deck no mobile: slides empilham com altura automática.
@@ -185,6 +216,7 @@ with sync_playwright() as p:
 - **`print_background=True` é obrigatório** — sem ele o dark, os tintados e o glow somem.
 - Antes de imprimir, confira os count-ups: `pg.eval_on_selector_all(".big-num", "els => els.map(e => e.textContent)")` tem que devolver os valores finais.
 - **Deck:** imprima paisagem no tamanho do slide — `pg.pdf(width="1440px", height="900px", margin=0)` + CSS injetado `@media print { .slide{height:900px!important; break-after:page} .nav{display:none} html{scroll-snap-type:none} }`.
+- **Gradiente de texto no print:** `background-clip:text` vaza um fio de box no PDF do Chromium — no `@media print`, texto em gradiente vira cor sólida (`#DF5406` no claro, `#FF8A3D` no dark). O `deck-template.html` já traz a regra pronta.
 - No `@media print` do documento (DENTRO da única `<style>`): reveal forçado visível, `body::before` desligado, `break-inside:avoid` nos cards e no `.chart-panel`.
 - Gráficos gviz são SVG → saem vetoriais, nunca serrilhados.
 
@@ -216,8 +248,9 @@ Fora do repo, o `brand-book.html` desta pasta carrega tudo e serve de template p
 - **Não é tabela por padrão** — dado com mensagem vira gráfico; tabela é exceção de consulta
 - Não é parede de texto — o número lidera, a prosa segue
 - Não é animação chamativa — movimento discreto, progressivo, sempre opcional
-- Não é multi-destaque — um laranja por gráfico, um hot-card por grupo
+- Não é multi-destaque — um laranja por gráfico, um hot-card por grupo, um foco por forma
+- Não é banco de imagem — forma conceitual sai do gforms, ícone sai do spec Lucide
 
 ---
 
-*Skill própria da GrowAI. Anatomia (spec travada + brand book auto-documentado + motor visual próprio + lei editorial) modelada na skill "Robo Style — a drop-in design skill for Claude Code" (CC BY 4.0); o design system GrowAI v6 "Liquid Glass" e o motor GVIZ são trabalho original da GrowAI. Criada em 29/07/2026 · v2 (GVIZ + lei editorial + deck) no mesmo dia.*
+*Skill própria da GrowAI. Anatomia (spec travada + brand book auto-documentado + motores visuais próprios + lei editorial) modelada na skill "Robo Style — a drop-in design skill for Claude Code" (CC BY 4.0); o design system GrowAI v6 "Liquid Glass" e os motores GVIZ/GFORMS são trabalho original da GrowAI. Criada em 29/07/2026 · v2 (GVIZ + lei editorial + deck) e v2.1 (GFORMS + flow + ícones + faint AA `#67717F`) no mesmo dia.*

@@ -1,15 +1,15 @@
 Attribution 4.0 International (CC BY 4.0)
 
-This work - the "branding-growai" design skill, including SKILL.md and
-brand-book.html - is licensed under the Creative Commons Attribution 4.0
-International License.
+This work - the "branding-growai" design skill, including SKILL.md,
+brand-book.html, deck-template.html, gviz.js and gforms.js - is licensed
+under the Creative Commons Attribution 4.0 International License.
 
 Copyright (c) 2026 GrowAI (Rafael Nasch)
 
 The skill anatomy (SKILL.md spec + self-documenting brand-book.html) is
 modeled on "Robo Style - a drop-in design skill for Claude Code", licensed
 under CC BY 4.0. The visual design system documented here (GrowAI v6
-"Liquid Glass") is original work by GrowAI.
+"Liquid Glass") and the GVIZ/GFORMS engines are original work by GrowAI.
 
 You are free to:
   - Share - copy and redistribute the material in any medium or format

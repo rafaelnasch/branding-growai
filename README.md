@@ -1,6 +1,6 @@
 # branding-growai
 
-**A identidade visual GrowAI como skill drop-in pra Claude Code.** Documentos, decks, PDFs, one-pagers e dashboards no padrão **GrowAI v6 "Liquid Glass"**: Satoshi + Inter, fundo frio `#F1F4F8`, laranja `#FF6A1A`, cards de vidro sobre glow, **motor de gráficos GVIZ** e a lei editorial **"o número lidera"**. Mobile garantido de 320 a 430 px.
+**A identidade visual GrowAI como skill drop-in pra Claude Code.** Documentos, decks, PDFs, one-pagers e dashboards no padrão **GrowAI v6 "Liquid Glass"**: Satoshi + Inter, fundo frio `#F1F4F8`, laranja `#FF6A1A`, cards de vidro sobre glow, **motor de gráficos GVIZ**, **motor de formas conceituais GFORMS** e a lei editorial **"o número lidera"**. Mobile garantido de 320 a 430 px.
 
 | Desktop | Mobile (390 px) |
 |---|---|
@@ -8,10 +8,11 @@
 
 ## O que vem dentro
 
-- **[`SKILL.md`](SKILL.md)** — a spec travada: paleta, tipografia, lockup, Liquid Glass em 4 camadas, o motor GVIZ, a lei editorial, os dois formatos (documento e deck), componentes canônicos, Mobile System v1, export de PDF via Playwright e gotchas.
-- **[`brand-book.html`](brand-book.html)** — o estilo documentando a si mesmo, com os seis gráficos rodando ao vivo. Também é o **template portátil do documento**: copie o `<head>`, a `<style>` completa e os `<script>` do fim.
+- **[`SKILL.md`](SKILL.md)** — a spec travada: paleta, tipografia, lockup, Liquid Glass em 4 camadas, os motores GVIZ e GFORMS, regra de diagramas, spec de ícones, a lei editorial, os dois formatos (documento e deck), componentes canônicos, Mobile System v1, export de PDF via Playwright e gotchas.
+- **[`brand-book.html`](brand-book.html)** — o estilo documentando a si mesmo em 12 seções, com os 7 gráficos, as 6 formas e os ícones rodando ao vivo. Também é o **template portátil do documento**: copie o `<head>`, a `<style>` completa e os `<script>` do fim.
 - **[`deck-template.html`](deck-template.html)** — esqueleto pronto de **deck** (100vh + scroll-snap, beats escuros com glow, gráfico como herói do slide, print-ready).
-- **[`gviz.js`](gviz.js)** — o motor de dados: `bars`, `hbars`, `ring`, `funnel`, `share`, `line` em SVG puro, zero dependências. Um destaque laranja por gráfico, números em Satoshi, série neutra em cinza frio, `dark:true` pros slides escuros. Vetorial no PDF de graça.
+- **[`gviz.js`](gviz.js)** — o motor de dados: `bars`, `hbars`, `ring`, `funnel`, `share`, `line` e `flow` (diagrama de etapas com conectores no mesmo SVG) em SVG puro, zero dependências. Um destaque laranja por gráfico, números em Satoshi, série neutra em cinza frio, `dark:true` pros slides escuros. Vetorial no PDF de graça.
+- **[`gforms.js`](gforms.js)** — o motor de formas conceituais (a "ilustração da casa"): `orbe`, `aneis`, `horizonte`, `campo`, `seta`, `onda` — pontos e gradiente da marca, determinísticos, um foco por forma. Quando o slide precisa de conceito em vez de dado, a forma sai daqui, nunca de banco de imagem.
 
 ## Instalação
 
@@ -42,7 +43,7 @@ A skill instrui o Claude a abrir o brand book primeiro e construir o material co
 - **Cores:** fundo frio `#F1F4F8`, tinta `#0C0F14`, um único accent laranja `#FF6A1A` (gradiente da marca `#FF9A3D → #FF6A1A → #E63C0A`). Séries de gráfico em cinza frio; só O destaque fica laranja. Azul e violeta são banidos.
 - **Tipografia:** Satoshi (display, 600/700, tracking negativo, todo número de gráfico) + Inter (corpo e rótulos) + mono pra VOC e código. Overlines em caps são a assinatura.
 - **Liquid Glass:** glow laranja ambiente → cards `rgba(255,255,255,.66)` com `backdrop-filter: blur(20px)` → glow de destaque no winner → movimento discreto com fallbacks travados.
-- **GVIZ:** dado com mensagem vira gráfico, não tabela. Seis formas prontas, um destaque por gráfico, zero gridlines.
+- **GVIZ + GFORMS:** dado com mensagem vira gráfico, não tabela (7 gráficos, incluindo diagrama de fluxo); conceito vira forma de pontos e gradiente (6 formas). Um destaque por visual, zero gridlines, ícones Lucide inline no lugar de emoji.
 - **Lei editorial:** o número lidera; documento = 1 visual + ≤2 parágrafos por seção; deck = título ≤6 palavras + 1 linha de apoio; uma ideia por unidade.
 - **Dois formatos:** vai ser lido → documento; vai ser apresentado → deck (mesmos tokens, beats escuros pro achado central).
 

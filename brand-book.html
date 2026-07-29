@@ -24,7 +24,7 @@
 <style>
   /* ═══════════ GROWAI REPORT DESIGN SYSTEM v6 · Retention / Liquid Glass ═══════════ */
   :root{
-    --bg:#F1F4F8; --surface:#FFFFFF; --bg-soft:#F6F8FA; --ink:#0C0F14; --ink-2:#3A4150; --muted:#5B6472; --faint:#8A93A3;
+    --bg:#F1F4F8; --surface:#FFFFFF; --bg-soft:#F6F8FA; --ink:#0C0F14; --ink-2:#3A4150; --muted:#5B6472; --faint:#67717F;
     --line:#E7EAF0; --line-2:#EEF1F5; --accent:#FF6A1A; --accent-2:#FF9A3D; --accent-deep:#C8470C; --accent-ink:#B33E0A; --accent-soft:#FFF1E8;
     --green:#0E9F6E; --green-soft:#E9F8F1; --red:#C0392B; --red-soft:#FBEAE8;
     --amber:#B7791F; --amber-soft:#FBF4E6; --deep:#0C0F14;
@@ -491,8 +491,10 @@
       <li><a href="#s2">Tipografia</a></li>
       <li><a href="#s3">Liquid Glass — a técnica de superfície</a></li>
       <li><a href="#sG">GVIZ — a linguagem de dados</a></li>
+      <li><a href="#sF">GFORMS — a ilustração da casa</a></li>
       <li><a href="#sE">Lei editorial</a></li>
       <li><a href="#s4">Componentes canônicos</a></li>
+      <li><a href="#sI">Ícones</a></li>
       <li><a href="#s5">Tabelas + Mobile System v1</a></li>
       <li><a href="#sD">Documento vs Deck</a></li>
       <li><a href="#s6">Regras de layout</a></li>
@@ -522,7 +524,7 @@
         <tbody>
           <tr><td><strong>Fundo</strong></td><td><code>#F1F4F8</code></td><td>fundo padrão · superfícies sólidas <code>#FFFFFF</code> / <code>#F6F8FA</code></td></tr>
           <tr><td><strong>Tinta</strong></td><td><code>#0C0F14</code> · <code>#3A4150</code></td><td>títulos e negrito · corpo</td></tr>
-          <tr><td><strong>Secundários</strong></td><td><code>#5B6472</code> · <code>#8A93A3</code></td><td>texto de apoio · overlines e rótulos</td></tr>
+          <tr><td><strong>Secundários</strong></td><td><code>#5B6472</code> · <code>#67717F</code></td><td>texto de apoio · overlines e rótulos (faint AA desde a v2.1)</td></tr>
           <tr><td><strong>Laranja</strong></td><td><code>#FF6A1A</code></td><td>o accent — gradiente <code>#FF9A3D → #FF6A1A → #E63C0A</code>; texto laranja usa <code>#B33E0A</code></td></tr>
           <tr><td><strong>Semânticas</strong></td><td><code>#0E9F6E</code> · <code>#C0392B</code> · <code>#B7791F</code></td><td>opportunity · danger · atenção (cada uma com fundo soft próprio)</td></tr>
           <tr><td><strong>Glass</strong></td><td><code>rgba(255,255,255,.66)</code></td><td>fundo dos cards frosted, borda <code>rgba(255,255,255,.78)</code></td></tr>
@@ -627,16 +629,62 @@
           <tr><td><code>gviz.funnel</code></td><td>estágios de pipeline</td><td>o estágio onde trava</td></tr>
           <tr><td><code>gviz.share</code></td><td>composição/concentração</td><td>a fatia que decide</td></tr>
           <tr><td><code>gviz.line</code></td><td>tendência</td><td>o ponto de virada</td></tr>
+          <tr><td><code>gviz.flow</code></td><td>diagrama de etapas</td><td>a etapa que importa</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="callout reveal"><strong>Regras do motor</strong> Formate os valores você mesmo via <code>vlabels</code> ("99,1k", "R$ 2.561") — o motor não sabe locale. Sem destaque? <code>highlight:-1</code>. Slide escuro? <code>dark:true</code>, mesma API. O SVG sai com <code>viewBox</code> + largura 100%: responsivo e vetorial no PDF de graça.</div>
+    <div class="chart-panel reveal">
+      <div class="chart-title">gviz.flow · diagrama de etapas — conectores no MESMO SVG (regra de diagramas)</div>
+      <div id="gvDemoFlow"></div>
+    </div>
+
+    <div class="callout reveal"><strong>Regras do motor</strong> Formate os valores você mesmo via <code>vlabels</code> ("99,1k", "R$ 2.561") — o motor não sabe locale. Sem destaque? <code>highlight:-1</code>. Slide escuro? <code>dark:true</code>, mesma API. Rótulos de funil curtos (≤18 caracteres) — quando não cabem na barra, o motor os tira pra fora sozinho. O SVG sai com <code>viewBox</code> + largura 100%: responsivo e vetorial no PDF de graça.</div>
+  </div>
+
+  <!-- ═══════════════ 05 · GFORMS ═══════════════ -->
+  <div class="section" id="sF">
+    <div class="section-label reveal"><span class="num">05</span>GFORMS — a ilustração da casa</div>
+    <p class="reveal">Quando o slide precisa de uma <strong>forma</strong> (conceito, não dado), ela sai do motor <code>gforms.js</code> — nunca de banco de imagem, nunca de emoji. Pontos e gradiente da marca, um foco por forma, tudo determinístico. Cada forma carrega um conceito:</p>
+
+    <div class="grid reveal" style="margin:16px 0;">
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">orbe · núcleo, foco, o produto</div>
+        <div style="max-width:230px; margin:0 auto;"><div id="gfDemoOrbe"></div></div>
+      </div>
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">aneis · crescimento, alcance</div>
+        <div style="max-width:230px; margin:0 auto;"><div id="gfDemoAneis"></div></div>
+      </div>
+    </div>
+
+    <div class="chart-panel reveal">
+      <div class="chart-title">horizonte · começo, lançamento — a assinatura de capa e closer de todo deck</div>
+      <div id="gfDemoHorizonte"></div>
+    </div>
+
+    <div class="grid reveal" style="margin:16px 0;">
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">campo · mercado, audiência</div>
+        <div id="gfDemoCampo"></div>
+      </div>
+      <div class="chart-panel" style="margin:0;">
+        <div class="chart-title">seta · transformação, direção</div>
+        <div id="gfDemoSeta"></div>
+      </div>
+    </div>
+
+    <div class="chart-panel reveal">
+      <div class="chart-title">onda · momentum, tendência</div>
+      <div id="gfDemoOnda"></div>
+    </div>
+
+    <div class="callout reveal"><strong>Regras das formas</strong> Uma forma por slide, coadjuvante do título — nunca atrás de texto corrido. O foco laranja da forma É o destaque do slide (não some outro). Forma nova = função de ~20 linhas no mesmo padrão: pontos, neutro frio, UM foco em gradiente, ruído por seno (nunca <strong>Math.random</strong>).</div>
   </div>
 
   <!-- ═══════════════ 05 · LEI EDITORIAL ═══════════════ -->
   <div class="section" id="sE">
-    <div class="section-label reveal"><span class="num">05</span>Lei editorial</div>
+    <div class="section-label reveal"><span class="num">06</span>Lei editorial</div>
     <p class="reveal">O que separa material bom de parede de texto. Vale pra documento e pra deck:</p>
 
     <div class="reveal">
@@ -653,7 +701,7 @@
 
   <!-- ═══════════════ 06 · COMPONENTES ═══════════════ -->
   <div class="section" id="s4">
-    <div class="section-label reveal"><span class="num">06</span>Componentes canônicos</div>
+    <div class="section-label reveal"><span class="num">07</span>Componentes canônicos</div>
     <p class="reveal">Os nomes de classe são API — skills e o validador dependem deles. Todos ao vivo abaixo.</p>
 
     <div class="kpi-grid reveal">
@@ -683,9 +731,26 @@
     <div class="check-row reveal"><span class="check-icon">✓</span><div><strong>check-row</strong><br><span style="color:var(--muted);">Sanity check ou item verificado, com ícone verde e sombra da mesma família.</span></div></div>
   </div>
 
-  <!-- ═══════════════ 07 · TABELAS + MOBILE ═══════════════ -->
+  <!-- ═══════════════ 08 · ÍCONES ═══════════════ -->
+  <div class="section" id="sI">
+    <div class="section-label reveal"><span class="num">08</span>Ícones</div>
+    <p class="reveal">SVG inline no padrão Lucide/Heroicons outline — <strong>nunca emoji</strong> em material apresentável. Spec: <code>viewBox="0 0 24 24"</code>, <code>fill="none"</code>, <code>stroke="currentColor"</code>, <code>stroke-width="2"</code>, cantos e pontas arredondados. 16–18px em listas, 20–24px em destaques; cor herdada do texto com <code>opacity:.75</code>, accent só no item destacado. Seis prontos pra copiar:</p>
+
+    <div class="chart-panel reveal">
+      <div style="display:flex; flex-wrap:wrap; gap:26px 34px; align-items:center; color:var(--ink-2);">
+        <span style="display:inline-flex; align-items:center; gap:9px; font-size:13.5px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>alvo</span>
+        <span style="display:inline-flex; align-items:center; gap:9px; font-size:13.5px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.75"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>tendência</span>
+        <span style="display:inline-flex; align-items:center; gap:9px; font-size:13.5px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.75"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>check</span>
+        <span style="display:inline-flex; align-items:center; gap:9px; font-size:13.5px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.75"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>calendário</span>
+        <span style="display:inline-flex; align-items:center; gap:9px; font-size:13.5px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>pessoas</span>
+        <span style="display:inline-flex; align-items:center; gap:9px; font-size:13.5px; color:var(--accent-ink);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>raio (o destacado, em accent)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ 09 · TABELAS + MOBILE ═══════════════ -->
   <div class="section" id="s5">
-    <div class="section-label reveal"><span class="num">07</span>Tabelas + Mobile System v1</div>
+    <div class="section-label reveal"><span class="num">09</span>Tabelas + Mobile System v1</div>
     <p class="reveal">Toda tabela vive dentro de <code>table-wrap</code>. No desktop ela rola se precisar; abaixo de 640px o script responsivo a transforma em cards rotulados (redimensione esta janela pra ver).</p>
 
     <div class="table-wrap reveal">
@@ -709,7 +774,7 @@
 
   <!-- ═══════════════ 08 · DOCUMENTO VS DECK ═══════════════ -->
   <div class="section" id="sD">
-    <div class="section-label reveal"><span class="num">08</span>Documento vs Deck</div>
+    <div class="section-label reveal"><span class="num">10</span>Documento vs Deck</div>
     <p class="reveal">Dois formatos de primeira classe, mesma identidade. Escolha pelo uso: vai ser <strong>lido</strong> → documento; vai ser <strong>apresentado</strong> → deck. Na dúvida, faça o documento e destile o deck dele: mesmos gráficos, um quarto do texto.</p>
 
     <div class="table-wrap reveal">
@@ -736,7 +801,7 @@
 
   <!-- ═══════════════ 09 · LAYOUT ═══════════════ -->
   <div class="section" id="s6">
-    <div class="section-label reveal"><span class="num">09</span>Regras de layout</div>
+    <div class="section-label reveal"><span class="num">11</span>Regras de layout</div>
     <ul class="reveal">
       <li><strong>Uma coluna, 880px:</strong> container centrado, densidade compacta — seções a 56px, não 120px.</li>
       <li><strong>Overline antes de tudo:</strong> toda seção abre com <code>section-label</code> numerado; todo card tem rótulo em caps.</li>
@@ -750,7 +815,7 @@
 
   <!-- ═══════════════ 10 · PDF ═══════════════ -->
   <div class="section" id="s7">
-    <div class="section-label reveal"><span class="num">10</span>Exportar PDF</div>
+    <div class="section-label reveal"><span class="num">12</span>Exportar PDF</div>
     <p class="reveal">HTML primeiro, PDF depois — o HTML é a fonte da verdade, o PDF é uma impressão dele. Use <strong>Playwright</strong>, nunca o <code>--print-to-pdf</code> do Chrome:</p>
     <pre class="reveal"><code>from playwright.sync_api import sync_playwright
 with sync_playwright() as p:
@@ -988,7 +1053,159 @@ const gviz = (() => {
     wrap(e, W, H, id, s, o.aria);
   }
 
-  return { bars, hbars, ring, funnel, share, line };
+  /* Fluxo — diagrama de etapas com conectores no MESMO sistema de coordenadas
+     (regra de diagramas da casa: seta nunca posicionada na mão sobre HTML).
+     steps: [{label, sub}] · highlight marca a etapa que importa. Rótulos curtos. */
+  function flow(e, o) {
+    const id = ++n, p = pal(o.dark), W = o.w || 640, boxH = 66, arrowW = 40, pad = 4;
+    const k = o.steps.length, boxW = (W - arrowW * (k - 1) - pad * 2) / k, H = boxH + 16;
+    const boxFill = o.dark ? 'rgba(255,255,255,.07)' : '#FFFFFF';
+    const boxLine = o.dark ? 'rgba(255,255,255,.13)' : '#E7EAF0';
+    let s = '';
+    o.steps.forEach((st, i) => {
+      const x = pad + i * (boxW + arrowW), y = 8, hi = i === o.highlight, cx = x + boxW / 2;
+      if (hi) s += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="13" fill="url(#gh${id})" opacity=".5" filter="url(#gf${id})"/>`;
+      s += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="13" fill="${hi ? `url(#gh${id})` : boxFill}" ${hi ? '' : `stroke="${boxLine}" stroke-width="1.5"`}/>`;
+      const ly = st.sub ? y + boxH / 2 - 5 : y + boxH / 2 + 5;
+      s += `<text x="${cx}" y="${ly}" text-anchor="middle" font-size="13.5" style="${F.lab};font-weight:600;fill:${hi ? '#FFFFFF' : (o.dark ? p.val : '#0C0F14')}">${esc(st.label)}</text>`;
+      if (st.sub) s += `<text x="${cx}" y="${y + boxH / 2 + 15}" text-anchor="middle" font-size="11.5" style="${F.lab};fill:${hi ? 'rgba(255,255,255,.85)' : p.lab}">${esc(st.sub)}</text>`;
+      if (i < k - 1) {
+        const ax = x + boxW + 7, ay = y + boxH / 2, ae = x + boxW + arrowW - 7;
+        s += `<line x1="${ax}" y1="${ay}" x2="${ae - 6}" y2="${ay}" stroke="${p.lab}" stroke-width="2" stroke-linecap="round"/>`;
+        s += `<path d="M${ae - 8},${ay - 5.5} L${ae},${ay} L${ae - 8},${ay + 5.5}" fill="none" stroke="${p.lab}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+      }
+    });
+    wrap(e, W, H, id, s, o.aria);
+  }
+
+  return { bars, hbars, ring, funnel, share, line, flow };
+})();
+
+/* ═══════════ GFORMS — formas conceituais GrowAI v1 (SVG, zero dependências) ═══════════
+   A ilustração da casa: quando o slide precisa de uma FORMA (não de um dado),
+   ela sai daqui — nunca de imagem de banco nem de emoji. Copie este bloco
+   VERBATIM pro <script> do artefato, junto com o gviz quando houver dados.
+   Linguagem: pontos e gradiente da marca sobre neutro frio, UM foco laranja
+   por forma, glow discreto. `dark:true` pros slides escuros.
+   Determinístico: ruído por seno (pn), nunca Math.random — mesmo input,
+   mesmo desenho, em tela e no PDF.
+   Conceitos: orbe = núcleo/foco/produto · aneis = crescimento/expansão ·
+   horizonte = começo/lançamento (capa e closer) · campo = mercado/audiência ·
+   seta = transformação/direção · onda = momentum/tendência. */
+const gforms = (() => {
+  let n = 0;
+  const el$ = e => typeof e === 'string' ? document.getElementById(e) : e;
+  const pn = (x, y) => { const v = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return v - Math.floor(v); };
+  const neutral = d => d ? 'rgba(255,255,255,.26)' : '#C9D1DE';
+  const defs = id => `<defs>
+    <linearGradient id="gfG${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A3D"/><stop offset=".55" stop-color="#FF6A1A"/><stop offset="1" stop-color="#E63C0A"/></linearGradient>
+    <filter id="gfF${id}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="16"/></filter>
+  </defs>`;
+  const wrap = (e, W, H, id, inner) => {
+    const t = el$(e); if (!t) return;
+    t.innerHTML = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" aria-hidden="true">${defs(id)}${inner}</svg>`;
+  };
+
+  /* ORBE — o núcleo em gradiente (eco do logo). Conceito: foco, produto, o centro. */
+  function orbe(e, o = {}) {
+    const id = ++n, S = o.s || 320, c = S / 2, r = S * .30;
+    let s = `<circle cx="${c}" cy="${c + S * .04}" r="${r * 1.08}" fill="url(#gfG${id})" opacity=".45" filter="url(#gfF${id})"/>`;
+    s += `<circle cx="${c}" cy="${c}" r="${r}" fill="url(#gfG${id})"/>`;
+    s += `<ellipse cx="${c - r * .34}" cy="${c - r * .42}" rx="${r * .40}" ry="${r * .26}" fill="#FFFFFF" opacity=".20"/>`;
+    /* órbita pontilhada com um satélite no foco */
+    const or_ = r * 1.55;
+    for (let i = 0; i < 44; i++) {
+      const a = (i / 44) * Math.PI * 2;
+      s += `<circle cx="${(c + or_ * Math.cos(a)).toFixed(1)}" cy="${(c + or_ * .62 * Math.sin(a)).toFixed(1)}" r="1.8" fill="${neutral(o.dark)}"/>`;
+    }
+    s += `<circle cx="${c + or_ * Math.cos(-.6)}" cy="${c + or_ * .62 * Math.sin(-.6)}" r="6" fill="url(#gfG${id})"/>`;
+    wrap(e, S, S, id, s);
+  }
+
+  /* ANEIS — anéis de crescimento: núcleo + ondas concêntricas de pontos que se
+     expandem e desvanecem. Conceito: crescimento, expansão, alcance. */
+  function aneis(e, o = {}) {
+    const id = ++n, S = o.s || 320, c = S / 2;
+    let s = `<circle cx="${c}" cy="${c}" r="${S * .075}" fill="url(#gfG${id})"/>`;
+    s += `<circle cx="${c}" cy="${c}" r="${S * .10}" fill="url(#gfG${id})" opacity=".35" filter="url(#gfF${id})"/>`;
+    [.17, .25, .33, .41, .475].forEach((f, k) => {
+      const r = S * f, nd = Math.round(r * .55), op = .9 - k * .19;
+      for (let i = 0; i < nd; i++) {
+        const a = (i / nd) * Math.PI * 2 + k * .35;
+        s += `<circle cx="${(c + r * Math.cos(a)).toFixed(1)}" cy="${(c + r * Math.sin(a)).toFixed(1)}" r="${(2.6 - k * .38).toFixed(2)}" fill="${k === 1 ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${op.toFixed(2)}"/>`;
+      }
+    });
+    wrap(e, S, S, id, s);
+  }
+
+  /* HORIZONTE — arcos de pontos nascendo da borda inferior (a "aura de
+     crescimento"). Conceito: começo, lançamento. É a assinatura de capa e closer. */
+  function horizonte(e, o = {}) {
+    const id = ++n, W = o.w || 1440, H = o.h || 240, cx = W / 2, cy = H + 70;
+    const rings = [{ r: 170, d: 4.4, op: .95 }, { r: 236, d: 3.6, op: .66 }, { r: 302, d: 2.9, op: .44 }, { r: 368, d: 2.3, op: .27 }, { r: 434, d: 1.8, op: .15 }];
+    let s = `<ellipse cx="${cx}" cy="${H + 44}" rx="${W * .30}" ry="96" fill="url(#gfG${id})" opacity="${o.dark ? .42 : .26}" filter="url(#gfF${id})"/>`;
+    rings.forEach(g => {
+      const nd = Math.round(g.r * .34);
+      for (let i = 0; i <= nd; i++) {
+        const a = Math.PI + (i / nd) * Math.PI;
+        const x = cx + g.r * Math.cos(a), y = cy + g.r * Math.sin(a);
+        if (y < 6 || y > H - 2) continue;
+        s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${g.d}" fill="url(#gfG${id})" opacity="${g.op}"/>`;
+      }
+    });
+    wrap(e, W, H, id, s);
+  }
+
+  /* CAMPO — campo de pontos com uma zona quente. Conceito: mercado, audiência,
+     base de clientes — e onde a energia está concentrada. */
+  function campo(e, o = {}) {
+    const id = ++n, W = o.w || 640, H = o.h || 300, step = o.step || 15;
+    const fx = .66, fy = .40;                     /* zona quente no terço direito */
+    let s = '';
+    for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
+      const u = x / W, v = y / H;
+      const base = .28 + pn(x * .11, y * .11) * .5;
+      const d = Math.hypot((u - fx) * 1.1, (v - fy)), hot = Math.max(0, 1 - d * 2.6);
+      const r = (base * .55 + hot * 1.1) * step * .30;
+      if (r < 1.1) continue;
+      s += `<circle cx="${x}" cy="${y}" r="${r.toFixed(2)}" fill="${hot > .38 ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${(hot > .38 ? .95 : .75).toFixed(2)}"/>`;
+    }
+    wrap(e, W, H, id, s);
+  }
+
+  /* SETA — seta em matriz de pontos, adensando até a ponta em gradiente.
+     Conceito: transformação, direção, próximo passo. */
+  function seta(e, o = {}) {
+    const id = ++n, W = o.w || 640, H = o.h || 220, step = o.step || 13;
+    let s = '';
+    for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
+      const u = x / W, v = y / H;
+      const shaft = u < .60 && Math.abs(v - .5) < .17;
+      const head = u >= .60 && Math.abs(v - .5) < (1 - (u - .60) / .40) * .46;
+      if (!shaft && !head) continue;
+      const b = .18 + u * .82, r = b * step * .38;
+      s += `<circle cx="${x}" cy="${y}" r="${r.toFixed(2)}" fill="${u > .60 ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${(.55 + b * .45).toFixed(2)}"/>`;
+    }
+    wrap(e, W, H, id, s);
+  }
+
+  /* ONDA — crista de pontos com flecos em gradiente. Conceito: momentum,
+     tendência, o movimento que não para. */
+  function onda(e, o = {}) {
+    const id = ++n, W = o.w || 640, H = o.h || 220, step = o.step || 12;
+    let s = '';
+    for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
+      const u = x / W, v = y / H;
+      const crest = .38 + .20 * Math.sin(u * 8) + .07 * Math.sin(u * 21 + 2);
+      const d = v - crest; if (d < 0) continue;
+      const b = Math.min(1, d * 2.4), r = (.9 + b * 2.6) * (step / 12);
+      const fleck = d < .10 && pn(x * .07, y * .07) > .62;
+      s += `<circle cx="${x}" cy="${y}" r="${r.toFixed(2)}" fill="${fleck ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${(fleck ? .95 : .30 + b * .45).toFixed(2)}"/>`;
+    }
+    wrap(e, W, H, id, s);
+  }
+
+  return { orbe, aneis, horizonte, campo, seta, onda };
 })();
 
 /* demos do brand book — dados fictícios */
@@ -999,6 +1216,14 @@ gviz.hbars('gvDemoHbars', { labels:['Indicação','Tráfego pago','Orgânico'], 
 gviz.share('gvDemoShare', { segments:[ {label:'Top 10', value:34, vlabel:'34%'}, {label:'11–30', value:28, vlabel:'28%'}, {label:'Demais', value:38, vlabel:'38%'} ], highlight:0, legw:150, aria:'Demonstração de composição' });
 gviz.line('gvDemoLine', { labels:['jan','fev','mar','abr','mai','jun'], values:[12,14,13,18,22,27], vlabels:['12','14','13','18','22','27'], highlight:5, aria:'Demonstração de linha' });
 gviz.bars('gvDemoDark', { dark:true, h:240, labels:['sem 1','sem 2','sem 3','sem 4'], values:[8,12,9,21], highlight:3, aria:'Demonstração dark' });
+gviz.flow('gvDemoFlow', { steps:[ {label:'Lead', sub:'formulário'}, {label:'Qualificado', sub:'call marcada'}, {label:'Proposta', sub:'a que trava'}, {label:'Fechado', sub:'contrato'} ], highlight:2, aria:'Fluxo de etapas' });
+gforms.orbe('gfDemoOrbe', { s:280 });
+gforms.aneis('gfDemoAneis', { s:280 });
+gforms.horizonte('gfDemoHorizonte', { w:1200, h:200 });
+gforms.campo('gfDemoCampo', { w:380, h:240, step:14 });
+gforms.seta('gfDemoSeta', { w:380, h:200, step:12 });
+gforms.onda('gfDemoOnda', { w:800, h:200, step:12 });
+
 </script>
 </body>
 </html>
