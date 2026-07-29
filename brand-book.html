@@ -1,0 +1,712 @@
+<!--
+  BRANDING GROWAI — Brand Book (skill branding-growai)
+
+  O estilo documentando a si mesmo. Este arquivo é também o TEMPLATE PORTÁTIL da
+  identidade: copie o <head> + a <style> completa + os dois <script> do fim do body
+  e adapte apenas o conteúdo. Dentro do repo growaura, a fonte canônica é
+  .claude/templates/aura-report-template.html (mesmo conteúdo v6).
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com data:; script-src 'self' 'unsafe-inline';">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F1F4F8">
+<meta name="growai-report-template" content="v6-retention">
+<title>Brand Book — Identidade Visual GrowAI</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='%23FF6A1A'/%3E%3Ctext x='100' y='135' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='152' fill='%23FFFFFF'%3Eg%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════ GROWAI REPORT DESIGN SYSTEM v6 · Retention / Liquid Glass ═══════════ */
+  :root{
+    --bg:#F1F4F8; --surface:#FFFFFF; --bg-soft:#F6F8FA; --ink:#0C0F14; --ink-2:#3A4150; --muted:#5B6472; --faint:#8A93A3;
+    --line:#E7EAF0; --line-2:#EEF1F5; --accent:#FF6A1A; --accent-2:#FF9A3D; --accent-deep:#C8470C; --accent-ink:#B33E0A; --accent-soft:#FFF1E8;
+    --green:#0E9F6E; --green-soft:#E9F8F1; --red:#C0392B; --red-soft:#FBEAE8;
+    --amber:#B7791F; --amber-soft:#FBF4E6; --deep:#0C0F14;
+    --glass:rgba(255,255,255,.66); --glass-line:rgba(255,255,255,.78);
+    --r:18px; --r-sm:12px;
+    --shadow:0 1px 2px rgba(12,15,20,.04), 0 18px 50px rgba(12,15,20,.10);
+    --shadow-sm:0 1px 2px rgba(12,15,20,.04), 0 8px 22px rgba(12,15,20,.06);
+    --shadow-lift:0 4px 8px rgba(12,15,20,.06), 0 26px 60px rgba(12,15,20,.13);
+    --display:'Satoshi','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
+    --mono:'SF Mono','JetBrains Mono','Fira Code','Consolas',monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { overflow-x:hidden; max-width:100%; }
+  body {
+    font-family:var(--sans); background:var(--bg); color:var(--ink);
+    font-size:16px; line-height:1.62; letter-spacing:-0.011em;
+    min-height:100vh; display:flex; justify-content:center;
+    padding:52px 22px 110px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    position:relative;
+  }
+  /* GLOW AMBIENTE (fundo, sutil — dá profundidade e faz o glass refratar) */
+  body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(48% 38% at 82% -4%, rgba(255,106,26,.13), transparent 72%),
+      radial-gradient(42% 40% at 8% 102%, rgba(255,154,61,.11), transparent 72%),
+      radial-gradient(38% 34% at 60% 48%, rgba(230,60,10,.05), transparent 70%); }
+  .container { max-width:880px; width:100%; position:relative; z-index:1; }
+
+  /* superfície de vidro reutilizada conceitualmente nas classes abaixo */
+  .logo-wrap { display:flex; align-items:center; gap:12px; margin-bottom:28px; }
+  .logo-mark { height:38px; width:38px; flex-shrink:0; border-radius:50%; box-shadow:0 6px 18px rgba(255,106,26,.32); }
+  .logo-word { font-family:var(--display); font-weight:700; font-size:21px; letter-spacing:-0.025em; color:var(--ink); }
+
+  /* === HEADER === */
+  .page-title { font-family:var(--display); font-size:clamp(30px,4.8vw,46px); font-weight:600; line-height:1.05; letter-spacing:-0.04em; color:var(--ink); margin:4px 0 14px; }
+  .page-subtitle { font-size:17px; color:var(--muted); font-weight:400; line-height:1.55; margin-bottom:36px; max-width:66ch; letter-spacing:-0.012em; }
+
+  /* === META BAR (grid glass — corrige valor longo) === */
+  .meta-bar { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1px; margin-bottom:56px;
+    background:linear-gradient(var(--line),var(--line)); border:1px solid var(--glass-line); border-radius:var(--r-sm); overflow:hidden;
+    box-shadow:var(--shadow-sm); }
+  .meta-bar > div { background:var(--glass); -webkit-backdrop-filter:blur(18px) saturate(150%); backdrop-filter:blur(18px) saturate(150%); padding:18px 22px; line-height:1.45; font-size:15px; color:var(--ink); }
+  .meta-bar strong { display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; color:var(--faint); font-weight:600; }
+
+  /* === TOC (lista limpa) === */
+  .toc { margin-bottom:64px; }
+  .toc-title { font-size:11px; font-weight:600; color:var(--faint); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px; }
+  .toc ol { list-style:none; margin:0; padding:0; counter-reset:toc-counter; border-top:1px solid var(--line); }
+  .toc li { counter-increment:toc-counter; font-size:17px; line-height:1.4; display:flex; gap:18px; align-items:center; padding:16px 4px; border-bottom:1px solid var(--line); transition:padding-left .25s ease,background .25s ease; border-radius:10px; }
+  .toc li:hover { padding-left:14px; background:rgba(255,106,26,.05); }
+  .toc li::before { content:counter(toc-counter,decimal-leading-zero); color:var(--accent-ink); font-variant-numeric:tabular-nums; font-size:13px; font-weight:600; min-width:22px; }
+  .toc a { color:var(--ink); text-decoration:none; flex:1; }
+  .toc li:hover a { color:var(--accent-ink); }
+
+  /* === SECTIONS === */
+  .section { margin-bottom:56px; }
+  .section-label { font-family:var(--sans); font-size:12px; font-weight:600; color:var(--ink); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:20px; border:0; display:flex; align-items:center; gap:12px; }
+  .section-label::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+  .section-label .num { color:var(--accent-ink); font-variant-numeric:tabular-nums; font-weight:600; }
+
+  .subsection { margin-bottom:40px; }
+  .subsection-title { font-family:var(--display); font-size:27px; font-weight:600; color:var(--ink); margin-bottom:16px; letter-spacing:-0.03em; line-height:1.12; }
+
+  /* === TYPOGRAPHY === */
+  p { font-size:16px; color:var(--ink-2); line-height:1.65; margin-bottom:14px; letter-spacing:-0.011em; }
+  p strong { color:var(--ink); font-weight:600; }
+  ul, ol { margin:6px 0 18px 20px; color:var(--ink-2); font-size:15.5px; line-height:1.65; }
+  li { margin-bottom:9px; padding-left:3px; } li::marker { color:var(--faint); } li strong { color:var(--ink); font-weight:600; }
+  code { font-family:var(--mono); font-size:13.5px; background:var(--line-2); padding:2px 7px; border-radius:7px; color:var(--ink); word-break:break-all; overflow-wrap:anywhere; }
+
+  /* === CONTEÚDO MARKDOWN (reports convertidos sem classes semânticas) === */
+  .container > h1:not(.page-title) { font-family:var(--display); font-size:clamp(30px,4.8vw,46px); font-weight:600; line-height:1.05; letter-spacing:-0.04em; color:var(--ink); margin:4px 0 20px; }
+  .container h2 { font-family:var(--display); font-size:25px; font-weight:600; letter-spacing:-0.025em; color:var(--ink); margin:42px 0 16px; padding-top:24px; border-top:1px solid var(--line); line-height:1.15; }
+  .container h3 { font-family:var(--display); font-size:20px; font-weight:600; letter-spacing:-0.02em; color:var(--ink); margin:28px 0 11px; line-height:1.2; }
+  .container h4 { font-size:16px; font-weight:700; color:var(--ink-2); margin:20px 0 8px; }
+  .container blockquote { margin:20px 0; padding:18px 22px; background:var(--accent-soft); border-left:3px solid var(--accent); border-radius:0 var(--r-sm) var(--r-sm) 0; color:var(--ink-2); }
+  .container blockquote p:last-child { margin-bottom:0; }
+  .container pre { background:var(--deep); color:#E8EAF0; padding:18px; border-radius:var(--r-sm); overflow-x:auto; margin:0 0 18px; font-size:13px; }
+  .container pre code { background:none; padding:0; color:inherit; }
+  .container a { color:var(--accent-ink); text-underline-offset:3px; }
+
+  /* === TABLES === */
+  .table-wrap { overflow-x:auto; margin:12px 0 18px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { text-align:left; font-weight:600; color:var(--faint); padding:0 12px 10px 0; border-bottom:1px solid var(--ink); font-size:10.5px; text-transform:uppercase; letter-spacing:0.07em; }
+  td { padding:11px 12px 11px 0; color:var(--ink-2); border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5; }
+  tr:last-child td { border-bottom:none; } td strong { color:var(--ink); font-weight:600; } td code { font-size:13px; }
+
+  /* === GLASS CARDS (compartilham o tratamento frosted + hover-lift) === */
+  .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
+  .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map,
+  .note, .callout, .opportunity, .danger {
+    background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%);
+    border:1px solid var(--glass-line); box-shadow:var(--shadow-sm);
+  }
+  .brand-card, .concept-card, .tier-card, .timeline-day, .primary-text-box, .faq, .hook-row, .headline-card {
+    transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease; }
+  .brand-card:hover, .concept-card:hover, .tier-card:hover, .timeline-day:hover, .faq:hover, .hook-row:hover, .headline-card:hover {
+    transform:translateY(-3px); box-shadow:var(--shadow-lift); }
+
+  /* === QUOTE / VOC === */
+  .quote { margin:14px 0; padding:20px 24px; border-radius:var(--r-sm); font-size:15.5px; color:var(--ink); line-height:1.55; font-family:var(--mono); border-left:3px solid var(--accent); }
+  .quote-source { display:block; margin-top:14px; font-size:11px; color:var(--faint); font-family:var(--sans); letter-spacing:0.08em; text-transform:uppercase; font-weight:600; }
+  .script-block { border-radius:var(--r-sm); padding:22px 26px; margin:16px 0; font-family:var(--mono); font-size:13.5px; color:var(--ink-2); line-height:1.62; white-space:pre-wrap; word-break:break-word; }
+
+  /* === NOTE / CALLOUT / OPPORTUNITY / DANGER (cards glass + overline-label + glow leve) === */
+  .note, .callout, .opportunity, .danger { font-size:15.5px; line-height:1.6; padding:20px 24px; border-radius:var(--r); margin:18px 0; position:relative; }
+  /* RÓTULO = só o PRIMEIRO <strong> (filho direto) do card. Qualquer <strong> seguinte é ênfase inline no corpo — NUNCA vira rótulo (evita quebrar a frase no meio). */
+  .note > strong:first-of-type, .callout > strong:first-of-type, .opportunity > strong:first-of-type, .danger > strong:first-of-type { display:block; font-family:var(--sans); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; }
+  .note strong, .callout strong, .opportunity strong, .danger strong { font-weight:600; }
+  .note { color:var(--muted); } .note > strong:first-of-type { color:var(--faint); }
+  .callout { color:var(--ink); background:linear-gradient(180deg,rgba(255,241,232,.9),rgba(255,241,232,.6)); border-color:#FAD9C4; box-shadow:0 1px 2px rgba(12,15,20,.04), 0 12px 32px rgba(255,106,26,.12); }
+  .callout > strong:first-of-type { color:var(--accent-deep); }
+  .opportunity { color:#0C2A20; background:linear-gradient(180deg,rgba(233,248,241,.85),rgba(233,248,241,.6)); border-color:#CFEEE1; box-shadow:0 1px 2px rgba(12,15,20,.04), 0 10px 30px rgba(14,159,110,.10); }
+  .opportunity > strong:first-of-type { color:#0B7A53; }
+  .danger { color:#3A1714; background:linear-gradient(180deg,rgba(251,234,232,.9),rgba(251,234,232,.6)); border-color:#F2D2CC; box-shadow:0 1px 2px rgba(12,15,20,.04), 0 12px 32px rgba(192,57,43,.10); }
+  .danger > strong:first-of-type { color:var(--red); }
+
+  /* === PILLS / BADGES (liquid glass) === */
+  .pill { display:inline-block; font-size:11px; font-weight:600; padding:5px 12px; border-radius:9px; letter-spacing:0.01em; text-transform:uppercase; margin-right:5px;
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.5); }
+  .pill-saturated, .pill-bof, .pill-pending { background:rgba(229,72,77,.12); color:#C9343A; border-color:rgba(229,72,77,.2); }
+  .pill-common, .pill-mof { background:rgba(183,121,31,.13); color:#92600F; border-color:rgba(183,121,31,.22); }
+  .pill-rare, .pill-win, .pill-ok { background:rgba(14,159,110,.13); color:#0B7A53; border-color:rgba(14,159,110,.22); }
+  .pill-absent, .pill-tof { background:rgba(255,106,26,.12); color:var(--accent-ink); border-color:rgba(255,106,26,.24); }
+
+  .voc-words { margin:16px 0 4px; line-height:2.4; }
+  .voc-words span { display:inline-block; background:var(--glass); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--glass-line); color:var(--muted); padding:7px 14px; border-radius:11px; margin:3px 7px 3px 0; font-size:13px; font-family:var(--mono); }
+
+  .score { display:inline-block; background:var(--ink); color:#FFF; font-size:11px; font-weight:600; padding:3px 10px; border-radius:8px; }
+  .score-high { background:var(--green); } .score-mid { background:var(--amber); } .score-low { background:var(--red); }
+
+  /* === WINNER (dark glass + glow halo) === */
+  .winner { position:relative; background:linear-gradient(160deg,rgba(20,25,35,.97),rgba(12,15,20,.97)); color:#D7D9E3; border-radius:22px; padding:40px 42px; margin:28px 0; border:1px solid rgba(255,255,255,.08); box-shadow:0 30px 80px rgba(12,15,20,.30); overflow:hidden; }
+  .winner::after { content:""; position:absolute; top:-40%; right:-10%; width:60%; height:120%; z-index:0; background:radial-gradient(circle,rgba(255,106,26,.42),transparent 62%); filter:blur(40px); pointer-events:none; }
+  .winner > * { position:relative; z-index:1; }
+  .winner strong { color:#FFF; font-weight:600; }
+  .winner p { color:#9EA3B2; font-size:17px; line-height:1.62; margin-bottom:8px; }
+  .winner .winner-label { font-size:11px; text-transform:uppercase; letter-spacing:0.13em; color:#FFB37A; margin-bottom:18px; font-weight:600; }
+  .winner .winner-name { font-family:var(--display); font-size:32px; font-weight:700; color:#FFF; margin-bottom:18px; letter-spacing:-0.035em; line-height:1.04; text-shadow:0 2px 30px rgba(255,106,26,.32); }
+
+  /* === KPI — STATS GIGANTES num painel glass com divisores + glow === */
+  .kpi-grid { display:flex; flex-wrap:wrap; gap:0; margin:24px 0; padding:26px 28px; border-radius:var(--r);
+    background:var(--glass); -webkit-backdrop-filter:blur(22px) saturate(155%); backdrop-filter:blur(22px) saturate(155%);
+    border:1px solid var(--glass-line); box-shadow:var(--shadow); }
+  .kpi-card { flex:1 1 0; min-width:140px; padding:0 32px; display:flex; flex-direction:column; }
+  .kpi-card:first-child { padding-left:0; } .kpi-card:last-child { padding-right:0; }
+  .kpi-card + .kpi-card { border-left:1px solid var(--line); }
+  .big-num { order:1; font-family:var(--display); font-size:clamp(28px,3.8vw,40px); font-weight:700; letter-spacing:-0.05em; line-height:0.98; color:var(--ink); font-variant-numeric:tabular-nums; margin-bottom:8px; text-shadow:0 2px 24px rgba(255,106,26,.16); }
+  .big-num-label { order:2; font-size:13px; color:var(--muted); letter-spacing:-0.005em; font-weight:500; line-height:1.35; }
+
+  /* === outras cards (radius/padding) === */
+  .brand-card, .concept-card { border-radius:var(--r); padding:30px 32px; margin-bottom:24px; }
+  .tier-card { border-radius:var(--r); padding:26px 28px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .tier-card.popular { border:1.5px solid var(--accent); position:relative; box-shadow:0 1px 2px rgba(12,15,20,.04), 0 14px 40px rgba(255,106,26,.16); }
+  .tier-card.popular::before { content:"POPULAR"; position:absolute; top:-10px; left:24px; background:var(--accent); color:#FFF; font-size:10px; font-weight:600; letter-spacing:0.07em; padding:4px 12px; border-radius:8px; box-shadow:0 4px 14px rgba(255,106,26,.38); }
+  .timeline-day { border-radius:var(--r); padding:26px 28px; margin-bottom:16px; }
+  .timeline-day-label { display:inline-block; font-size:10.5px; color:#FFF; background:var(--ink); padding:4px 13px; border-radius:8px; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:16px; }
+  .timeline { margin:18px 0; }
+  .timeline-row { display:flex; gap:20px; padding:15px 0; border-bottom:1px solid var(--line-2); }
+  .timeline-time { flex-shrink:0; width:94px; font-family:var(--mono); font-size:11.5px; color:var(--faint); padding-top:3px; }
+  .timeline-label { font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; color:var(--ink); }
+  .timeline-content { flex:1; } .timeline-content p { margin-bottom:6px; font-size:15px; }
+
+  .primary-text-box { border-radius:var(--r); padding:24px 28px; margin:14px 0; }
+  .pt-label { font-size:10.5px; color:var(--faint); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:12px; }
+  .primary-text-box p { font-size:15px; color:var(--ink-2); line-height:1.64; }
+  .faq { margin:14px 0; padding:26px 30px; border-radius:var(--r); }
+  .faq-q { font-family:var(--display); font-size:19px; font-weight:600; margin-bottom:10px; letter-spacing:-0.025em; }
+  .faq-a { font-size:15.5px; color:var(--muted); line-height:1.62; }
+  .hook-row { border-radius:var(--r); padding:22px 26px; margin-bottom:12px; }
+  .hook-label { font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:10px; }
+  .hook-text { font-size:18px; color:var(--ink); line-height:1.45; font-weight:600; margin-bottom:8px; letter-spacing:-0.02em; }
+  .hook-use { font-size:13px; color:var(--muted); line-height:1.5; }
+  .headline-card { border-radius:var(--r); padding:24px 28px; margin-bottom:14px; font-family:var(--display); font-size:21px; font-weight:600; line-height:1.32; letter-spacing:-0.03em; }
+  .headline-card.top { border:1.5px solid var(--accent); box-shadow:0 1px 2px rgba(12,15,20,.04), 0 14px 40px rgba(255,106,26,.14); }
+  .headline-card .hl-num { font-family:var(--sans); font-size:10.5px; color:var(--faint); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; font-weight:600; }
+  .headline-card .hl-justify { font-family:var(--sans); font-size:14px; color:var(--muted); margin-top:12px; line-height:1.55; font-weight:400; letter-spacing:-0.008em; }
+  .ascii-map { border-radius:var(--r); padding:26px; font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink-2); white-space:pre; overflow-x:auto; }
+
+  .check-row { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; }
+  .check-icon { flex-shrink:0; width:24px; height:24px; border-radius:8px; background:var(--green); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; margin-top:1px; box-shadow:0 4px 14px rgba(14,159,110,.3); }
+
+  /* === COMPATIBILIDADE COM O PADRÃO APROVADO DO PROJETO RETENÇÃO === */
+  .step { display:flex; gap:14px; padding:13px 0; border-bottom:1px solid var(--line-2); }
+  .step:last-child { border-bottom:none; }
+  .step-num { flex-shrink:0; width:26px; height:26px; border-radius:9px; background:var(--ink); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:600; margin-top:1px; }
+  .step-body { font-size:15px; color:var(--ink-2); line-height:1.55; }
+  .week { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--accent-ink); margin:22px 0 6px; }
+  .gate { font-size:13.5px; color:var(--green); font-weight:600; margin:8px 0 2px; padding-left:40px; }
+  .check { list-style:none; margin-left:0; }
+  .check li { padding-left:30px; position:relative; }
+  .check li::before { content:""; position:absolute; left:2px; top:4px; width:15px; height:15px; border:1.5px solid var(--faint); border-radius:5px; }
+  .sig-block { padding:22px 24px; border-radius:var(--r); background:var(--glass); border:1px solid var(--glass-line); box-shadow:var(--shadow-sm); margin:0 0 22px; }
+  .kpi { display:flex; flex-wrap:wrap; gap:0; margin:24px 0; padding:26px 28px; border-radius:var(--r); background:var(--glass); border:1px solid var(--glass-line); box-shadow:var(--shadow-sm); }
+  .kpi > div { flex:1 1 0; min-width:120px; padding:0 24px; }
+  .kpi > div:first-child { padding-left:0; }
+  .kpi > div + div { border-left:1px solid var(--line); }
+  .big { font-family:var(--display); font-size:clamp(28px,3.8vw,40px); font-weight:700; letter-spacing:-0.05em; line-height:.98; margin-bottom:8px; }
+  .big-label { font-size:12.5px; color:var(--muted); line-height:1.35; font-weight:500; }
+
+  /* === COMPONENTES DE RELATÓRIOS HISTÓRICOS (retidos no sistema canônico) === */
+  .svgn { font-size:12px; color:var(--faint); background:var(--line-2); }
+  .pill-wait { background:rgba(183,121,31,.13); color:#92600F; border-color:rgba(183,121,31,.22); }
+  .brand-card .bc-tier { font-size:11px; color:var(--accent-ink); text-transform:uppercase; letter-spacing:.08em; font-weight:600; margin-bottom:16px; }
+  .tier-name { font-family:var(--display); font-size:18px; font-weight:600; letter-spacing:-.02em; color:var(--ink); margin-bottom:4px; }
+  .tier-role { font-size:13.5px; color:var(--muted); line-height:1.45; }
+  .tier-price { font-family:var(--display); font-size:26px; font-weight:700; color:var(--ink); letter-spacing:-.03em; flex-shrink:0; }
+  .swatch-row { display:flex; flex-wrap:wrap; gap:12px; margin:18px 0 8px; }
+  .swatch { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+  .swatch .chip { width:84px; height:60px; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow-sm); }
+  .swatch .lab { font-size:11px; color:var(--muted); font-family:var(--mono); }
+  .big-num.zero, .big-num.go { color:var(--green); }
+  .step-n { flex-shrink:0; width:28px; height:28px; border-radius:9px; background:var(--ink); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; margin-top:2px; }
+  .rot-card { background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%); border:1px solid var(--glass-line); box-shadow:var(--shadow-sm); border-radius:var(--r); padding:28px 30px; margin-bottom:26px; }
+  .rot-head { display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; margin-bottom:6px; }
+  .rot-cod { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--accent-ink); }
+  .rot-tit { font-family:var(--display); font-size:22px; font-weight:600; letter-spacing:-.02em; }
+  .rot-meta { font-size:13px; color:var(--muted); margin-bottom:14px; }
+  .rot-obs { background:var(--amber-soft); border:1px solid #EFE0C0; border-radius:12px; padding:12px 16px; font-size:14px; color:#6B4E10; margin:10px 0; }
+  .rot-ia { background:var(--accent-soft); border:1px solid #FAD9C4; border-radius:12px; padding:12px 16px; font-size:14px; margin:10px 0; }
+  .rot-ia b { color:var(--accent-deep); }
+  .cena { display:grid; grid-template-columns:120px 1fr; gap:8px 16px; padding:10px 0; border-top:1px solid var(--line-2); font-size:14.5px; }
+  .cena .cn { font-weight:600; color:var(--ink); font-size:13px; }
+  .cena .cv { color:var(--faint); font-size:13px; }
+  .cena .cf { color:var(--ink-2); }
+  .rot-foot { margin-top:12px; font-size:13.5px; color:var(--muted); }
+  .rot-card .chip { display:inline-block; font-size:11px; font-weight:600; padding:4px 10px; border-radius:8px; background:rgba(255,106,26,.10); color:var(--accent-ink); margin-right:6px; text-transform:uppercase; letter-spacing:.04em; }
+  .group { margin-bottom:54px; }
+  .group-label { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.13em; color:var(--ink); margin-bottom:22px; display:flex; align-items:center; gap:14px; }
+  .group-label::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+  .group-label .gn { color:var(--accent-ink); font-variant-numeric:tabular-nums; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:16px; }
+  .card { display:flex; flex-direction:column; gap:6px; background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%); border:1px solid var(--glass-line); border-radius:var(--r); padding:22px 24px; box-shadow:var(--shadow-sm); text-decoration:none; color:inherit; transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s ease; position:relative; overflow:hidden; }
+  .card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lift); }
+  .card .top { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; }
+  .card .ph { font-size:11px; font-weight:600; color:var(--faint); letter-spacing:.04em; font-variant-numeric:tabular-nums; }
+  .card h3 { font-family:var(--display); font-size:18px; font-weight:600; letter-spacing:-.02em; line-height:1.2; color:var(--ink); margin:0; }
+  .card p { font-size:13.5px; color:var(--muted); line-height:1.5; margin:2px 0 0; }
+  .card .go { margin-top:12px; font-size:13px; font-weight:600; color:var(--accent-ink); display:flex; align-items:center; gap:6px; }
+  .card .go svg { width:15px; height:15px; stroke:currentColor; stroke-width:2; fill:none; transition:transform .2s ease; }
+  .card:hover .go svg { transform:translateX(3px); }
+  .card.feature { background:linear-gradient(160deg,rgba(20,25,35,.97),rgba(12,15,20,.97)); border-color:rgba(255,255,255,.08); }
+  .card.feature h3, .card.feature .ph { color:#FFF; }
+  .card.feature p { color:#9EA3B2; }
+  .card.feature .go { color:#FFB37A; }
+  .card.feature::after { content:""; position:absolute; top:-30%; right:-10%; width:55%; height:130%; background:radial-gradient(circle,rgba(255,106,26,.35),transparent 62%); filter:blur(34px); pointer-events:none; }
+  .card.feature > * { position:relative; z-index:1; }
+  .card.soon { opacity:.62; pointer-events:none; }
+  .pill-html { background:rgba(183,121,31,.13); color:#92600F; border-color:rgba(183,121,31,.22); }
+  .pill-soon { background:rgba(255,106,26,.10); color:var(--accent-ink); border-color:rgba(255,106,26,.20); }
+  .legend { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-top:14px; font-size:12px; color:var(--muted); }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .dot { width:9px; height:9px; border-radius:50%; }
+
+  /* === ADVERTORIAL === */
+  .advertorial { background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%); border:1px solid var(--glass-line); border-radius:26px; padding:clamp(32px,5vw,56px); margin:28px 0; box-shadow:var(--shadow); }
+  .adv-kicker { font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:22px; }
+  .adv-headline { font-family:var(--display); font-size:clamp(30px,3.8vw,44px); font-weight:700; line-height:1.04; letter-spacing:-0.04em; margin-bottom:18px; }
+  .adv-deck { font-size:20px; color:var(--muted); line-height:1.46; margin-bottom:16px; font-weight:400; letter-spacing:-0.015em; }
+  .adv-byline { font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:38px; font-weight:600; }
+  .adv-section-label { font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-top:42px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+  .advertorial p { font-size:17.5px; color:var(--ink-2); line-height:1.72; margin-bottom:18px; } .advertorial p strong { color:var(--ink); font-weight:600; }
+  .advertorial hr { margin:32px 0; border:none; border-top:1px solid var(--line); }
+  .adv-cta { display:inline-block; background:var(--ink); color:#FFF; padding:16px 32px; border-radius:12px; font-size:15px; font-weight:600; letter-spacing:-0.01em; text-decoration:none; margin:14px 0; box-shadow:0 10px 30px rgba(12,15,20,.25); }
+
+  /* === A11Y / TOUCH === */
+  a { -webkit-tap-highlight-color:transparent; }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+  hr { border:none; border-top:1px solid var(--line); margin:72px 0; }
+  .footer { font-size:13px; color:var(--faint); text-align:center; margin-top:96px; padding-top:40px; border-top:1px solid var(--line); letter-spacing:0.02em; }
+
+  /* ═══════════ GROWAI MOBILE SYSTEM v1 ═══════════ */
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  body, .container, .wrap, .container > *, .wrap > *, .section, .subsection, .timeline-content, .check-row > div { min-width:0; }
+  body { overflow-wrap:anywhere; }
+  img, video, canvas, iframe { max-width:100%; height:auto; }
+  svg { max-width:100%; }
+  p, li, td, th, blockquote, a, .card, .phase, .note, .callout, .opportunity, .danger { overflow-wrap:anywhere; }
+  .table-wrap { max-width:100%; -webkit-overflow-scrolling:touch; overscroll-behavior-inline:contain; scrollbar-width:thin; }
+
+  /* === ANIMAÇÃO (progressive enhancement: visível sem JS) === */
+  .js .reveal { opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+  .js .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .js .reveal{opacity:1;transform:none;transition:none} *{scroll-behavior:auto} .brand-card,.faq,.hook-row,.headline-card,.tier-card,.timeline-day,.concept-card{transition:none} }
+
+  /* fallback: navegador sem backdrop-filter → fundo sólido (nunca película translúcida) */
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+    .meta-bar > div, .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
+    .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map, .note,
+    .kpi-grid, .voc-words span, .rot-card, .card, .advertorial {
+      background:linear-gradient(180deg,#FFFFFF,#FBFCFE);
+    }
+    .callout     { background:linear-gradient(180deg,#FFF3E9,#FFF7F0); }
+    .opportunity { background:linear-gradient(180deg,#EAF7F1,#F1FAF6); }
+    .danger      { background:linear-gradient(180deg,#FBECEA,#FCF2F0); }
+  }
+
+  /* touch/coarse em QUALQUER largura (iPad incluso): sem hover-lift nem sticky-hover */
+  @media (hover:none), (pointer:coarse) {
+    .brand-card:hover, .concept-card:hover, .tier-card:hover, .timeline-day:hover,
+    .faq:hover, .hook-row:hover, .headline-card:hover, .card:hover { transform:none; box-shadow:var(--shadow-sm); }
+    .toc li:hover { padding-left:4px; background:transparent; }
+    .toc li:hover a { color:var(--ink); }
+  }
+
+  /* ═══ ≤860px: SEM backdrop-filter (imune ao glitch/jank do blur no Safari iOS, cobre iPad portrait) + fundo sólido fosco ═══ */
+  @media (max-width:860px) {
+    .meta-bar > div, .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
+    .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map, .note, .callout, .opportunity,
+    .danger, .kpi-grid, .pill, .voc-words span, .rot-card, .card, .advertorial {
+      -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
+    }
+    /* glass → sólido fosco (nunca filme translúcido sobre o glow do fundo) */
+    .meta-bar > div, .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
+    .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map, .note,
+    .kpi-grid, .voc-words span, .rot-card, .card, .advertorial, .sig-block, .kpi {
+      background:linear-gradient(180deg,#FFFFFF,#FBFCFE);
+    }
+    /* cards tintados → versão opaca (mesma família de cor GrowAI) */
+    .callout     { background:linear-gradient(180deg,#FFF3E9,#FFF7F0); }
+    .opportunity { background:linear-gradient(180deg,#EAF7F1,#F1FAF6); }
+    .danger      { background:linear-gradient(180deg,#FBECEA,#FCF2F0); }
+    /* cards dark continuam dark (winner já é ~.97 de alpha; feature idem) */
+    .card.feature { background:linear-gradient(160deg,rgba(20,25,35,.98),rgba(12,15,20,.98)); }
+  }
+
+  @media (max-width:640px) {
+    body { display:block; padding:24px max(14px,env(safe-area-inset-right)) 72px max(14px,env(safe-area-inset-left)); font-size:15.5px; }
+    .container, .wrap { width:100%; max-width:none; }
+    .logo-wrap { gap:10px; margin-bottom:24px; }
+    .logo-mark { width:34px; height:34px; }
+    .logo-word { font-size:19px; }
+    .page-title, .container > h1:not(.page-title) { font-size:clamp(28px,9vw,36px); line-height:1.08; letter-spacing:-0.035em; text-wrap:balance; }
+    .page-subtitle { max-width:none; margin-bottom:28px; font-size:16px; line-height:1.52; }
+    .meta-bar { grid-template-columns:1fr; margin-bottom:42px; }
+    .meta-bar > div { padding:14px 16px; font-size:14.5px; }
+    .toc { margin-bottom:46px; }
+    .toc li { align-items:flex-start; gap:12px; padding:14px 2px; font-size:16px; }
+    .toc li:hover { padding-left:2px; }
+    .section { margin-bottom:46px; }
+    .section-label, .group-label { flex-wrap:wrap; align-items:flex-start; gap:8px 10px; margin-bottom:17px; font-size:11px; letter-spacing:.09em; line-height:1.4; }
+    .section-label::after, .group-label::after { display:none; }
+    .subsection { margin-bottom:32px; }
+    .subsection-title { font-size:23px; }
+    .container h2 { margin-top:34px; padding-top:20px; font-size:22px; }
+    .container h3 { margin-top:24px; font-size:18px; }
+    p { font-size:15.5px; line-height:1.62; }
+    ul, ol { margin-left:18px; font-size:15px; line-height:1.6; }
+    code { word-break:normal; overflow-wrap:anywhere; }
+    .container blockquote { margin:16px 0; padding:16px 17px; }
+    .container pre, .ascii-map { padding:15px; font-size:11.5px; white-space:pre-wrap; word-break:break-word; }
+    .container pre code { display:block; max-width:100%; white-space:inherit; overflow-wrap:anywhere; word-break:break-word; }
+
+    .table-wrap { overflow:visible; margin:14px 0 22px; }
+    .mobile-table, .mobile-table tbody, .mobile-table tr, .mobile-table td { display:block; width:100%; }
+    .mobile-table { border-collapse:separate; font-size:14px; }
+    .mobile-table thead { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+    .mobile-table tbody { display:grid; gap:12px; }
+    .mobile-table tr { padding:8px 14px; border:1px solid var(--glass-line); border-radius:14px; background:linear-gradient(180deg,#FFFFFF,#FBFCFE); box-shadow:var(--shadow-sm); }
+    .mobile-table td { display:grid; grid-template-columns:minmax(86px,.36fr) minmax(0,.64fr); gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px; line-height:1.48; }
+    .mobile-table td::before { content:attr(data-label); color:var(--faint); font-size:9.5px; font-weight:600; line-height:1.35; letter-spacing:.07em; text-transform:uppercase; }
+    .mobile-table td:last-child { border-bottom:0; }
+    .mobile-table .pill { margin:0; white-space:normal; }
+    .mobile-table-key-value td { display:block; padding:5px 0 10px; }
+    .mobile-table-key-value td::before { display:none; }
+    .mobile-table-key-value td:first-child { padding:10px 0 3px; border-bottom:0; color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.05em; }
+
+    .note, .callout, .opportunity, .danger, .sig-block, .primary-text-box, .faq, .hook-row, .headline-card { padding:18px; border-radius:15px; }
+    .quote, .script-block { padding:17px 18px; font-size:13px; }
+    .brand-card, .concept-card, .timeline-day, .rot-card { padding:20px 18px; }
+    .winner { padding:26px 20px; border-radius:18px; }
+    .winner .winner-name { font-size:26px; }
+    .winner p { font-size:15.5px; }
+    .kpi-grid { flex-direction:column; gap:0; padding:22px 20px; }
+    .kpi-card { padding:0; min-width:0; }
+    .kpi-card + .kpi-card { margin-top:20px; border-left:none; border-top:1px solid var(--line); padding-top:20px; }
+    .big-num, .big { font-size:32px; }
+    .timeline-row { flex-direction:column; gap:4px; }
+    .timeline-time { width:auto; }
+    .tier-card { flex-direction:column; align-items:flex-start; padding:22px 18px; }
+    .tier-price { font-size:23px; }
+    .kpi { flex-direction:column; gap:0; padding:22px 20px; }
+    .kpi > div { padding:0; min-width:0; }
+    .kpi > div + div { margin-top:18px; border-left:none; border-top:1px solid var(--line); padding-top:18px; }
+    .step { gap:10px; }
+    .gate { padding-left:36px; }
+    .cena { grid-template-columns:1fr; gap:4px; }
+    .grid { grid-template-columns:minmax(0,1fr); }
+    .card { padding:19px 18px; }
+    .card .top, .rot-head, .swatch-row { flex-wrap:wrap; }
+    .advertorial { padding:24px 18px; border-radius:18px; }
+    .adv-headline { font-size:28px; }
+    .adv-deck { font-size:17px; }
+    .advertorial p { font-size:16px; }
+    .adv-cta { display:block; width:100%; padding:14px 18px; text-align:center; }
+    hr { margin:48px 0; }
+    .footer { margin-top:58px; padding-top:26px; font-size:12px; }
+    .js .reveal { opacity:1; transform:none; transition:none; }
+    .brand-card:hover, .concept-card:hover, .tier-card:hover, .timeline-day:hover, .faq:hover,
+    .hook-row:hover, .headline-card:hover, .card:hover { transform:none; }
+  }
+
+  @media (max-width:380px) {
+    body { padding:20px 12px 64px; }
+    .page-title, .container > h1:not(.page-title) { font-size:28px; }
+    .mobile-table td { grid-template-columns:1fr; gap:4px; }
+    .note, .callout, .opportunity, .danger, .sig-block, .primary-text-box, .faq, .hook-row, .headline-card,
+    .brand-card, .concept-card, .timeline-day, .rot-card, .winner, .advertorial { padding-left:16px; padding-right:16px; }
+  }
+
+  /* === PRINT / PDF (adição da skill branding-growai — sempre DENTRO da única tag de estilo) === */
+  @media print {
+    .js .reveal { opacity:1 !important; transform:none !important; transition:none !important; }
+    body::before { display:none; }
+    body { padding:24px; display:block; }
+    .winner, .kpi-grid, .note, .callout, .opportunity, .danger, .faq, .tier-card, .headline-card, .quote { break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="logo-wrap reveal" data-brand="growai">
+  <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="GrowAI">
+    <defs>
+      <linearGradient id="growaiG" x1="12%" y1="6%" x2="88%" y2="96%">
+        <stop offset="0%" stop-color="#FF9A3D"/>
+        <stop offset="52%" stop-color="#FF6A1A"/>
+        <stop offset="100%" stop-color="#E63C0A"/>
+      </linearGradient>
+    </defs>
+    <circle cx="100" cy="100" r="100" fill="url(#growaiG)"/>
+    <text x="100" y="135" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="152" fill="#FFFFFF">g</text>
+  </svg>
+  <span class="logo-word">GrowAI</span>
+</div>
+
+  <h1 class="page-title reveal">O padrão GrowAI</h1>
+  <p class="page-subtitle reveal">Brand book da identidade visual — o estilo documentando a si mesmo. Cards de vidro fosco sobre glow laranja, Satoshi nos títulos, Inter no corpo, fundo frio. Este arquivo também é o template portátil: copie o <code>&lt;head&gt;</code>, a <code>&lt;style&gt;</code> completa e os dois <code>&lt;script&gt;</code> do fim, e adapte só o conteúdo.</p>
+
+  <div class="meta-bar reveal">
+    <div><strong>Artefato</strong> Brand book + template</div>
+    <div><strong>Sistema</strong> GrowAI v6 · Liquid Glass</div>
+    <div><strong>Mobile</strong> System v1 · 320–430 px</div>
+    <div><strong>Skill</strong> branding-growai</div>
+  </div>
+
+  <div class="toc reveal">
+    <div class="toc-title">Sumário</div>
+    <ol>
+      <li><a href="#s1">Cores</a></li>
+      <li><a href="#s2">Tipografia</a></li>
+      <li><a href="#s3">Liquid Glass — a técnica da casa</a></li>
+      <li><a href="#s4">Componentes canônicos</a></li>
+      <li><a href="#s5">Tabelas + Mobile System v1</a></li>
+      <li><a href="#s6">Regras de layout</a></li>
+      <li><a href="#s7">Exportar PDF</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════ 01 · CORES ═══════════════ -->
+  <div class="section" id="s1">
+    <div class="section-label reveal"><span class="num">01</span>Cores</div>
+    <p class="reveal">Um fundo frio, uma tinta, um accent. O laranja GrowAI é a única cor de marca; verde, vermelho e âmbar existem só como semânticas de componente.</p>
+
+    <div class="swatch-row reveal">
+      <div class="swatch"><div class="chip" style="background:#F1F4F8;"></div><div class="lab">#F1F4F8 · fundo</div></div>
+      <div class="swatch"><div class="chip" style="background:#0C0F14;"></div><div class="lab">#0C0F14 · tinta</div></div>
+      <div class="swatch"><div class="chip" style="background:linear-gradient(135deg,#FF9A3D,#FF6A1A 52%,#E63C0A);"></div><div class="lab">gradiente da marca</div></div>
+      <div class="swatch"><div class="chip" style="background:#FF6A1A;"></div><div class="lab">#FF6A1A · accent</div></div>
+      <div class="swatch"><div class="chip" style="background:#B33E0A;"></div><div class="lab">#B33E0A · texto laranja</div></div>
+      <div class="swatch"><div class="chip" style="background:#0E9F6E;"></div><div class="lab">#0E9F6E · verde</div></div>
+      <div class="swatch"><div class="chip" style="background:#C0392B;"></div><div class="lab">#C0392B · vermelho</div></div>
+      <div class="swatch"><div class="chip" style="background:#B7791F;"></div><div class="lab">#B7791F · âmbar</div></div>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Papel</th><th>Token</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Fundo</strong></td><td><code>#F1F4F8</code></td><td>fundo padrão · superfícies sólidas <code>#FFFFFF</code> / <code>#F6F8FA</code></td></tr>
+          <tr><td><strong>Tinta</strong></td><td><code>#0C0F14</code> · <code>#3A4150</code></td><td>títulos e negrito · corpo</td></tr>
+          <tr><td><strong>Secundários</strong></td><td><code>#5B6472</code> · <code>#8A93A3</code></td><td>texto de apoio · overlines e rótulos</td></tr>
+          <tr><td><strong>Laranja</strong></td><td><code>#FF6A1A</code></td><td>o accent — gradiente <code>#FF9A3D → #FF6A1A → #E63C0A</code>; texto laranja usa <code>#B33E0A</code></td></tr>
+          <tr><td><strong>Semânticas</strong></td><td><code>#0E9F6E</code> · <code>#C0392B</code> · <code>#B7791F</code></td><td>opportunity · danger · atenção (cada uma com fundo soft próprio)</td></tr>
+          <tr><td><strong>Glass</strong></td><td><code>rgba(255,255,255,.66)</code></td><td>fundo dos cards frosted, borda <code>rgba(255,255,255,.78)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal"><strong>Disciplina do laranja</strong> O laranja marca O destaque — o que o documento manda você olhar. Texto laranja é sempre <strong>#B33E0A</strong> (legível), glow é ambiente e sutil. Se nada precisa de destaque, nada fica laranja além do lockup.</div>
+    <div class="danger reveal"><strong>Banido</strong> Azul e violeta (<strong>#2D5BFF</strong>, <strong>#7C5CFF</strong> — paleta Aura legada) não existem neste estilo. O validador do repo rejeita qualquer material com essas cores.</div>
+  </div>
+
+  <!-- ═══════════════ 02 · TIPOGRAFIA ═══════════════ -->
+  <div class="section" id="s2">
+    <div class="section-label reveal"><span class="num">02</span>Tipografia</div>
+
+    <div class="subsection reveal">
+      <div class="subsection-title">Satoshi carrega o título, Inter carrega o texto</div>
+      <p>Display é <strong>Satoshi</strong> (Fontshare): títulos peso 600, stats e winner peso 700, tracking sempre negativo. Corpo é <strong>Inter</strong> (Google Fonts): 400 no texto, 600 na ênfase, base 16px. VOC literal, código e hex ficam em <span style="font-family:var(--mono); font-size:14px;">mono</span>.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Voz</th><th>Fonte · peso</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Título de página</strong></td><td>Satoshi 600 · -0.04em</td><td><span style="font-family:var(--display); font-weight:600; font-size:24px; letter-spacing:-0.04em; color:var(--ink);">Diagnóstico do funil perpétuo</span></td></tr>
+          <tr><td><strong>Stat gigante</strong></td><td>Satoshi 700 · -0.05em</td><td><span style="font-family:var(--display); font-weight:700; font-size:26px; letter-spacing:-0.05em; color:var(--ink);">47%</span></td></tr>
+          <tr><td><strong>Corpo</strong></td><td>Inter 400 / 600</td><td>Texto de leitura com <strong>ênfase</strong> em 600, nunca 700.</td></tr>
+          <tr><td><strong>Overline</strong></td><td>Inter 600 · caps · 0.1em</td><td><span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--faint);">Rótulo de seção</span></td></tr>
+          <tr><td><strong>VOC / código</strong></td><td>Mono</td><td><code>"eu travava na hora de precificar"</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note reveal"><strong>Padrão overline</strong> 10.5–12px, caixa alta, espaçamento 0.08–0.13em, peso 600. É a assinatura da casa: toda seção, card e metadado abre com um.</div>
+  </div>
+
+  <!-- ═══════════════ 03 · LIQUID GLASS ═══════════════ -->
+  <div class="section" id="s3">
+    <div class="section-label reveal"><span class="num">03</span>Liquid Glass — a técnica da casa</div>
+    <p class="reveal">Vidro fosco sobre glow. Quatro camadas, sempre nesta ordem:</p>
+
+    <div class="reveal">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Glow ambiente</strong> — o fundo recebe 2–3 radiais laranja fixos e muito sutis (alpha .05–.13) via <code>body::before</code>. É o que dá profundidade e faz o vidro refratar.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Cards de vidro</strong> — <code>rgba(255,255,255,.66)</code> + <code>backdrop-filter:blur(20px) saturate(155%)</code> + borda <code>rgba(255,255,255,.78)</code> + sombra em duas camadas. Radius 18px (cards) e 12px (menores).</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Glow de destaque</strong> — o winner (card dark) carrega um halo laranja interno desfocado; stats gigantes ganham text-shadow laranja a 16% de opacidade.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Movimento discreto</strong> — reveal no scroll, count-up nos números, hover-lift de 3px. Tudo progressive enhancement: visível sem JS, failsafe de 2.6s, <code>prefers-reduced-motion</code> respeitado.</div></div>
+    </div>
+
+    <div class="winner reveal">
+      <div class="winner-label">O componente-assinatura</div>
+      <div class="winner-name">Winner · dark com glow</div>
+      <p>O único momento dark do documento. Fundo <strong>#0C0F14</strong> quase opaco, halo laranja interno desfocado, nome do mecanismo em Satoshi 700. No máximo 1–2 por documento — dark é acento, não tema.</p>
+    </div>
+
+    <div class="note reveal"><strong>Fallbacks travados</strong> Sem suporte a blur → cards viram sólido branco-fosco. Abaixo de 860px → blur desligado à força (glitch do Safari iOS). Touch → sem hover-lift. Nunca "otimize" esses cortes embora.</div>
+  </div>
+
+  <!-- ═══════════════ 04 · COMPONENTES ═══════════════ -->
+  <div class="section" id="s4">
+    <div class="section-label reveal"><span class="num">04</span>Componentes canônicos</div>
+    <p class="reveal">Os nomes de classe são API — skills e o validador dependem deles. Todos ao vivo abaixo.</p>
+
+    <div class="kpi-grid reveal">
+      <div class="kpi-card"><div class="big-num" data-count="58" data-suffix="%">58%</div><div class="big-num-label">kpi-grid · número antes do rótulo</div></div>
+      <div class="kpi-card"><div class="big-num" data-count="14" data-suffix=" dias">14 dias</div><div class="big-num-label">count-up via data-count</div></div>
+      <div class="kpi-card"><div class="big-num" data-count="3.2" data-prefix="R$ " data-suffix="k">R$ 3.2k</div><div class="big-num-label">glow sutil no número</div></div>
+    </div>
+
+    <div class="note reveal"><strong>note</strong> Contexto informacional neutro. O <strong>primeiro</strong> strong vira o rótulo do card; este segundo <strong>strong</strong> é ênfase inline normal e não quebra a frase.</div>
+    <div class="callout reveal"><strong>callout</strong> Recomendação estratégica — tinta laranja soft, rótulo em accent-deep.</div>
+    <div class="opportunity reveal"><strong>opportunity</strong> Lacuna de mercado ou oportunidade identificada — família verde.</div>
+    <div class="danger reveal"><strong>danger</strong> Erro crítico a evitar — família vermelha.</div>
+
+    <div class="quote reveal">"eu já tinha tentado de tudo, o que faltava era um processo que não dependesse de mim"<span class="quote-source">VOC · call de venda · pt-BR</span></div>
+
+    <p class="reveal" style="margin-top:18px;"><span class="pill pill-win">validado</span><span class="pill pill-wait">em teste</span><span class="pill pill-bof">bloqueado</span><span class="pill pill-tof">novo</span></p>
+
+    <div class="faq reveal"><div class="faq-q">"Isso funciona pro meu nicho?"</div><div class="faq-a">O componente <code>faq</code> carrega a objeção na pergunta (Satoshi 600) e a quebra na resposta (Inter, muted).</div></div>
+
+    <div class="tier-card popular reveal">
+      <div><div class="tier-name">tier-card · .popular</div><div class="tier-role">borda laranja + tag automática marcam o tier recomendado</div></div>
+      <div class="tier-price">R$ 4.900</div>
+    </div>
+
+    <div class="headline-card top reveal"><div class="hl-num">headline-card · .top</div>O método que transforma serviço na unha em produto que escala<div class="hl-justify">A variante <code>.top</code> marca a headline recomendada — borda laranja, mesma disciplina do destaque único.</div></div>
+
+    <div class="check-row reveal"><span class="check-icon">✓</span><div><strong>check-row</strong><br><span style="color:var(--muted);">Sanity check ou item verificado, com ícone verde e sombra da mesma família.</span></div></div>
+  </div>
+
+  <!-- ═══════════════ 05 · TABELAS + MOBILE ═══════════════ -->
+  <div class="section" id="s5">
+    <div class="section-label reveal"><span class="num">05</span>Tabelas + Mobile System v1</div>
+    <p class="reveal">Toda tabela vive dentro de <code>table-wrap</code>. No desktop ela rola se precisar; abaixo de 640px o script responsivo a transforma em cards rotulados (redimensione esta janela pra ver).</p>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Etapa do funil</th><th>Métrica</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Lead qualificado</strong></td><td>CPL R$ 18,40</td><td><span class="pill pill-win">no alvo</span></td></tr>
+          <tr><td><strong>Call agendada</strong></td><td>32% dos qualificados</td><td><span class="pill pill-wait">em teste</span></td></tr>
+          <tr><td><strong>Show-up</strong></td><td>61% das agendadas</td><td><span class="pill pill-bof">abaixo da meta</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="reveal">
+      <li><strong>320–430 px é gate:</strong> nenhum CTA, tabela, card ou texto pode sair da viewport.</li>
+      <li><strong>Tabela com cabeçalho</strong> vira cards com rótulo (<code>data-label</code>); <strong>duas colunas sem cabeçalho</strong> vira cards chave/valor — o script decide sozinho.</li>
+      <li><code>overflow-wrap:anywhere</code> global; mídia com <code>max-width:100%</code>; hover e reveal desligados no touch.</li>
+      <li><strong>Proibido</strong> <code>overflow-x:hidden</code> global pra mascarar layout quebrado.</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════ 06 · LAYOUT ═══════════════ -->
+  <div class="section" id="s6">
+    <div class="section-label reveal"><span class="num">06</span>Regras de layout</div>
+    <ul class="reveal">
+      <li><strong>Uma coluna, 880px:</strong> container centrado, densidade compacta — seções a 56px, não 120px.</li>
+      <li><strong>Overline antes de tudo:</strong> toda seção abre com <code>section-label</code> numerado; todo card tem rótulo em caps.</li>
+      <li><strong>Número antes do rótulo:</strong> em stats, o valor gigante vem primeiro, o rótulo embaixo.</li>
+      <li><strong>Hierarquia por peso e cor, não por tamanho:</strong> corpo é 15–16px sempre; o que muda é Satoshi/Inter, 400/600 e ink/muted/faint.</li>
+      <li><strong>Dark é acento:</strong> no máximo 1–2 cards dark (winner/feature) por documento.</li>
+      <li><strong>Especificidade Hopkins:</strong> "47% de redução em 14 dias" vence "resultados rápidos". Número real no <code>big-num</code>, nunca número decorativo.</li>
+      <li><strong>Consumidor final é outra marca:</strong> LP, VSL e página de cliente seguem a identidade da oferta — este design system é só de material interno/consultoria GrowAI.</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════ 07 · PDF ═══════════════ -->
+  <div class="section" id="s7">
+    <div class="section-label reveal"><span class="num">07</span>Exportar PDF</div>
+    <p class="reveal">HTML primeiro, PDF depois — o HTML é a fonte da verdade, o PDF é uma impressão dele:</p>
+    <pre class="reveal"><code>"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
+  --print-to-pdf="relatorio.pdf" --no-pdf-header-footer \
+  --virtual-time-budget=5000 "file://$PWD/relatorio.html"</code></pre>
+    <div class="note reveal"><strong>Print pronto</strong> Este arquivo já inclui o bloco <code>@media print</code> dentro da única style: reveal forçado visível, glow desligado, <code>break-inside:avoid</code> nos cards. Copie junto com o resto.</div>
+  </div>
+
+  <p class="footer">GrowAI © 2026 · Brand book da skill branding-growai</p>
+
+</div>
+
+<!-- ═══════════════ RESPONSIVIDADE (tabelas viram cards no mobile) ═══════════════ -->
+<script data-growai-responsive="v1">
+(() => {
+  document.querySelectorAll('.table-wrap table').forEach((table) => {
+    const headers = Array.from(table.querySelectorAll('thead th')).map((cell, index) =>
+      cell.textContent.trim() || `Coluna ${index + 1}`
+    );
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    if (!headers.length) {
+      const isKeyValue = rows.length && rows.every((row) => row.querySelectorAll(':scope > td').length === 2);
+      if (isKeyValue) table.classList.add('mobile-table', 'mobile-table-key-value');
+      return;
+    }
+
+    table.classList.add('mobile-table');
+    rows.forEach((row) => {
+      let headerIndex = 0;
+      Array.from(row.children).forEach((cell) => {
+        if (!cell.matches('td,th')) return;
+        if (!cell.hasAttribute('data-label')) {
+          cell.setAttribute('data-label', headers[headerIndex] || 'Informação');
+        }
+        headerIndex += Number(cell.getAttribute('colspan') || 1);
+      });
+    });
+  });
+})();
+</script>
+
+<!-- ═══════════════ ANIMAÇÃO (reveal no scroll + count-up nos números) ═══════════════ -->
+<script>
+(() => {
+  // Guard: sem IntersectionObserver, NADA é escondido (a classe .js nunca entra) — página estática visível.
+  if (!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+  if (reduce) { reveals.forEach(e=>e.classList.add('in')); }
+  else {
+    const io = new IntersectionObserver((es)=>{es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
+      e.target.querySelectorAll && e.target.querySelectorAll('[data-count]').forEach(countUp); } })},{threshold:0.12, rootMargin:'0px 0px -6% 0px'});
+    reveals.forEach(el=>io.observe(el));
+    // FAILSAFE: se o observer não disparar (quirk do Safari iOS / Quick Look / webview), revela tudo em ~2.6s — nenhum bloco fica invisível
+    setTimeout(()=>{ reveals.forEach(el=>{ if(!el.classList.contains('in')){ el.classList.add('in'); el.querySelectorAll('[data-count]').forEach(countUp); } }); }, 2600);
+  }
+  function countUp(el){
+    if (reduce || el.dataset.done) return; el.dataset.done = '1'; // guarda: IO + failsafe podem chamar os dois
+    const target = parseFloat(el.getAttribute('data-count')); if (isNaN(target)) return;
+    const suffix = el.getAttribute('data-suffix')||''; const prefix = el.getAttribute('data-prefix')||'';
+    const dec = (String(target).split('.')[1]||'').length; const dur = 900; const t0 = performance.now();
+    function frame(t){ const p = Math.min(1,(t-t0)/dur); const e = 1-Math.pow(1-p,3);
+      el.textContent = prefix + (target*e).toFixed(dec) + suffix; if (p<1) requestAnimationFrame(frame); else el.textContent = prefix+target.toFixed(dec)+suffix; }
+    requestAnimationFrame(frame);
+  }
+})();
+</script>
+</body>
+</html>
