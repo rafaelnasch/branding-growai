@@ -641,11 +641,19 @@
   <!-- ═══════════════ 07 · PDF ═══════════════ -->
   <div class="section" id="s7">
     <div class="section-label reveal"><span class="num">07</span>Exportar PDF</div>
-    <p class="reveal">HTML primeiro, PDF depois — o HTML é a fonte da verdade, o PDF é uma impressão dele:</p>
-    <pre class="reveal"><code>"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
-  --print-to-pdf="relatorio.pdf" --no-pdf-header-footer \
-  --virtual-time-budget=5000 "file://$PWD/relatorio.html"</code></pre>
-    <div class="note reveal"><strong>Print pronto</strong> Este arquivo já inclui o bloco <code>@media print</code> dentro da única style: reveal forçado visível, glow desligado, <code>break-inside:avoid</code> nos cards. Copie junto com o resto.</div>
+    <p class="reveal">HTML primeiro, PDF depois — o HTML é a fonte da verdade, o PDF é uma impressão dele. Use <strong>Playwright</strong>, nunca o <code>--print-to-pdf</code> do Chrome:</p>
+    <pre class="reveal"><code>from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    b = p.chromium.launch()
+    pg = b.new_page(viewport={"width": 1100, "height": 900})
+    pg.goto("file:///caminho/relatorio.html", wait_until="networkidle")
+    pg.wait_for_timeout(4000)      # tempo REAL: count-up termina
+    pg.emulate_media(media="print")
+    pg.pdf(path="relatorio.pdf", format="A4", print_background=True,
+           margin={"top":"14mm","bottom":"14mm","left":"12mm","right":"12mm"})
+    b.close()</code></pre>
+    <div class="danger reveal"><strong>Não use o print-to-pdf do Chrome</strong> O relógio de <code>--virtual-time-budget</code> quebra o count-up: o primeiro quadro pode vir com tempo negativo e imprimir <strong>-2</strong> no lugar de 147, ou a captura pega a animação no meio e imprime <strong>137</strong>. Os dois casos geram um PDF que parece válido. E <code>--disable-javascript</code> não resolve, porque o headless novo ignora o flag.</div>
+    <div class="note reveal"><strong>Print pronto</strong> Este arquivo já inclui o bloco <code>@media print</code> dentro da única style: reveal forçado visível, glow desligado, <code>break-inside:avoid</code> nos cards. Copie junto com o resto. E lembre do <code>print_background=True</code>, senão o winner dark e os cards tintados somem.</div>
   </div>
 
   <p class="footer">GrowAI © 2026 · Brand book da skill branding-growai</p>

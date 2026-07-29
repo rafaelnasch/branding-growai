@@ -145,17 +145,27 @@ Todo material tem que ficar legível e sem recorte entre **320 e 430 px**:
 
 ## Exportar PDF
 
-O caminho é sempre **HTML primeiro, PDF depois** (o HTML é a fonte da verdade; o PDF é uma impressão dele):
+O caminho é sempre **HTML primeiro, PDF depois** (o HTML é a fonte da verdade; o PDF é uma impressão dele). Use **Playwright**, não o `--print-to-pdf` do Chrome:
 
-```bash
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
-  --print-to-pdf="relatorio.pdf" --no-pdf-header-footer \
-  --virtual-time-budget=5000 "file://$PWD/relatorio.html"
+```python
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    b = p.chromium.launch()
+    pg = b.new_page(viewport={"width": 1100, "height": 900})
+    pg.goto("file:///caminho/relatorio.html", wait_until="networkidle")
+    pg.wait_for_timeout(4000)            # tempo REAL: reveal + count-up terminam
+    pg.emulate_media(media="print")
+    pg.pdf(path="relatorio.pdf", format="A4", print_background=True,
+           margin={"top":"14mm","bottom":"14mm","left":"12mm","right":"12mm"})
+    b.close()
 ```
 
-- `--virtual-time-budget=5000` deixa fontes, reveal e count-up assentarem antes da captura.
-- Pra impressão perfeita, adicione DENTRO da `<style>` única: `@media print { .js .reveal{opacity:1!important;transform:none!important} body::before{display:none} body{padding:24px} }` — glow ambiente não imprime bem; os cards caem no fallback sólido sozinhos.
-- Confira o PDF gerado: nenhuma tabela cortada, nenhum card partido no meio de página crítica (se partir, adicione `break-inside:avoid` no componente afetado, também dentro da `<style>` única).
+- **`print_background=True` é obrigatório** — sem ele o winner dark, os cards tintados e o glow somem, e o PDF sai em preto-e-branco chapado.
+- **A espera é de tempo real (`wait_for_timeout`)**, e é isso que garante que o count-up chegou ao valor final. Antes de imprimir, confira: `pg.eval_on_selector_all(".big-num", "els => els.map(e => e.textContent)")` tem que devolver os números finais.
+- Pra impressão perfeita, adicione DENTRO da `<style>` única: `@media print { .js .reveal{opacity:1!important;transform:none!important} body::before{display:none} body{padding:24px} .winner,.kpi-grid,.note,.callout,.opportunity,.danger,.faq,.tier-card,.headline-card,.quote{break-inside:avoid} }` — glow ambiente não imprime bem e nenhum card deve partir entre páginas.
+- Confira o PDF gerado página a página: nenhuma tabela cortada, nenhum card partido, KPIs com o número certo.
+
+**Por que NÃO usar `chrome --headless --print-to-pdf --virtual-time-budget`:** o relógio virtual quebra o count-up de duas formas, e as duas já aconteceram em produção. Com `--virtual-time-budget`, o primeiro `requestAnimationFrame` pode vir com timestamp ANTERIOR ao `performance.now()` inicial, o que torna o progresso negativo e imprime **`-2`** no lugar de `147`. Sem budget suficiente, a captura pega a animação no meio e imprime **`137`** no lugar de `147`. Pior: os dois casos produzem um PDF que *parece* válido. E `--disable-javascript` não salva — o headless novo do Chrome ignora esse flag.
 
 ## Decks / slides GrowAI
 
@@ -166,7 +176,7 @@ Quando o material é um deck (não um documento): seções `100vh` com `scroll-s
 1. **Exatamente uma `<style>` por arquivo.** O gate estrutural conta pares `<style>...</style>` — adições de print/extra vão DENTRO da única style, nunca numa segunda tag.
 2. **Snippets canônicos são literais.** Lockup e script responsivo são comparados caractere a caractere pelo validador — copie, não redigite.
 3. **`backdrop-filter` no iOS Safari** trava/glitcha em scroll — por isso o corte ≤860px é à força com `!important`. Não "otimize" isso embora.
-4. **Count-up precisa do número final no HTML** (`<div class="big-num" data-count="58" data-suffix="%">58%</div>`) — sem JS o valor já está lá.
+4. **Count-up precisa do número final no HTML** (`<div class="big-num" data-count="58" data-suffix="%">58%</div>`) — sem JS o valor já está lá. Em valores monetários grandes, **não use `data-count`**: o count-up imprime `324213.88` sem separador de milhar. Deixe o texto formatado (`R$ 324 mil` ou `R$ 324.213,88`) e reserve a animação para números limpos (147, 6.2, 4).
 5. **`.reveal` sem o script = conteúdo some?** Não — a classe `.js` só entra via JS; sem JS nada fica invisível. Mantenha esse guard se mexer no script.
 6. **Chrome Auto Dark Mode:** o design é light-only; se um cliente reportar cores invertidas, adicione `html { color-scheme: light; }` na style.
 
