@@ -188,7 +188,7 @@ Tom por leitor: dono (negócio, decisão, coragem) · líder (funil, ritmo, meta
 
 ## Prova e promessa (TRAVADO)
 
-Resultado de cliente só medido, com período e **segmento no lugar do nome** ("e-commerce de embalagens"); nome e frase de cliente só com autorização escrita. "Até 10x" e "garantido" são vedados até existir caso medido. Antes e depois de faturamento nunca em título de anúncio. Dado pessoal de cliente final nunca aparece (LGPD). Número de exemplo sempre marcado como exemplo. Prova liberada hoje: **num e-commerce de embalagens, a fatia de oportunidades que vira venda passou de 4,7% para 10,3% em oito meses.** Os demais resultados aguardam confirmação: não use.
+Resultado de cliente só medido, com período e **segmento no lugar do nome** ("e-commerce de embalagens"); nome e frase de cliente só com autorização escrita. "Até 10x" e "garantido" são vedados até existir caso medido. Antes e depois de faturamento nunca em título de anúncio. Dado pessoal de cliente final nunca aparece (LGPD). Número de exemplo sempre marcado como exemplo. Provas liberadas (04/10/2026): os **9 casos publicados em https://growai.com.br/casos**, sempre pelo segmento, com os números, períodos e fontes exatamente como estão lá. Resultado medido: e-commerce de embalagens (fatia de oportunidades que vira venda de 4,7% para 10,3%; vendas originadas de 23 para 76 por mês) · varejo capilar (vendas registradas de 39 em maio para 82 em agosto de 2026) · e-commerce (61% mais pedidos de março a setembro de 2026 contra 2025) · educação em odontologia (3,4 vezes mais ingressos na 2ª edição: 967 contra 288; atendimento de 6% para 54% de quem escreve) · comércio de produtos odontológicos (recuperação de carrinho: R$ 79,5 mil em agosto e R$ 52,7 mil em setembro de 2026). Estrutura entregue (sem venda medida): holding de educação com seis empresas numa plataforma só · clínica de saúde e estética · grupo de franquias de alimentação · assinatura digital com rede de afiliados. A prova principal, para peça curta, continua sendo **num e-commerce de embalagens, a fatia de oportunidades que vira venda passou de 4,7% para 10,3%**. Número fora desses casos: não use.
 
 ## Componentes canônicos
 
@@ -227,7 +227,7 @@ Contêiner 1240 px (1480 no largo, 720 na coluna de leitura) · margem 16–72 p
 Lista viva no capítulo 42. Enquanto aberta, a peça usa colchete (`[investimento]`, `[nome do cliente]`), nunca um valor inventado.
 
 1. P-01 · Arquivo vetorial original do logo (usar a reconstrução de `assets/`).
-2. P-02 · Três provas de cliente aguardando confirmação (usar só a prova liberada).
+2. P-02 · Resolvida em 04/10/2026: 9 casos publicados por segmento em growai.com.br/casos. Nome e logo de cliente só com autorização escrita.
 3. P-03 · Perguntas e pontuação do Raio-X do Negócio.
 4. P-04 · Autorização para citar clientes pelo nome (usar o segmento).
 5. P-05 · Preço de cada degrau da esteira (usar `[investimento]`).

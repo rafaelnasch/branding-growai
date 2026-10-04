@@ -12175,9 +12175,9 @@ Nunca:
 #cap-24-pecas .par{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,4vw,72px);align-items:start}
 #cap-24-pecas .par>div{display:grid;gap:var(--e-4);min-width:0;align-content:start}
 #cap-24-pecas .tit-par.sep{margin-top:var(--e-8);padding-top:var(--e-8);border-top:1px solid var(--f-linha)}
-#cap-24-pecas .tit-par{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:var(--e-5)}
-#cap-24-pecas .tit-par h3{font-size:var(--t-d3);font-weight:400}
-#cap-24-pecas .tit-par .rot{white-space:nowrap}
+#cap-24-pecas .tit-par,#cap-24-regras .tit-par{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:var(--e-5)}
+#cap-24-pecas .tit-par h3,#cap-24-regras .tit-par h3{font-size:var(--t-d3);font-weight:400}
+#cap-24-pecas .tit-par .rot,#cap-24-regras .tit-par .rot{white-space:nowrap}
 #cap-24-pecas .feed{max-width:400px;width:100%;justify-self:center;background:#fff;border:1px solid var(--dia-linha);border-radius:12px;overflow:hidden;box-shadow:var(--sombra-2);font-family:var(--ff-texto);color:#0C0F14}
 #cap-24-pecas .feed .fh{display:flex;align-items:center;gap:10px;padding:10px 12px}
 #cap-24-pecas .feed .fh img{width:32px;height:32px;border-radius:50%}
@@ -12205,7 +12205,7 @@ Nunca:
 #cap-24-pecas .wa .apaga{display:inline-block;height:.9em;width:var(--l,5em);vertical-align:-.08em;border-radius:3px;background:#0C0F14}
 #cap-24-pecas .wa .comp{margin:0 calc(10 * var(--u)) calc(30 * var(--u));height:calc(44 * var(--u));border-radius:999px;background:#fff;display:flex;align-items:center;padding:0 calc(16 * var(--u));font-size:calc(14 * var(--u));color:#9AA3B2}
 #cap-24-pecas .wa .tag{align-self:center;font-family:var(--ff-mono);font-size:calc(12 * var(--u));letter-spacing:.08em;text-transform:uppercase;background:rgba(11,13,18,.08);color:#4A525E;padding:calc(4 * var(--u)) calc(10 * var(--u));border-radius:999px}
-@media (max-width:760px){#cap-24-pecas .par{grid-template-columns:minmax(0,1fr)}#cap-24-pecas .tit-par{flex-direction:column;gap:6px}}
+@media (max-width:760px){#cap-24-pecas .par{grid-template-columns:minmax(0,1fr)}#cap-24-pecas .tit-par,#cap-24-regras .tit-par{flex-direction:column;gap:6px}}
 
 /* 24.5 exemplo marcado */
 #cap-24-ex .locais{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,1fr);gap:var(--calha);align-items:stretch}
@@ -12222,10 +12222,10 @@ Nunca:
   <div class="ab-fundo veu" aria-hidden="true"><img srcset="assets/fotos/web/detalhe-anotacoes-duo-480.jpg 480w, assets/fotos/web/detalhe-anotacoes-duo-1200.jpg 1200w, assets/fotos/detalhe-anotacoes-duo.jpg 1600w" sizes="(max-width:760px) 100vw, 60vw" width="1600" height="1067" decoding="async" loading="lazy" src="assets/fotos/detalhe-anotacoes-duo.jpg" alt=""></div>
   <div class="in-largo">
     <div class="ab-topo"><span>Parte <b>IV</b> · Linguagem</span><span>Capítulo 24 de 44</span></div>
-    <div class="ab-visual" role="img" aria-label="Prova liberada: a fatia de oportunidades que vira venda passou de 4,7% para 10,3% em oito meses, num e-commerce de embalagens">
+    <div class="ab-visual" role="img" aria-label="Prova principal: a fatia de oportunidades que vira venda passou de 4,7% para 10,3% em oito meses, num e-commerce de embalagens">
       <span class="placar-de">era <s>4,7%</s></span>
       <span class="placar">10,3%</span>
-      <span class="placar-leg"><b>Prova liberada</b> · e-commerce de embalagens · oportunidades que viram venda · oito meses</span>
+      <span class="placar-leg"><b>Prova principal</b> · e-commerce de embalagens · oportunidades que viram venda · oito meses</span>
     </div>
     <span class="ab-num" aria-hidden="true">24</span>
     <div class="ab-corpo">
@@ -12245,7 +12245,7 @@ Nunca:
     <div class="cab">
       <p class="rot">24.1 <span class="n">· Anatomia de uma prova</span></p>
       <h2>Uma frase, <em>quatro peças</em> obrigatórias.</h2>
-      <p class="lead">A prova liberada é o modelo de toda prova futura. Tire qualquer uma das quatro peças e ela vira opinião.</p>
+      <p class="lead">A prova principal é o modelo de toda prova, inclusive dos nove casos publicados em growai.com.br/casos. Tire qualquer uma das quatro peças e ela vira opinião.</p>
     </div>
     <p class="prova-frase"><span class="p p1">Num e-commerce de embalagens,<sup>1</sup></span> <span class="p p2">a fatia de oportunidades que vira venda<sup>2</sup></span> <span class="p p3">passou de <b>4,7%</b> para <b>10,3%</b><sup>3</sup></span> <span class="p p4">em oito meses.<sup>4</sup></span></p>
     <ol class="partes">
@@ -12260,7 +12260,7 @@ Nunca:
         <p class="frase">Dois números, <em>um</em> destaque.</p>
         <p class="apoio">Barra de antes em neutro, barra de depois em laranja, segmento e período no rodapé. O gráfico sai do motor gviz com fonte e data obrigatórias.</p>
       </div>
-      <div class="grafico" data-gviz='{"tipo":"barras","campo":"dia","sobretitulo":"E-commerce de embalagens · prova liberada","titulo":"A fatia que vira venda mais que dobrou em oito meses","rotulos":["Antes","Oito meses depois"],"valores":[4.7,10.3],"vrotulos":["4,7%","10,3%"],"destaque":1,"unidade":"%","fonte":"Dados do cliente, medidos pela GrowAI","data":"out. 2026","aria":"Barras: 4,7% antes e 10,3% oito meses depois"}'></div>
+      <div class="grafico" data-gviz='{"tipo":"barras","campo":"dia","sobretitulo":"E-commerce de embalagens · prova principal","titulo":"A fatia que vira venda mais que dobrou em oito meses","rotulos":["Antes","Oito meses depois"],"valores":[4.7,10.3],"vrotulos":["4,7%","10,3%"],"destaque":1,"unidade":"%","fonte":"CRM do cliente · oportunidades criadas em nov e dez/2025 contra jun e jul/2026","data":"out. 2026","aria":"Barras: 4,7% antes e 10,3% oito meses depois"}'></div>
     </div>
   </div>
 </section>
@@ -12276,7 +12276,7 @@ Nunca:
       <table class="tab">
         <thead><tr><th>Situação</th><th>Regra</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td><b>Resultado de cliente</b></td><td>Número medido, período e segmento ("e-commerce de embalagens"). Nome só com autorização por escrito.</td><td><span class="pill sim">Permitido</span></td></tr>
+          <tr><td><b>Resultado de cliente</b></td><td>Número medido, período, fonte e segmento ("e-commerce de embalagens"), exatamente como na página de casos (growai.com.br/casos). Nome e logo só com autorização por escrito.</td><td><span class="pill sim">Permitido</span></td></tr>
           <tr><td><b>Frase de cliente</b></td><td>Só literal e com autorização. Nunca reescrita para soar melhor.</td><td><span class="pill at">Com autorização</span></td></tr>
           <tr class="foco"><td><b>"Até 10x", "garantido"</b></td><td>Fica como ambição interna até existir um caso medido que mostre isso.</td><td><span class="pill nao">Vedado</span></td></tr>
           <tr><td><b>Antes e depois de faturamento</b></td><td>Nunca em título de anúncio. Na página, com contexto, período e o aviso de que o resultado depende do negócio.</td><td><span class="pill at">Com contexto</span></td></tr>
@@ -12286,6 +12286,26 @@ Nunca:
       </table>
     </div>
     <p class="dica-rola">Deslize a tabela para o lado →</p>
+    <div class="espaco"></div>
+    <div class="tit-par"><h3>Os nove casos publicados</h3><span class="rot">growai.com.br/casos · 04/10/2026</span></div>
+    <div class="tabela-wrap" tabindex="0" role="region" aria-label="Casos publicados por segmento" style="--min-tab:720px">
+      <table class="tab">
+        <thead><tr><th>Segmento</th><th>O que pode ser dito</th><th>Tipo</th></tr></thead>
+        <tbody>
+          <tr class="foco"><td><b>E-commerce de embalagens</b></td><td>A fatia de oportunidades que vira venda passou de 4,7% para 10,3% em oito meses; as vendas originadas foram de 23 para 76 por mês. Prova principal, a da peça curta.</td><td><span class="pill sim">Resultado medido</span></td></tr>
+          <tr><td><b>Varejo capilar</b></td><td>Vendas registradas de 39 em maio para 82 em agosto de 2026.</td><td><span class="pill sim">Resultado medido</span></td></tr>
+          <tr><td><b>E-commerce</b></td><td>61% mais pedidos de março a setembro de 2026, contra o mesmo período de 2025.</td><td><span class="pill sim">Resultado medido</span></td></tr>
+          <tr><td><b>Educação em odontologia</b></td><td>3,4 vezes mais ingressos na 2ª edição: 967 contra 288. No atendimento, de 6% para 54% de quem escreve.</td><td><span class="pill sim">Resultado medido</span></td></tr>
+          <tr><td><b>Comércio de produtos odontológicos</b></td><td>Recuperação de carrinho: R$ 79,5 mil em agosto e R$ 52,7 mil em setembro de 2026.</td><td><span class="pill sim">Resultado medido</span></td></tr>
+          <tr><td><b>Holding de educação</b></td><td>Seis empresas numa plataforma só. Sem número de venda.</td><td><span class="pill neutra">Estrutura entregue</span></td></tr>
+          <tr><td><b>Clínica de saúde e estética</b></td><td>Estrutura em produção. Sem número de venda.</td><td><span class="pill neutra">Estrutura entregue</span></td></tr>
+          <tr><td><b>Grupo de franquias de alimentação</b></td><td>Estrutura em produção. Sem número de venda.</td><td><span class="pill neutra">Estrutura entregue</span></td></tr>
+          <tr><td><b>Assinatura digital com rede de afiliados</b></td><td>Estrutura em produção. Sem número de venda.</td><td><span class="pill neutra">Estrutura entregue</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="dica-rola">Deslize a tabela para o lado →</p>
+    <p class="apoio" style="margin-top:var(--e-5);font-size:15.5px">Período e fonte de cada número saem como estão no caso, em growai.com.br/casos. Número fora desses casos: não use. Nome e logo de cliente só com autorização escrita.</p>
   </div>
 </section>
 
@@ -12298,15 +12318,15 @@ Nunca:
     </div>
     <div class="eixo-forca" aria-hidden="true"><span>Prova mais forte no topo</span><span>Status hoje</span></div>
     <ol class="escada">
-      <li class="degrau topo" style="--w:100%"><span class="i">01</span><h3>Resultado medido</h3><p>Ponto A, ponto B, período e segmento. A frase liberada é a única disponível hoje.</p><span class="pill sim">Liberada · 1</span></li>
+      <li class="degrau topo" style="--w:100%"><span class="i">01</span><h3>Resultado medido</h3><p>Ponto A, ponto B, período, fonte e segmento. Nove casos publicados em growai.com.br/casos; na peça curta, a prova principal do e-commerce de embalagens.</p><span class="pill sim">Publicados · 9</span></li>
       <li class="degrau" style="--w:92%"><span class="i">02</span><h3>Frase de cliente</h3><p>Literal, com autorização por escrito, nome só se autorizado. Nunca reescrita.</p><span class="pill at">Com autorização</span></li>
-      <li class="degrau" style="--w:84%"><span class="i">03</span><h3>Resultado em confirmação</h3><p>Resultados medidos que ainda esperam confirmação não existem para a comunicação.</p><span class="pill at">Aguardando</span></li>
+      <li class="degrau" style="--w:84%"><span class="i">03</span><h3>Número fora da página de casos</h3><p>Resultado que não está em growai.com.br/casos, ou com número, período ou fonte diferentes, não existe para a comunicação.</p><span class="pill at">Não usar</span></li>
       <li class="degrau vedado" style="--w:76%"><span class="i">04</span><h3>Promessa sem caso</h3><p>"Até 10x", "garantido", "resultado em 30 dias". Vedado até existir um caso medido.</p><span class="pill nao">Vedado</span></li>
     </ol>
     <p class="nota-ex"><b>Fora da escada</b> Número de exemplo não é prova: ele explica o método. Ver 24.5.</p>
     <div class="espaco"></div>
     <figure class="citacao">
-      <blockquote><p>Nunca arredonde para cima. Nunca antecipe um número <em style="font-style:italic;color:var(--foco)">em confirmação</em>.</p></blockquote>
+      <blockquote><p>Nunca arredonde para cima. Nunca use um número <em style="font-style:italic;color:var(--foco)">fora da página de casos</em>.</p></blockquote>
       <figcaption><b>Regra de prova</b> vale para site, proposta, palco e conversa</figcaption>
     </figure>
   </div>
@@ -16062,11 +16082,11 @@ img, video, canvas, svg{ <span class="p">max-width</span>:100%; <span class="p">
 <div class="entre"><span class="t-rot" style="--fs:16;line-height:1.5">Receita em aberto por etapa<br>Fonte: CRM, 90 dias · dado ilustrativo</span><img decoding="async" loading="lazy" class="logo" style="--h:48" src="assets/growai-logo-oficial.svg" alt="GrowAI"></div></div></div></div></div><span class="n" aria-hidden="true"><b>09</b> · Dado</span></div></div>
         <figcaption class="medida"><b>Grade do perfil</b> cada post 1080 × 1350 aparece cortado em 3:4 · 34 px somem de cada lado</figcaption>
       </figure>
-      <ol class="leg" aria-label="Os nove posts da grade"><li><span class="k">01</span><div><b>Assinatura</b><i>Fixado · tese · noite</i><p>O post que apresenta a marca, fixado em primeiro. O laranja é o ponto do radar, por isso o título fica sem destaque.</p></div></li><li><span class="k">02</span><div><b>Prova liberada</b><i>Fixado · prova · dia</i><p>O único resultado de cliente liberado. Número na cor da linha que gerou o resultado, com período e segmento.</p></div></li><li><span class="k">03</span><div><b>Capa de carrossel</b><i>Fixado · conteúdo · dia</i><p>Os três sinais, que terminam no Raio-X. A capa promete; as lâminas entregam uma ideia cada.</p></div></li><li><span class="k">04</span><div><b>Foto de gente</b><i>Tese · foto grade Noite</i><p>Um dono num momento de decisão. Foto de banco licenciada: o rótulo diz tese, nunca bastidor nem cliente.</p></div></li><li><span class="k">05</span><div><b>Glossário do dono</b><i>Conteúdo · dia 2</i><p>Uma palavra do vocabulário por post. O ponto final é o foco.</p></div></li><li><span class="k">06</span><div><b>Tese</b><i>Tese · noite</i><p>Uma provocação que o dono reconhece. Uma frase, um destaque.</p></div></li><li><span class="k">07</span><div><b>Citação</b><i>Tese · dia, sem foto</i><p>Frase do Rafael, com nome e papel, em tipografia pura. Frase a validar com ele antes de publicar.</p></div></li><li><span class="k">08</span><div><b>Capa de reels</b><i>Reels · foto de cena</i><p>Um quadro de cena, sem retrato posado. Título dentro do corte da grade.</p></div></li><li><span class="k">09</span><div><b>Dado da semana</b><i>Prova · dia</i><p>Um gráfico que afirma. Número de exemplo marcado como exemplo, com fonte.</p></div></li></ol>
+      <ol class="leg" aria-label="Os nove posts da grade"><li><span class="k">01</span><div><b>Assinatura</b><i>Fixado · tese · noite</i><p>O post que apresenta a marca, fixado em primeiro. O laranja é o ponto do radar, por isso o título fica sem destaque.</p></div></li><li><span class="k">02</span><div><b>Prova principal</b><i>Fixado · prova · dia</i><p>A prova principal, do e-commerce de embalagens. Os outros casos de growai.com.br/casos entram do mesmo jeito. Número na cor da linha que gerou o resultado, com período e segmento.</p></div></li><li><span class="k">03</span><div><b>Capa de carrossel</b><i>Fixado · conteúdo · dia</i><p>Os três sinais, que terminam no Raio-X. A capa promete; as lâminas entregam uma ideia cada.</p></div></li><li><span class="k">04</span><div><b>Foto de gente</b><i>Tese · foto grade Noite</i><p>Um dono num momento de decisão. Foto de banco licenciada: o rótulo diz tese, nunca bastidor nem cliente.</p></div></li><li><span class="k">05</span><div><b>Glossário do dono</b><i>Conteúdo · dia 2</i><p>Uma palavra do vocabulário por post. O ponto final é o foco.</p></div></li><li><span class="k">06</span><div><b>Tese</b><i>Tese · noite</i><p>Uma provocação que o dono reconhece. Uma frase, um destaque.</p></div></li><li><span class="k">07</span><div><b>Citação</b><i>Tese · dia, sem foto</i><p>Frase do Rafael, com nome e papel, em tipografia pura. Frase a validar com ele antes de publicar.</p></div></li><li><span class="k">08</span><div><b>Capa de reels</b><i>Reels · foto de cena</i><p>Um quadro de cena, sem retrato posado. Título dentro do corte da grade.</p></div></li><li><span class="k">09</span><div><b>Dado da semana</b><i>Prova · dia</i><p>Um gráfico que afirma. Número de exemplo marcado como exemplo, com fonte.</p></div></li></ol>
     </div>
     <div class="ritmo">
       <div><span class="rot">Ritmo</span><p class="big">3 posts por semana</p><p>Uma tese, uma prova ou dado, um conteúdo. Fotos de gente e reels entram por cima. Ritmo sugerido, a validar com os números da conta.</p></div>
-      <div><span class="rot">Fixados</span><p class="big">Três fixados na primeira linha</p><p>A assinatura, a prova liberada e o carrossel dos três sinais, que termina no Raio-X. Troque os dois últimos quando houver prova ou carrossel novo aprovado.</p></div>
+      <div><span class="rot">Fixados</span><p class="big">Três fixados na primeira linha</p><p>A assinatura, a prova principal e o carrossel dos três sinais, que termina no Raio-X. Troque os dois últimos quando houver prova ou carrossel novo aprovado.</p></div>
       <div><span class="rot">Corte da grade</span><p class="big">Nada a menos de 80 px da borda</p><p>A grade corta 34 px de cada lado do post. Com margem de 80 px, título, logo e número nunca encostam no corte.</p></div>
     </div>
   </div>
@@ -16098,7 +16118,7 @@ img, video, canvas, svg{ <span class="p">max-width</span>:100%; <span class="p">
 <div class="sp-pont"><svg xmlns="http://www.w3.org/2000/svg" id="gfx30pont" data-gforms="ponteiro" viewBox="0 0 300 221" aria-hidden="true" focusable="false"><path d="M22,158 A128,128 0 0 1 278,158" fill="none" stroke="#E4E7EB" stroke-width="10.5" stroke-linecap="butt"/><path d="M79.05,51.46 A128,128 0 0 1 220.95,51.46" fill="none" stroke="#929395" stroke-width="10.5"/><text x="150" y="12.75" text-anchor="middle" fill="#4A525E" style="font-family:'IBM Plex Mono','Courier New',ui-monospace,Menlo,monospace;font-weight:500;font-size:10.5px;letter-spacing:1.2px">GANHO EM 8 MESES</text><line x1="31.25" y1="158" x2="41.25" y2="158" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="37.06" y1="121.3" x2="41.82" y2="122.85" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="53.93" y1="88.2" x2="57.97" y2="91.14" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="80.2" y1="61.93" x2="83.14" y2="65.97" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="113.3" y1="45.06" x2="114.85" y2="49.82" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="150" y1="39.25" x2="150" y2="49.25" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="186.7" y1="45.06" x2="185.15" y2="49.82" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="219.8" y1="61.93" x2="216.86" y2="65.97" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="246.07" y1="88.2" x2="242.03" y2="91.14" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="262.94" y1="121.3" x2="258.18" y2="122.85" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="268.75" y1="158" x2="258.75" y2="158" stroke="#4A525E" stroke-opacity=".6" stroke-width="1"/><line x1="150" y1="158" x2="215.46" y2="59.7" stroke="#0C0F14" stroke-width="2.5" stroke-linecap="round"/><circle cx="150" cy="158" r="7" fill="#0C0F14"/><circle cx="150" cy="158" r="2.5" fill="#FFFFFF"/><circle cx="220.95" cy="51.46" r="9.9" fill="#FF6A1A" fill-opacity=".18"/><circle cx="220.95" cy="51.46" r="4.5" fill="#FF6A1A"/><text x="22" y="180" text-anchor="middle" fill="#4A525E" style="font-family:'IBM Plex Mono','Courier New',ui-monospace,Menlo,monospace;font-weight:500;font-size:12px">0%</text><text x="278" y="180" text-anchor="middle" fill="#4A525E" style="font-family:'IBM Plex Mono','Courier New',ui-monospace,Menlo,monospace;font-weight:500;font-size:12px">15%</text><text x="150" y="213" text-anchor="middle" fill="#0C0F14" style="font-family:'IBM Plex Mono','Courier New',ui-monospace,Menlo,monospace;font-weight:500;font-size:33px;letter-spacing:-0.99px">10,3%</text></svg></div>
 <div class="entre"><span class="t-rot" style="--fs:16;line-height:1.5">Num e-commerce de embalagens<br>Fatia de oportunidades que vira venda</span><span class="t-rot" style="--fs:16;text-align:right;line-height:1.5">Caso real de cliente<br>Resultado varia por empresa</span></div></div></div></div></div><span class="cota-a">1350 px</span></figure>
         <h3>Sustenta com número medido</h3>
-        <p>A mesma prova liberada pode ganhar outro desenho: aqui, o ponteiro do motor de formas, com a faixa do ganho e a agulha no resultado. Quando o desenho tem o ponto laranja, o título fica sem itálico.</p>
+        <p>A mesma prova principal pode ganhar outro desenho: aqui, o ponteiro do motor de formas, com a faixa do ganho e a agulha no resultado. Quando o desenho tem o ponto laranja, o título fica sem itálico.</p>
         <dl class="dl"><dt>Forma</dt><dd>gforms ponteiro · 760 px</dd><dt>Título</dt><dd>Newsreader 400 · 84 px</dd><dt>Aviso</dt><dd>"Resultado varia por empresa"</dd><dt>Modelo</dt><dd>esta variação com ponteiro não tem arquivo; o modelo assets/modelos/post-prova-1080x1350.png é o desenho com os dois números (4,7% → 10,3%)</dd></dl>
       </div>
       <div class="tipo">
@@ -20576,7 +20596,7 @@ python3 autocontido.py minha-proposta.html
       <li><i></i><span>04 · aprovação</span><b>Rafael Nasch</b><p>Aprova a marca e qualquer exceção.</p></li>
       <li><i></i><span>05 · publicação</span><b>No ar</b><p>Exceção vira nova versão, com data.</p></li>
     </ol>
-    <div class="pedidos"><button class="pedido" type="button" data-copiar-texto="Monta a proposta do Diagnóstico do Gargalo para [empresa], linha Strategy, com o que o cliente disse sobre [problema], o gargalo com o número [número] e o próximo passo. Investimento como [investimento]."><span class="k"><span>Proposta</span><em>cap. 36 · copiar</em></span><q>Monta a proposta do Diagnóstico do Gargalo para [empresa], linha Strategy, com o que o cliente disse sobre [problema], o gargalo com o número [número] e o próximo passo. Investimento como [investimento].</q></button><button class="pedido" type="button" data-copiar-texto="Monta o relatório mensal de [cliente] em A4, com a restrição ativa antes da tabela, o gráfico do gargalo e a decisão pedida no fim."><span class="k"><span>Relatório</span><em>cap. 37 · copiar</em></span><q>Monta o relatório mensal de [cliente] em A4, com a restrição ativa antes da tabela, o gráfico do gargalo e a decisão pedida no fim.</q></button><button class="pedido" type="button" data-copiar-texto="Cria um post 1080 × 1350 de prova, no dia, usando só a prova liberada do e-commerce de embalagens."><span class="k"><span>Post de prova</span><em>cap. 30 · copiar</em></span><q>Cria um post 1080 × 1350 de prova, no dia, usando só a prova liberada do e-commerce de embalagens.</q></button><button class="pedido" type="button" data-copiar-texto="Gera o arquivo de impressão do meu cartão de visita: [nome], [papel], [e-mail], [telefone], linha [linha], com sangria de 3 mm."><span class="k"><span>Cartão de visita</span><em>cap. 38 · copiar</em></span><q>Gera o arquivo de impressão do meu cartão de visita: [nome], [papel], [e-mail], [telefone], linha [linha], com sangria de 3 mm.</q></button><button class="pedido" type="button" data-copiar-texto="Faz o backdrop de 3 × 2 m e as três telas de telão (abertura, intervalo e encerramento) para o [evento], em [data]."><span class="k"><span>Evento</span><em>cap. 39 · copiar</em></span><q>Faz o backdrop de 3 × 2 m e as três telas de telão (abertura, intervalo e encerramento) para o [evento], em [data].</q></button><button class="pedido" type="button" data-copiar-texto="Gera a minha assinatura de e-mail no padrão GrowAI: [nome], [papel]."><span class="k"><span>Assinatura</span><em>cap. 38 · copiar</em></span><q>Gera a minha assinatura de e-mail no padrão GrowAI: [nome], [papel].</q></button></div>
+    <div class="pedidos"><button class="pedido" type="button" data-copiar-texto="Monta a proposta do Diagnóstico do Gargalo para [empresa], linha Strategy, com o que o cliente disse sobre [problema], o gargalo com o número [número] e o próximo passo. Investimento como [investimento]."><span class="k"><span>Proposta</span><em>cap. 36 · copiar</em></span><q>Monta a proposta do Diagnóstico do Gargalo para [empresa], linha Strategy, com o que o cliente disse sobre [problema], o gargalo com o número [número] e o próximo passo. Investimento como [investimento].</q></button><button class="pedido" type="button" data-copiar-texto="Monta o relatório mensal de [cliente] em A4, com a restrição ativa antes da tabela, o gráfico do gargalo e a decisão pedida no fim."><span class="k"><span>Relatório</span><em>cap. 37 · copiar</em></span><q>Monta o relatório mensal de [cliente] em A4, com a restrição ativa antes da tabela, o gráfico do gargalo e a decisão pedida no fim.</q></button><button class="pedido" type="button" data-copiar-texto="Cria um post 1080 × 1350 de prova, no dia, usando a prova principal, a do e-commerce de embalagens."><span class="k"><span>Post de prova</span><em>cap. 30 · copiar</em></span><q>Cria um post 1080 × 1350 de prova, no dia, usando a prova principal, a do e-commerce de embalagens.</q></button><button class="pedido" type="button" data-copiar-texto="Gera o arquivo de impressão do meu cartão de visita: [nome], [papel], [e-mail], [telefone], linha [linha], com sangria de 3 mm."><span class="k"><span>Cartão de visita</span><em>cap. 38 · copiar</em></span><q>Gera o arquivo de impressão do meu cartão de visita: [nome], [papel], [e-mail], [telefone], linha [linha], com sangria de 3 mm.</q></button><button class="pedido" type="button" data-copiar-texto="Faz o backdrop de 3 × 2 m e as três telas de telão (abertura, intervalo e encerramento) para o [evento], em [data]."><span class="k"><span>Evento</span><em>cap. 39 · copiar</em></span><q>Faz o backdrop de 3 × 2 m e as três telas de telão (abertura, intervalo e encerramento) para o [evento], em [data].</q></button><button class="pedido" type="button" data-copiar-texto="Gera a minha assinatura de e-mail no padrão GrowAI: [nome], [papel]."><span class="k"><span>Assinatura</span><em>cap. 38 · copiar</em></span><q>Gera a minha assinatura de e-mail no padrão GrowAI: [nome], [papel].</q></button></div>
     <div class="espaco"></div>
     <div class="spec">
       <div><h4>Briefing para designer ou fornecedor</h4><p>Para quem não usa a skill. Mande junto o link deste livro e a pasta assets/. Sem o briefing, a peça volta.</p>
@@ -21213,14 +21233,14 @@ grep -rnE <span class="s">"Growai|GrowAi|Grow AI|GROWAI"</span> .</pre></div>
   <div class="in-largo">
     <div class="ab-topo"><span>Parte <b>VIII</b> · Governança</span><span>Capítulo 42 de 44</span></div>
     <div class="ab-visual" aria-hidden="true">
-      <div class="colchetes"><span>[prova 2 de 3]</span><span>[nome do cliente]</span><span class="foco">[investimento]</span><span>[perguntas do raio-x]</span><span>[vetor original]</span></div>
+      <div class="colchetes"><span>[data a confirmar]</span><span>[nome do cliente]</span><span class="foco">[investimento]</span><span>[perguntas do raio-x]</span><span>[vetor original]</span></div>
     </div>
     <span class="ab-num contorno" aria-hidden="true">42</span>
     <div class="ab-corpo">
       <h2 class="ab-titulo">O que falta decidir fica <em>entre colchetes</em>.</h2>
       <p class="ab-lead">Uma pendência não autoriza ninguém a inventar. A peça sai com o colchete ou com a versão segura indicada aqui, e a decisão fica com Rafael Nasch.</p>
       <ul class="ab-indice">
-        <li><span>42.1</span>A regra do colchete</li><li><span>42.2</span>As nove pendências abertas</li>
+        <li><span>42.1</span>A regra do colchete</li><li><span>42.2</span>As oito pendências abertas</li>
         <li><span>42.3</span>O colchete na peça</li><li><span>42.4</span>Como fechar uma pendência</li>
       </ul>
     </div>
@@ -21247,12 +21267,12 @@ grep -rnE <span class="s">"Growai|GrowAi|Grow AI|GROWAI"</span> .</pre></div>
   <div class="in">
     <div class="cab">
       <p class="rot">42.2 <span class="n">· As pendências abertas</span></p>
-      <h2>Nove decisões em aberto, <em>cada uma com saída</em>.</h2>
-      <p class="lead">Cinco vêm da v3 e continuam abertas. Quatro nasceram com a v4, junto da fotografia com pessoas e das cores para impressão.</p>
+      <h2>Oito decisões em aberto, <em>cada uma com saída</em>.</h2>
+      <p class="lead">Cinco vieram da v3: quatro continuam abertas e a das provas de cliente (P-02) foi resolvida em 04/10/2026. Quatro nasceram com a v4, junto da fotografia com pessoas e das cores para impressão.</p>
     </div>
     <div class="placar">
-      <div class="foco"><b>9</b><span>pendências abertas nesta versão</span></div>
-      <div><b>5</b><span>herdadas da v3</span></div>
+      <div class="foco"><b>8</b><span>pendências abertas nesta versão</span></div>
+      <div><b>4</b><span>herdadas da v3</span></div>
       <div><b>4</b><span>novas na v4</span></div>
       <div><b>0</b><span>que autorizam inventar um dado</span></div>
     </div>
@@ -21266,9 +21286,9 @@ grep -rnE <span class="s">"Growai|GrowAi|Grow AI|GROWAI"</span> .</pre></div>
       </div>
       <div class="ficha" role="listitem">
         <span class="id">P-02<small>v3</small></span>
-        <div class="oque"><h3>Três provas de cliente</h3><p>Aguardam confirmação para uso público.</p></div>
-        <p class="enquanto">Usar só a prova liberada, com a frase completa: num e-commerce de embalagens, a fatia de oportunidades que vira venda passou de 4,7% para 10,3% em oito meses.</p>
-        <div class="sit"><span class="pill at">Confirmar</span></div>
+        <div class="oque"><h3>Provas de cliente</h3><p>Resolvida em 04/10/2026: nove casos publicados por segmento em growai.com.br/casos, sem nome de cliente.</p></div>
+        <p class="enquanto">Usar os casos com número, período e fonte exatamente como na página. Na peça curta, a prova principal: num e-commerce de embalagens, a fatia de oportunidades que vira venda passou de 4,7% para 10,3% em oito meses. Nome e logo só com autorização escrita.</p>
+        <div class="sit"><span class="pill sim">Resolvida</span><small>04/10/2026</small></div>
       </div>
       <div class="ficha" role="listitem">
         <span class="id">P-03<small>v3</small></span>
@@ -21393,19 +21413,18 @@ grep -rnE <span class="s">"Growai|GrowAi|Grow AI|GROWAI"</span> .</pre></div>
     <div class="espaco"></div>
     <div class="spec">
       <div><h4>Campos-padrão <span class="pill neutra">copiar e colar</span></h4><p>Escreva sempre igual, para que uma busca encontre todos. Minúsculas, entre colchetes, sem espaço depois do colchete.</p>
-        <dl class="dl"><dt>Preço</dt><dd>[investimento]</dd><dt>Cliente</dt><dd>[nome do cliente] · [empresa]</dd><dt>Prova</dt><dd>[prova 2 de 3]</dd><dt>Data</dt><dd>[data a confirmar]</dd><dt>Raio-X</dt><dd>[perguntas do raio-x]</dd><dt>Logo</dt><dd>[vetor original]</dd></dl></div>
+        <dl class="dl"><dt>Preço</dt><dd>[investimento]</dd><dt>Cliente</dt><dd>[nome do cliente] · [empresa]</dd><dt>Data</dt><dd>[data a confirmar]</dd><dt>Raio-X</dt><dd>[perguntas do raio-x]</dd><dt>Logo</dt><dd>[vetor original]</dd></dl></div>
       <div class="codigo"><header><span>texto · campos-padrão e busca</span><button class="copiar" type="button">Copiar</button></header>
 <pre>[investimento]
 [nome do cliente]
 [empresa]
-[prova 2 de 3]
 [data a confirmar]
 [perguntas do raio-x]
 [vetor original]
 
 <span class="c"># antes de publicar: nenhum colchete pode sobrar</span>
 grep -rnE <span class="s">"\[(investimento|nome do cliente|empresa|\
-prova [0-9] de 3|data a confirmar|\
+data a confirmar|\
 perguntas do raio-x|vetor original)\]"</span> .</pre></div>
     </div>
   </div>
@@ -21577,7 +21596,7 @@ perguntas do raio-x|vetor original)\]"</span> .</pre></div>
         <fieldset><legend><span>E</span>Prova, dados e formato<span class="conta" data-conta>0/5</span></legend>
           <label><input type="checkbox"><span>Todo número tem fonte e período?</span></label>
           <label><input type="checkbox"><span>Número ilustrativo leva a palavra "exemplo"?</span></label>
-          <label><input type="checkbox"><span>Resultado de cliente só a prova liberada, ou com autorização escrita?</span></label>
+          <label><input type="checkbox"><span>Resultado de cliente só dos casos publicados em growai.com.br/casos, com número, período e fonte iguais? Nome e logo só com autorização escrita?</span></label>
           <label><input type="checkbox"><span>Formato no tamanho real, texto dentro das zonas seguras?</span></label>
           <label><input type="checkbox"><span>Legível de 320 a 430 px, contraste AA, movimento reduzido respeitado?</span></label>
         </fieldset>
@@ -21685,7 +21704,7 @@ perguntas do raio-x|vetor original)\]"</span> .</pre></div>
 <span class="c">### E. Prova, dados e formato</span>
 - [ ] Número com fonte e período
 - [ ] Número ilustrativo marcado "exemplo"
-- [ ] Resultado de cliente: só a prova liberada ou com autorização escrita
+- [ ] Resultado de cliente: só dos casos publicados em growai.com.br/casos, com número, período e fonte iguais; nome e logo só com autorização escrita
 - [ ] Formato no tamanho real, dentro das zonas seguras
 - [ ] Legível de 320 a 430 px, contraste AA, movimento reduzido</pre></div>
       </div>
