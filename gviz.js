@@ -1,5 +1,5 @@
 /* =====================================================================
-   GVIZ · motor de gráficos da GrowAI · sistema Radar de Foco v3
+   GVIZ · motor de gráficos da GrowAI · sistema Radar de Foco v4 (tipografia Editorial)
    SVG puro, zero dependências, JavaScript ES2015 simples e determinístico
    (sem Math.random, sem Date): mesma entrada e mesma largura geram sempre o
    mesmo desenho, na tela, no PDF e no arquivo levado ao Canva.
@@ -29,14 +29,19 @@
      Um destaque por gráfico. Semânticas (bom/atenção/crítico) não entram no motor.
 
    TIPOGRAFIA
-     Sobretítulo em JetBrains Mono caixa alta (12 px, espaçado); título em Sora 600
-     (escreva a CONCLUSÃO, não o assunto); rótulos em Source Sans 3 (mínimo 13 px);
-     valores e números em JetBrains Mono. Rodapé com fonte e data é OBRIGATÓRIO: sem
-     "fonte", o rodapé diz "Dado ilustrativo · fonte a informar" e o console avisa.
+     Sobretítulo em IBM Plex Mono caixa alta (12 px, espaçado); título em Newsreader 500
+     (serifa editorial, eixo óptico automático; escreva a CONCLUSÃO, não o assunto);
+     rótulos em Hanken Grotesk (mínimo 13 px); valores e números em IBM Plex Mono.
+     A página carrega as fontes pelo Google Fonts:
+       family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500
+       &family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500
+     Sem internet, o motor cai para Georgia (título), Arial (rótulo) e Courier New (número).
+     Rodapé com fonte e data é OBRIGATÓRIO: sem "fonte", o rodapé diz
+     "Dado ilustrativo · fonte a informar" e o console avisa.
 
    OPÇÕES COMUNS (pt-BR; aliases em inglês também valem)
      sobretitulo  rótulo mono acima do título
-     titulo       conclusão do gráfico (Sora)
+     titulo       conclusão do gráfico (Newsreader)
      fonte, data  rodapé obrigatório ("CRM do cliente", "set. 2026")
      destaque     índice do único item em laranja (-1 = nenhum)
      campo        'noite' | 'dia' (padrão: lido do fundo real)
@@ -169,9 +174,9 @@ const gviz = (() => {
   }
 
   /* ---------- tipografia no SVG ---------- */
-  const TIT = "font-family:'Sora',system-ui,sans-serif";
-  const LAB = "font-family:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;font-variant-numeric:lining-nums tabular-nums";
-  const MONO = "font-family:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;font-variant-numeric:tabular-nums";
+  const TIT = "font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto";
+  const LAB = "font-family:'Hanken Grotesk',Arial,Helvetica,system-ui,sans-serif;font-variant-numeric:lining-nums tabular-nums";
+  const MONO = "font-family:'IBM Plex Mono','Courier New',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums";
   const fonte = (f, peso, tam, ls) => `${f};font-weight:${peso};font-size:${tam}px` + (ls ? `;letter-spacing:${ls}px` : '');
   const r2 = v => Math.round(v * 100) / 100;
   const esc = s => String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
@@ -181,6 +186,17 @@ const gviz = (() => {
   function T(x, y, conteudo, f, peso, tam, cor, anc, ls, extra) {
     return `<text x="${r2(x)}" y="${r2(y)}"${anc && anc !== 'start' ? ` text-anchor="${anc}"` : ''} fill="${cor}" style="${fonte(f, peso, tam, ls)}"${extra || ''}>${esc(conteudo)}</text>`;
   }
+  /* número grande em Plex Mono: a vírgula ocupa a largura de um dígito e abre um vão ("10 , 3%").
+     Acima de 48 px, a vírgula entra com recuo de 0,2em de cada lado. */
+  const VG = 0.2;
+  function TN(x, y, conteudo, f, peso, tam, cor, anc, ls, extra) {
+    const txt = String(conteudo);
+    if (tam < 48 || !/\d,\d/.test(txt)) return T(x, y, txt, f, peso, tam, cor, anc, ls, extra);
+    const d = r2(-tam * VG), pedacos = txt.split(/(?<=\d),(?=\d)/);
+    const corpo = esc(pedacos[0]) + pedacos.slice(1).map(p => `<tspan dx="${d}">,</tspan><tspan dx="${d}">${esc(p)}</tspan>`).join('');
+    return `<text x="${r2(x)}" y="${r2(y)}"${anc && anc !== 'start' ? ` text-anchor="${anc}"` : ''} fill="${cor}" style="${fonte(f, peso, tam, ls)}"${extra || ''}>${corpo}</text>`;
+  }
+  const encolhe = (txt, tam) => tam >= 48 ? (String(txt).match(/\d,\d/g) || []).length * 2 * tam * VG : 0;
   const R = (x, y, w, h, cor, extra) => `<rect x="${r2(x)}" y="${r2(y)}" width="${r2(Math.max(0, w))}" height="${r2(Math.max(0, h))}" fill="${cor}"${extra || ''}/>`;
   const L = (x1, y1, x2, y2, cor, w, extra) => `<line x1="${r2(x1)}" y1="${r2(y1)}" x2="${r2(x2)}" y2="${r2(y2)}" stroke="${cor}" stroke-width="${w || 1}"${extra || ''}/>`;
   const C = (cx, cy, r, fill, extra) => `<circle cx="${r2(cx)}" cy="${r2(cy)}" r="${r2(r)}" fill="${fill}"${extra || ''}/>`;
@@ -212,7 +228,7 @@ const gviz = (() => {
         w = t.getComputedTextLength();
       }
     } catch (err) { w = 0; }
-    if (!w) w = txt.length * (f === MONO ? 0.6 : (f === TIT ? 0.58 : 0.5)) * tam + (ls || 0) * txt.length;
+    if (!w) w = txt.length * (f === MONO ? 0.6 : (f === TIT ? 0.47 : 0.53)) * tam + (ls || 0) * txt.length;
     cache.set(k, w);
     return w;
   }
@@ -332,10 +348,11 @@ const gviz = (() => {
       y += 10;
     }
     if (o.titulo) {
-      const tam = W < 420 ? 20 : (W < 720 ? 23 : 27);
-      const ls = quebra(o.titulo, TIT, 600, tam, W, 4, -tam * 0.02);
-      ls.forEach(ln => { y += tam * 1.2; s += T(0, y - tam * 0.26, ln, TIT, 600, tam, c.texto, 'start', r2(-tam * 0.02)); });
-      y += 20;
+      /* Newsreader é mais estreita e tem altura-x menor que a Sora: corpo maior, mesma mancha */
+      const tam = W < 420 ? 23 : (W < 720 ? 27 : 32);
+      const ls = quebra(o.titulo, TIT, 500, tam, W, 4, -tam * 0.015);
+      ls.forEach(ln => { y += tam * 1.12; s += T(0, y - tam * 0.22, ln, TIT, 500, tam, c.texto, 'start', r2(-tam * 0.015)); });
+      y += 18;
     }
     return { s, h: y };
   }
@@ -388,7 +405,7 @@ const gviz = (() => {
     });
     return { s, h: y + 32 };
   }
-  /* o número do destaque: JetBrains Mono forte, com o ponto de foco ao lado */
+  /* o número do destaque: IBM Plex Mono forte, com o ponto de foco ao lado */
   const NUMHI = 26;
 
   /* =========================================================== BARRAS */
@@ -799,10 +816,10 @@ const gviz = (() => {
     let tam = Math.min(104, Math.max(52, W * 0.2));
     const uw = un ? mede(un, MONO, 500, FM, LSM) + 14 : 0;
     const dispN = (lado ? W * 0.56 : W) - uw - (foco ? 30 : 0);
-    let nw = mede(vl, MONO, 500, tam, -tam * 0.03);
+    let nw = mede(vl, MONO, 500, tam, -tam * 0.03) - encolhe(vl, tam);
     if (nw > dispN) { tam = tam * dispN / nw; nw = dispN; }
     const base = tam * 0.8;
-    let s = T(0, base, vl, MONO, 500, r2(tam), c.texto, 'start', r2(-tam * 0.03), ' data-a="f"');
+    let s = TN(0, base, vl, MONO, 500, r2(tam), c.texto, 'start', r2(-tam * 0.03), ' data-a="f"');
     if (un) s += T(nw + 12, base, un, MONO, 500, FM, c.apoio, 'start', LSM);
     if (foco) s += PF(nw + uw + 18, base - tam * 0.62, Math.max(4, tam * 0.07), c);
     let y = base + 20;

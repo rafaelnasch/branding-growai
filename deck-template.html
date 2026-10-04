@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apresentação GrowAI</title>
-<meta name="description" content="Esqueleto de apresentação da GrowAI no sistema Radar de Foco v3: treze tipos de slide em 1440 × 900, com navegação por teclado, clique e toque, notas do apresentador e impressão em PDF.">
+<meta name="description" content="Esqueleto de apresentação da GrowAI no sistema Radar de Foco v4 (tipografia Editorial): dezesseis tipos de slide em 1440 × 900, com navegação por teclado, clique e toque, notas do apresentador e impressão em PDF.">
 <meta name="theme-color" content="#0B0D12">
 <link rel="icon" type="image/svg+xml" href="assets/growai-favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <!--
-  APRESENTAÇÃO GROWAI · esqueleto de deck · sistema Radar de Foco v3
+  APRESENTAÇÃO GROWAI · esqueleto de deck · sistema Radar de Foco v4 (Editorial)
 
   COMO USAR
   1. Duplique este arquivo na mesma pasta de gviz.js, gforms.js e assets/ (caminhos
@@ -22,20 +22,36 @@
      trecho atual do caminho. Sem data-linha, a peça é da marca-mãe (rótulos neutros).
      O logo e o botão de ação NÃO mudam: são sempre os da marca-mãe.
   3. Cada slide é <section class="slide TIPO campo-noite|campo-dia">. Tipos prontos:
-     capa, agenda, capitulo, afirmacao, numero, grafico, compara, caminho, ciclo,
-     citacao, proposta, passo, fim. Para um slide novo, copie o do mesmo tipo e
+     capa, agenda, capitulo, foto (foto sangrada com título), afirmacao, numero,
+     grafico, compara, caminho, ciclo, tempo (linha do tempo), citacao, retrato
+     (retrato com depoimento), proposta, passo, fim. Para um slide novo, copie o do mesmo tipo e
      troque o texto, mantendo as classes (s-folio, s-rotulo, s-titulo, s-apoio, s-rodape).
   4. Noite para impacto (capa, abertura de capítulo, encerramento); Dia para a leitura.
   5. Notas do apresentador: <aside class="notas"> em cada slide. Tecla P abre o painel.
   6. Gráficos: atributo data-gviz (gviz.js). Formas: data-gforms (gforms.js).
+  7. Fotos: assets/fotos/ (tratadas na grade Noite, crédito em assets/fotos/creditos.json).
+     Se a foto faltar, o slide cai para o fundo Noite com a grade de pontos e o texto
+     continua legível. Crédito da foto no rodapé quando a licença pedir.
+
+  TIPOGRAFIA (v4 · Editorial)
+  Títulos em Newsreader (400 no display de 72 px ou mais, 500 nos títulos de slide e
+  de card). O trecho que importa vai em <em>: Newsreader Itálico em laranja (#FF6A1A na
+  Noite e em título grande no Dia; #B33E0A no Dia abaixo de 24 px). Um <em> por título.
+  Texto, botão e legenda em Hanken Grotesk; rótulos, fólio e números em IBM Plex Mono.
+  Sem internet: Georgia, Arial e Courier New.
 
   REGRAS DO SLIDE (Radar de Foco)
   Título em frase curta que diz a conclusão. Uma linha de apoio; nenhum parágrafo
-  longo; um visual por slide. UM ponto laranja por slide (o foco) e UM botão de ação
-  por apresentação (no slide de próximo passo). Laranja nunca é enfeite de título.
+  longo; um visual por slide. UM foco laranja por slide e UM botão de ação por
+  apresentação (no slide de próximo passo). O foco é o itálico do título OU o ponto de
+  um dado: quando o slide já tem ponto laranja (número, gráfico, ciclo, caminho), o
+  itálico fica na cor do texto (classe "neutro" no <em>). Vale também para a capa e o
+  encerramento: o radar já tem o ponto aceso, então o itálico fica neutro. O rastro
+  da varredura no radar parado sai em cinza; o laranja é só o ponto.
   Número de exemplo sempre marcado como exemplo; número real sempre com fonte e data.
-  Preço nunca inventado: "R$ [valor]" até a proposta fechar. Sem pessoas, banco de
-  imagem ou rosto gerado por IA. Palavras fora: solução, implementação, transformação
+  Preço nunca inventado: "R$ [valor]" até a proposta fechar. Fotografia documental de
+  gente real trabalhando (donos, times, operação), nunca pose, aperto de mão ou rosto
+  gerado por IA. Depoimento só com nome, cargo, empresa e autorização por escrito. Palavras fora: solução, implementação, transformação
   digital, 10x, garantido, robô/bot (é "agente"). O nome é sempre GrowAI.
 
   NAVEGAÇÃO
@@ -51,7 +67,7 @@
   --noite:#0B0D12; --noite-sup:#141821; --noite-fio:#232936; --noite-texto:#EEF1F5; --noite-apoio:#9AA3B2;
   --dia:#FFFFFF; --dia-sup:#F6F7F8; --dia-fio:#E4E7EB; --dia-texto:#0C0F14; --dia-apoio:#4A525E;
   --foco:#FF6A1A; --foco-txt:#B33E0A; --foco-noite:#FF8A4C; --botao-txt:#170A02;
-  --titulo:'Sora',system-ui,sans-serif; --texto:'Source Sans 3',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --titulo:'Newsreader',Georgia,'Times New Roman',serif; --texto:'Hanken Grotesk',Arial,Helvetica,system-ui,sans-serif; --mono:'IBM Plex Mono','Courier New',ui-monospace,Menlo,monospace;
   /* cor de identificação (padrão: marca-mãe, neutra) */
   --linha:#4A525E; --linha-txt:#4A525E; --linha-noite:#9AA3B2; --linha-claro:#F6F7F8; --linha-nome:'';
   --s-margem:96px; --gut:16px;
@@ -69,8 +85,19 @@ ol,ul{ padding:0; list-style:none; }
 
 /* ---------- campos ---------- */
 .slide{ position:relative; overflow:hidden; }
-.campo-noite{ background:var(--noite); color:var(--noite-texto); --f-texto:var(--noite-texto); --f-apoio:var(--noite-apoio); --f-fio:var(--noite-fio); --f-sup:var(--noite-sup); --f-linha:var(--linha-noite); --f-foco-txt:var(--foco-noite); color-scheme:dark; }
-.campo-dia{ background:var(--dia); color:var(--dia-texto); --f-texto:var(--dia-texto); --f-apoio:var(--dia-apoio); --f-fio:var(--dia-fio); --f-sup:var(--dia-sup); --f-linha:var(--linha-txt); --f-foco-txt:var(--foco-txt); color-scheme:light; }
+.campo-noite{ --f-em:var(--foco); background:var(--noite); color:var(--noite-texto); --f-texto:var(--noite-texto); --f-apoio:var(--noite-apoio); --f-fio:var(--noite-fio); --f-sup:var(--noite-sup); --f-linha:var(--linha-noite); --f-foco-txt:var(--foco-noite); color-scheme:dark; }
+.campo-dia{ --f-em:#D9530C; background:var(--dia); color:var(--dia-texto); --f-texto:var(--dia-texto); --f-apoio:var(--dia-apoio); --f-fio:var(--dia-fio); --f-sup:var(--dia-sup); --f-linha:var(--linha-txt); --f-foco-txt:var(--foco-txt); color-scheme:light; }
+
+/* ---------- tipografia editorial ---------- */
+h1,h2,h3,.frase,.capa-titulo,.cap-titulo,.s-titulo,.numero-desc,.fim-frase,.citacao blockquote p{ font-optical-sizing:auto; }
+.slide em{ font-family:var(--titulo); font-style:italic; color:var(--f-em); }
+/* vírgula decimal em número grande de Plex Mono: 10<span class="vg">,</span>3% (o vão some) */
+.vg{ margin-inline:-.2em; }
+.slide em.neutro{ color:inherit; }
+/* radar parado: rastro da varredura em cinza, o laranja fica só no ponto */
+.slide [data-gforms="radar-svg"] path[fill="#FF6A1A"]{ fill:#9AA3B2; }
+.slide [data-gforms="radar-svg"] line[stroke="#FF6A1A"]{ stroke:#9AA3B2; stroke-opacity:.35; }
+.campo-dia .s-pequeno em,.campo-dia .s-apoio em{ color:var(--foco-txt); }
 
 /* ---------- componentes do slide ---------- */
 .s-folio{ display:flex; justify-content:space-between; align-items:center; gap:24px; font:500 13px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-apoio); }
@@ -78,7 +105,7 @@ ol,ul{ padding:0; list-style:none; }
 .s-folio .linha-id::before{ content:""; width:28px; height:3px; border-radius:2px; background:var(--linha); }
 .campo-noite .s-folio .linha-id::before{ background:var(--linha-noite); }
 .s-rotulo{ font:500 14px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-linha); }
-.s-titulo{ font:600 60px/1.06 var(--titulo); letter-spacing:-.03em; text-wrap:balance; color:var(--f-texto); }
+.s-titulo{ font:500 66px/1.02 var(--titulo); letter-spacing:-.02em; text-wrap:balance; color:var(--f-texto); }
 .s-apoio{ font:400 24px/1.5 var(--texto); color:var(--f-apoio); max-width:40em; }
 .s-pequeno{ font:400 16px/1.5 var(--texto); color:var(--f-apoio); }
 .s-exemplo{ display:inline-block; font:500 12px/1.4 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--f-apoio); border:1px solid var(--f-fio); border-radius:6px; padding:4px 8px; }
@@ -92,7 +119,7 @@ aside.notas{ display:none; }
 .capa-faixa{ position:absolute; left:0; top:0; bottom:0; width:8px; background:var(--linha-noite); }
 body:not([data-linha]) .capa-faixa{ background:var(--noite-fio); }
 .capa .s-marca{ width:236px; }
-.capa-titulo{ font:600 84px/1.02 var(--titulo); letter-spacing:-.035em; color:var(--noite-texto); text-wrap:balance; }
+.capa-titulo{ font:400 104px/.98 var(--titulo); letter-spacing:-.025em; color:var(--noite-texto); text-wrap:balance; }
 .capa .s-apoio{ font-size:26px; color:var(--noite-texto); opacity:.82; }
 .capa-meta{ display:flex; gap:40px; font:500 13px/1.5 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--noite-apoio); }
 .capa-meta b{ display:block; font-weight:500; color:var(--noite-texto); }
@@ -102,22 +129,22 @@ body:not([data-linha]) .capa-faixa{ background:var(--noite-fio); }
 .agenda-lista li{ display:grid; grid-template-columns:96px minmax(0,1fr) auto; align-items:baseline; gap:24px; padding:22px 0; border-top:1px solid var(--f-fio); }
 .agenda-lista li:last-child{ border-bottom:1px solid var(--f-fio); }
 .agenda-lista .n{ font:500 20px/1 var(--mono); color:var(--f-linha); }
-.agenda-lista .t{ font:600 32px/1.2 var(--titulo); letter-spacing:-.02em; }
+.agenda-lista .t{ font:500 36px/1.15 var(--titulo); letter-spacing:-.015em; }
 .agenda-lista .d{ font:400 18px/1.4 var(--texto); color:var(--f-apoio); text-align:right; }
 
 /* capítulo */
-.cap-num{ font:500 220px/.9 var(--mono); letter-spacing:-.04em; color:var(--linha-noite); }
+.cap-num{ font:italic 400 300px/.8 var(--titulo); letter-spacing:-.03em; color:var(--linha-noite); }
 body:not([data-linha]) .cap-num{ color:var(--noite-texto); }
-.cap-titulo{ font:600 72px/1.04 var(--titulo); letter-spacing:-.035em; text-wrap:balance; }
+.cap-titulo{ font:400 84px/1 var(--titulo); letter-spacing:-.025em; text-wrap:balance; }
 
 /* afirmação */
-.frase{ font:600 72px/1.08 var(--titulo); letter-spacing:-.035em; text-wrap:balance; }
+.frase{ font:400 84px/1.02 var(--titulo); letter-spacing:-.025em; text-wrap:balance; }
 .frase .apoio-cor{ color:var(--f-apoio); }
 
 /* número grande */
-.numero-grande{ display:flex; align-items:flex-start; gap:18px; font:500 260px/.86 var(--mono); letter-spacing:-.05em; color:var(--f-texto); }
+.numero-grande{ display:flex; align-items:flex-start; gap:18px; font:400 250px/.86 var(--mono); letter-spacing:-.06em; color:var(--f-texto); }
 .ponto-foco{ flex:none; width:28px; height:28px; border-radius:50%; background:var(--foco); box-shadow:0 0 0 12px rgba(255,106,26,.18); margin-top:.12em; }
-.numero-desc{ font:600 36px/1.2 var(--titulo); letter-spacing:-.02em; text-wrap:balance; }
+.numero-desc{ font:500 42px/1.12 var(--titulo); letter-spacing:-.015em; text-wrap:balance; }
 
 /* gráfico */
 .grafico-lado{ border-left:3px solid var(--linha); padding-left:24px; display:grid; gap:12px; }
@@ -127,7 +154,7 @@ body:not([data-linha]) .grafico-lado{ border-left-color:var(--dia-fio); }
 .compara-grade{ display:grid; grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr); align-items:stretch; }
 .compara-lado{ border:1px solid var(--f-fio); border-radius:16px; padding:32px 36px; display:grid; align-content:start; gap:18px; }
 .compara-com{ background:var(--f-sup); border-color:transparent; }
-.compara-t{ font:600 32px/1.15 var(--titulo); letter-spacing:-.02em; }
+.compara-t{ font:500 36px/1.1 var(--titulo); letter-spacing:-.015em; }
 .compara-lista{ display:grid; gap:4px; }
 .compara-lista li{ display:grid; grid-template-columns:24px minmax(0,1fr); gap:14px; align-items:start; padding:10px 0; font:400 21px/1.4 var(--texto); border-top:1px solid var(--f-fio); }
 .compara-sem .compara-lista li{ color:var(--f-apoio); }
@@ -138,8 +165,8 @@ body:not([data-linha]) .compara-com .ic{ color:var(--dia-texto); }
 .compara-seta{ display:flex; align-items:center; justify-content:center; color:var(--f-apoio); }
 
 /* citação */
-.citacao blockquote p{ font:600 80px/1.06 var(--titulo); letter-spacing:-.035em; text-wrap:balance; }
-.citacao blockquote p::before{ content:"“"; display:block; font:500 120px/.6 var(--titulo); color:var(--f-linha); margin-bottom:24px; }
+.citacao blockquote p{ font:400 96px/1.02 var(--titulo); letter-spacing:-.025em; text-wrap:balance; }
+.citacao blockquote p::before{ content:"“"; display:block; font:italic 400 160px/.6 var(--titulo); color:var(--f-linha); margin-bottom:24px; }
 .citacao figcaption{ margin-top:36px; font:500 14px/1.5 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-apoio); }
 .citacao figcaption b{ color:var(--f-texto); font-weight:500; }
 
@@ -147,7 +174,7 @@ body:not([data-linha]) .compara-com .ic{ color:var(--dia-texto); }
 .ciclo-lista{ display:grid; gap:0; }
 .ciclo-lista li{ display:grid; grid-template-columns:56px minmax(0,1fr); gap:16px; padding:14px 0; border-top:1px solid var(--f-fio); }
 .ciclo-lista .n{ font:500 15px/1.6 var(--mono); color:var(--f-apoio); }
-.ciclo-lista b{ font:600 21px/1.3 var(--titulo); letter-spacing:-.01em; display:block; }
+.ciclo-lista b{ font:500 24px/1.25 var(--titulo); letter-spacing:-.005em; display:block; }
 .ciclo-lista span{ font:400 17px/1.45 var(--texto); color:var(--f-apoio); }
 .ciclo-lista li.foco .n{ color:var(--foco-txt); }
 
@@ -167,18 +194,52 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
 .passo-lista{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; counter-reset:p; }
 .passo-lista li{ border-top:1px solid var(--f-fio); padding-top:18px; display:grid; gap:8px; }
 .passo-lista .n{ font:500 14px/1 var(--mono); letter-spacing:.12em; color:var(--f-linha); }
-.passo-lista b{ font:600 24px/1.25 var(--titulo); letter-spacing:-.015em; }
+.passo-lista b{ font:500 28px/1.18 var(--titulo); letter-spacing:-.01em; }
 .passo-lista span{ font:400 18px/1.45 var(--texto); color:var(--f-apoio); }
-.botao{ display:inline-flex; align-items:center; gap:12px; background:var(--foco); color:var(--botao-txt); font:600 24px/1 var(--titulo); letter-spacing:-.01em; padding:24px 34px; border-radius:14px; text-decoration:none; }
+.botao{ display:inline-flex; align-items:center; gap:12px; background:var(--foco); color:var(--botao-txt); font:600 23px/1 var(--texto); letter-spacing:0; padding:24px 34px; border-radius:14px; text-decoration:none; }
 .botao:focus-visible{ outline:3px solid var(--dia-texto); outline-offset:4px; }
 .botao .ic{ width:26px; height:26px; stroke-width:2; }
 .botao-nota{ font:400 17px/1.4 var(--texto); color:var(--f-apoio); }
 
 /* encerramento */
 .fim .s-marca{ width:420px; }
-.fim-frase{ font:600 56px/1.1 var(--titulo); letter-spacing:-.03em; text-wrap:balance; }
+.fim-frase{ font:400 68px/1.04 var(--titulo); letter-spacing:-.02em; text-wrap:balance; }
 .fim-contato{ display:flex; gap:48px; font:500 15px/1.5 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--noite-apoio); }
 .fim-contato b{ display:block; color:var(--noite-texto); font-weight:500; }
+
+/* foto sangrada com título (Noite) */
+.foto{ background:var(--noite); }
+.foto-fundo{ position:absolute; inset:0; overflow:hidden; background:var(--noite); }
+.foto-reserva{ position:absolute; inset:0; }
+.foto-img{ position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; object-position:50% 30%; display:block; }
+.foto-veu{ position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(0deg,rgba(11,13,18,.96) 0%,rgba(11,13,18,.88) 30%,rgba(11,13,18,.2) 60%,rgba(11,13,18,0) 76%),linear-gradient(90deg,rgba(11,13,18,.55) 0%,rgba(11,13,18,0) 48%),linear-gradient(180deg,rgba(11,13,18,.55) 0%,rgba(11,13,18,0) 16%); }
+.foto .s-folio,.foto .s-rodape,.foto .s-num,.foto-texto{ z-index:2; }
+.foto-titulo{ font:400 88px/.98 var(--titulo); letter-spacing:-.025em; color:var(--noite-texto); text-wrap:balance; }
+.foto .s-apoio{ color:var(--noite-texto); opacity:.86; }
+.foto-credito{ font:400 13px/1.4 var(--mono); letter-spacing:.06em; color:var(--noite-apoio); }
+
+/* retrato com depoimento (Dia) */
+.retrato-foto{ position:relative; overflow:hidden; background:var(--noite-sup); }
+.retrato-foto img{ position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; object-position:50% 30%; display:block; }
+.retrato-reserva{ position:absolute; inset:0; display:grid; place-items:center; }
+.retrato-cit{ display:grid; gap:36px; }
+.retrato-cit blockquote p{ font:400 64px/1.04 var(--titulo); letter-spacing:-.02em; text-wrap:balance; color:var(--f-texto); }
+.retrato-cit figcaption{ display:grid; gap:4px; padding-top:22px; border-top:1px solid var(--f-fio); }
+.retrato-nome{ font:600 22px/1.3 var(--texto); color:var(--f-texto); }
+.retrato-cargo{ font:500 13px/1.5 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--f-apoio); }
+
+/* linha do tempo (Dia) */
+.tempo-lista{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; position:relative; }
+.tempo-lista::before{ content:""; position:absolute; left:0; right:0; top:11px; height:2px; background:var(--f-fio); }
+.tempo-lista li{ position:relative; display:grid; align-content:start; gap:10px; padding:0 32px 0 0; }
+.tempo-marca{ position:relative; width:24px; height:24px; border-radius:50%; background:var(--f-bg,#fff); border:2px solid var(--f-linha); margin-bottom:18px; }
+.campo-noite .tempo-marca{ background:var(--noite); }
+.tempo-lista li.foco .tempo-marca{ background:var(--foco); border-color:var(--foco); box-shadow:0 0 0 9px rgba(255,106,26,.18); }
+.tempo-data{ font:500 14px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-linha); }
+.tempo-lista li.foco .tempo-data{ color:var(--f-foco-txt); }
+.tempo-lista b{ font:500 34px/1.08 var(--titulo); letter-spacing:-.015em; }
+.tempo-lista span.t{ font:400 19px/1.45 var(--texto); color:var(--f-apoio); }
 
 /* ---------- posição no palco de 1440 × 900 (tela maior que 640 × 500, e impressão) ----------
    Margem 96. Fólio em y 44; conteúdo entre y 132 e y 796; rodapé em y 820–856. */
@@ -227,6 +288,15 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
   .fim-miolo{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:150px; display:grid; gap:44px; }
   .fim-contato{ position:absolute; left:var(--s-margem); bottom:100px; }
   .fim-aneis{ position:absolute; right:-180px; bottom:-200px; width:720px; }
+
+  .foto-texto{ position:absolute; left:var(--s-margem); bottom:112px; width:1000px; display:grid; gap:20px; }
+
+  .retrato-foto{ position:absolute; left:0; top:0; bottom:0; width:600px; }
+  .retrato .s-folio{ left:664px; }
+  .retrato-cit{ position:absolute; left:664px; right:var(--s-margem); top:50%; transform:translateY(-50%); }
+  .retrato .s-rodape{ left:664px; }
+
+  .tempo-lista{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:400px; }
 }
 
 /* ---------- interface: progresso, contador, painel de notas ---------- */
@@ -260,7 +330,7 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
 .painel-cab{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding-bottom:18px; border-bottom:1px solid var(--noite-fio); }
 .painel-num{ font:500 28px/1 var(--mono); color:var(--noite-texto); }
 .painel-num span{ color:var(--noite-apoio); font-size:16px; }
-.painel-tit{ margin-top:22px; font:600 22px/1.25 var(--titulo); letter-spacing:-.01em; }
+.painel-tit{ margin-top:22px; font:500 24px/1.2 var(--titulo); letter-spacing:-.005em; }
 .painel-txt{ margin-top:16px; flex:1 1 auto; overflow:auto; font-size:16px; line-height:1.65; color:#C9CFD8; }
 .painel-txt p + p{ margin-top:12px; }
 .painel-prox{ margin-top:16px; padding-top:16px; border-top:1px solid var(--noite-fio); font-size:14px; line-height:1.5; color:var(--noite-apoio); }
@@ -280,7 +350,7 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
   .s-rodape{ order:30; margin-top:32px; padding-top:14px; border-top:1px solid var(--f-fio); font-size:13px; flex-wrap:wrap; gap:6px 16px; }
   .s-cab{ display:grid; gap:12px; }
   .s-rotulo{ font-size:12px; }
-  .s-titulo{ font-size:32px; line-height:1.1; }
+  .s-titulo{ font-size:38px; line-height:1.05; }
   .s-apoio{ font-size:18px; }
   .s-pequeno{ font-size:15px; }
   .slide > .s-num{ order:40; margin-top:28px; }
@@ -291,7 +361,7 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
   .capa-faixa{ width:6px; }
   .capa .s-marca{ width:164px; }
   .capa-texto{ display:grid; gap:28px; }
-  .capa-titulo{ font-size:44px; }
+  .capa-titulo{ font-size:52px; }
   .capa .s-apoio{ font-size:19px; }
   .capa-titulos{ display:grid; gap:14px; }
   .capa-meta{ flex-direction:column; gap:12px; font-size:11px; margin-top:4px; }
@@ -300,16 +370,16 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
   .agenda-lista{ margin-top:24px; }
   .agenda-lista li{ grid-template-columns:44px minmax(0,1fr); gap:8px 12px; padding:16px 0; }
   .agenda-lista .n{ font-size:15px; }
-  .agenda-lista .t{ font-size:21px; }
+  .agenda-lista .t{ font-size:24px; }
   .agenda-lista .d{ grid-column:2; text-align:left; font-size:15px; }
 
   .capitulo{ padding-top:28px; }
   .cap-aneis{ display:none; }
-  .cap-num{ font-size:120px; order:2; }
+  .cap-num{ font-size:150px; order:2; }
   .cap-texto{ order:3; display:grid; gap:14px; margin-top:16px; }
-  .cap-titulo{ font-size:38px; }
+  .cap-titulo{ font-size:44px; }
 
-  .frase{ font-size:34px; }
+  .frase{ font-size:40px; }
   .afirmacao-miolo{ display:grid; gap:20px; }
   .afirmacao-grade{ margin:28px calc(var(--gut) * -1) -36px; height:140px; }
 
@@ -317,14 +387,14 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
   .numero-grande{ font-size:clamp(104px,34vw,150px); gap:10px; }
   .ponto-foco{ width:16px; height:16px; box-shadow:0 0 0 7px rgba(255,106,26,.18); }
   .numero-lado{ display:grid; gap:14px; }
-  .numero-desc{ font-size:24px; }
+  .numero-desc{ font-size:28px; }
 
   .grafico-corpo{ margin-top:24px; }
   .grafico-lado{ margin-top:24px; }
 
   .compara-grade{ grid-template-columns:minmax(0,1fr); margin-top:24px; gap:0; }
   .compara-lado{ padding:22px 18px; }
-  .compara-t{ font-size:24px; }
+  .compara-t{ font-size:27px; }
   .compara-lista li{ font-size:17px; grid-template-columns:20px minmax(0,1fr); gap:12px; }
   .compara-lista .ic{ width:20px; height:20px; }
   .compara-seta{ height:52px; }
@@ -334,10 +404,10 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
 
   .ciclo-forma{ margin-top:20px; }
   .ciclo-texto{ display:grid; gap:14px; margin-top:20px; }
-  .ciclo-lista b{ font-size:18px; }
+  .ciclo-lista b{ font-size:21px; }
   .ciclo-lista span{ font-size:15px; }
 
-  .citacao blockquote p{ font-size:38px; }
+  .citacao blockquote p{ font-size:44px; }
   .citacao blockquote p::before{ font-size:80px; margin-bottom:12px; }
   .citacao figcaption{ font-size:11px; margin-top:20px; }
 
@@ -347,16 +417,40 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
   .proposta-inv{ padding:20px; }
 
   .passo-lista{ grid-template-columns:minmax(0,1fr); margin-top:24px; gap:18px; }
-  .passo-lista b{ font-size:20px; }
+  .passo-lista b{ font-size:23px; }
   .passo-lista span{ font-size:16px; }
   .passo-acao{ margin-top:28px; display:grid; gap:12px; }
   .botao{ font-size:18px; padding:18px 20px; width:100%; justify-content:center; text-align:center; white-space:normal; }
 
   .fim .s-marca{ width:220px; }
   .fim-miolo{ display:grid; gap:24px; }
-  .fim-frase{ font-size:32px; }
+  .fim-frase{ font-size:36px; }
   .fim-contato{ flex-direction:column; gap:12px; margin-top:28px; font-size:12px; }
   .fim-aneis{ display:none; }
+
+  .foto{ padding:0; min-height:620px; justify-content:flex-end; }
+  .foto .s-folio{ position:relative; padding:28px var(--gut) 0; margin-bottom:auto; }
+  .foto-texto{ position:relative; display:grid; gap:16px; padding:180px var(--gut) 0; }
+  .foto-veu{ background:linear-gradient(0deg,rgba(11,13,18,.96) 0%,rgba(11,13,18,.82) 42%,rgba(11,13,18,.1) 78%); }
+  .foto-titulo{ font-size:44px; }
+  .foto .s-rodape{ position:relative; margin:28px var(--gut) 0; }
+  .foto > .s-num{ position:relative; margin:20px var(--gut) 36px; }
+  .foto-img{ object-position:62% 30%; }
+
+  .retrato{ padding-top:0; }
+  .retrato-foto{ order:1; margin:0 calc(var(--gut) * -1) 28px; aspect-ratio:4/5; max-height:520px; }
+  .retrato .s-folio{ order:0; margin-top:28px; }
+  .retrato-cit{ order:2; gap:22px; }
+  .retrato-cit blockquote p{ font-size:36px; }
+  .retrato-nome{ font-size:19px; }
+  .retrato-cargo{ font-size:11px; }
+
+  .tempo-lista{ grid-template-columns:minmax(0,1fr); margin-top:28px; }
+  .tempo-lista::before{ left:11px; right:auto; top:12px; bottom:12px; width:2px; height:auto; }
+  .tempo-lista li{ grid-template-columns:24px minmax(0,1fr); column-gap:18px; row-gap:6px; padding:0 0 26px; }
+  .tempo-marca{ grid-row:1 / span 3; margin:0; }
+  .tempo-lista b{ font-size:26px; }
+  .tempo-lista span.t{ font-size:16px; }
 }
 
 /* ---------- impressão e PDF: 1440 × 900, um slide por página ---------- */
@@ -378,14 +472,14 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
 <main class="deck" id="deck" aria-roledescription="apresentação" aria-label="GrowAI: Diagnóstico do Gargalo">
   <div class="progresso" aria-hidden="true"><span></span></div>
 
-  <!-- ===================== 1 · CAPA (Noite + radar parado + logo claro + faixa da linha) ===================== -->
-  <section class="slide capa campo-noite ativo" data-campo="noite" aria-roledescription="slide" aria-label="1 de 13: Diagnóstico do Gargalo">
+  <!-- ===================== CAPA (Noite + radar parado + logo claro + faixa da linha) ===================== -->
+  <section class="slide capa campo-noite ativo" data-campo="noite" aria-roledescription="slide" aria-label="1 de 16: Diagnóstico do Gargalo">
     <div class="capa-faixa" aria-hidden="true"></div>
     <div class="capa-texto">
       <img class="s-marca" src="assets/growai-logo-claro.svg" alt="GrowAI" width="236" height="90">
       <div class="capa-titulos">
         <p class="s-rotulo"><span class="linha-nome">GrowAI Strategy</span> · consultoria de RevOps com IA</p>
-        <h1 class="capa-titulo">Diagnóstico do Gargalo</h1>
+        <h1 class="capa-titulo">Diagnóstico do <em class="neutro">Gargalo</em></h1>
         <p class="s-apoio">Toda receita tem um gargalo. Os dados dizem qual.</p>
       </div>
       <div class="capa-meta">
@@ -399,80 +493,108 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
     <aside class="notas"><p>Abra pela assinatura: toda receita tem um gargalo, e hoje a conversa é sobre qual é o dele. Não apresente a GrowAI ainda.</p><p>Troque os campos entre colchetes antes de enviar.</p></aside>
   </section>
 
-  <!-- ===================== 2 · AGENDA ===================== -->
-  <section class="slide agenda campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="2 de 13: O que vamos ver hoje">
+  <!-- ===================== AGENDA ===================== -->
+  <section class="slide agenda campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="2 de 16: O que vamos ver hoje">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Diagnóstico do Gargalo</span></div>
-    <div class="s-cab"><p class="s-rotulo">Agenda</p><h2 class="s-titulo">O que vamos ver hoje</h2></div>
+    <div class="s-cab"><p class="s-rotulo">Agenda</p><h2 class="s-titulo">O que vamos ver <em>hoje</em></h2></div>
     <ol class="agenda-lista">
-      <li><span class="n">01</span><span class="t">Onde a receita está hoje</span><span class="d">os números, sem opinião</span></li>
-      <li><span class="n">02</span><span class="t">O gargalo que os dados apontam</span><span class="d">um ponto, com número</span></li>
-      <li><span class="n">03</span><span class="t">O que muda com o foco</span><span class="d">antes e depois</span></li>
-      <li><span class="n">04</span><span class="t">Como a GrowAI trabalha</span><span class="d">aprender, organizar, escalar</span></li>
-      <li><span class="n">05</span><span class="t">Próximo passo</span><span class="d">uma decisão</span></li>
+      <li><span class="n">01</span><span class="t">O que você nos disse</span><span class="d">nas suas palavras</span></li>
+      <li><span class="n">02</span><span class="t">O gargalo, com número</span><span class="d">um ponto só</span></li>
+      <li><span class="n">03</span><span class="t">Quanto custa não mudar</span><span class="d">o preço de ficar parado</span></li>
+      <li><span class="n">04</span><span class="t">A frente única</span><span class="d">métrica, meta e prazo</span></li>
+      <li><span class="n">05</span><span class="t">Investimento e próximo passo</span><span class="d">uma decisão</span></li>
     </ol>
     <div class="s-rodape"><span>GrowAI · o sistema de foco da sua empresa</span><span class="s-num">02</span></div>
     <aside class="notas"><p>Cinco itens, no máximo. Leia só os títulos; o detalhe vem em cada parte.</p></aside>
   </section>
 
-  <!-- ===================== 3 · ABERTURA DE CAPÍTULO (Noite) ===================== -->
-  <section class="slide capitulo campo-noite" data-campo="noite" aria-roledescription="slide" aria-label="3 de 13: Onde a receita está hoje">
+  <section class="slide citacao campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="3 de 16: O que você nos disse">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 1 · o que você nos disse</span></div>
+    <figure class="citacao-miolo">
+      <blockquote><p>[A frase do cliente, nas <em>palavras dele</em>.]</p></blockquote>
+      <figcaption><b>[Nome Sobrenome]</b> · [cargo], [empresa] · dita na conversa de [data], usada com autorização</figcaption>
+    </figure>
+    <span class="s-num">03</span>
+    <aside class="notas"><p>Abra a proposta com o que o próprio cliente disse na conversa, palavra por palavra. Só com autorização; nunca invente frase de cliente.</p></aside>
+  </section>
+
+  <!-- ===================== ABERTURA DE CAPÍTULO (Noite) ===================== -->
+  <section class="slide capitulo campo-noite" data-campo="noite" aria-roledescription="slide" aria-label="4 de 16: O gargalo, com número">
     <div class="cap-aneis" data-gforms="aneis" data-gforms-opts='{"n":5,"tamanho":620}' aria-hidden="true"></div>
-    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 1 de 5</span></div>
-    <p class="cap-num" aria-hidden="true">01</p>
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 2 de 5</span></div>
+    <p class="cap-num" aria-hidden="true">02</p>
     <div class="cap-texto">
-      <p class="s-rotulo">Parte 1</p>
-      <h2 class="cap-titulo">Onde a receita está hoje</h2>
+      <p class="s-rotulo">Parte 2</p>
+      <h2 class="cap-titulo">O gargalo, <em>com número</em></h2>
       <p class="s-apoio">Antes de opinar, lemos os números.</p>
     </div>
-    <span class="s-num">03</span>
+    <span class="s-num">04</span>
     <aside class="notas"><p>Pausa curta. Abertura de capítulo não tem dado: só anuncia a parte.</p></aside>
   </section>
 
-  <!-- ===================== 4 · AFIRMAÇÃO GRANDE ===================== -->
-  <section class="slide afirmacao campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="4 de 13: Crescer é destravar um ponto">
+  <!-- ===================== FOTO SANGRADA COM TÍTULO (Noite) ===================== -->
+  <section class="slide foto campo-noite" data-campo="noite" aria-roledescription="slide" aria-label="5 de 16: Às sete da noite, quem decide ainda procura o número">
+    <div class="foto-fundo">
+      <div class="foto-reserva" data-gforms="grade" data-gforms-opts='{"espaco":30,"raio":1.4,"campo":"noite"}' aria-hidden="true"></div>
+      <img class="foto-img" src="assets/fotos/dona-ligacao-noite.jpg" alt="Dona de empresa ao telefone, à noite, olhando os números no notebook do escritório" onerror="this.remove()">
+    </div>
+    <div class="foto-veu" aria-hidden="true"></div>
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>A cena</span></div>
+    <div class="foto-texto">
+      <p class="s-rotulo">O inimigo é o caos</p>
+      <h2 class="foto-titulo">Às sete da noite, quem decide ainda <em>procura o número</em>.</h2>
+      <p class="s-apoio">Dado espalhado em planilha, CRM e conversa. Decisão no escuro.</p>
+    </div>
+    <div class="s-rodape"><span class="foto-credito">Foto: crédito em assets/fotos/creditos.json · tratamento grade Noite</span><span class="s-num">05</span></div>
+    <aside class="notas"><p>Foto documental, gente real trabalhando de verdade, tratada na grade Noite. Nunca pose, aperto de mão ou gráfico brilhante.</p><p>O título fica no terço de baixo, sobre o véu escuro; o rosto e a ação ficam na metade de cima. Troque a foto mantendo esse enquadramento.</p></aside>
+  </section>
+
+  <!-- ===================== AFIRMAÇÃO GRANDE ===================== -->
+  <section class="slide afirmacao campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="6 de 16: Crescer é destravar um ponto">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Princípio</span></div>
     <div class="afirmacao-miolo">
       <p class="s-rotulo">Um gargalo por vez</p>
-      <p class="frase">Crescer não é fazer mais coisas. <span class="apoio-cor">É destravar o ponto que segura todo o resto.</span></p>
+      <p class="frase">Crescer não é fazer mais coisas. É destravar <em>o ponto que segura</em> todo o resto.</p>
     </div>
     <div class="afirmacao-grade" data-gforms="grade" data-gforms-opts='{"espaco":28,"raio":1.5}' aria-hidden="true"></div>
-    <div class="s-rodape"><span>Princípios GrowAI: dado antes de opinião · um gargalo por vez · processo antes de automação</span><span class="s-num">04</span></div>
+    <div class="s-rodape"><span>Princípios GrowAI: dado antes de opinião · um gargalo por vez · processo antes de automação</span><span class="s-num">06</span></div>
     <aside class="notas"><p>Uma frase por slide. Deixe a frase respirar e espere a reação antes de seguir.</p></aside>
   </section>
 
-  <!-- ===================== 5 · NÚMERO GRANDE ===================== -->
-  <section class="slide numero campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="5 de 13: 62% da receita em aberto está parada">
-    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>O dado</span></div>
-    <div class="numero-miolo">
-      <p class="numero-grande"><span>62%</span><i class="ponto-foco" aria-hidden="true"></i></p>
-      <div class="numero-lado">
-        <p class="s-rotulo">Receita em aberto</p>
-        <p class="numero-desc">da receita em aberto está em propostas paradas há mais de 9 dias</p>
-        <p><span class="s-exemplo">Número de exemplo</span></p>
-      </div>
-    </div>
-    <div class="s-rodape"><span>Fonte: [CRM do cliente], [período]. Exemplo ilustrativo até a leitura dos dados.</span><span class="s-num">05</span></div>
-    <aside class="notas"><p>Diga o número e cale. O ponto laranja é o foco: é o único laranja deste slide.</p><p>Troque pelo número real do cliente, com fonte e período no rodapé.</p></aside>
-  </section>
+  <!-- ===================== NÚMERO GRANDE ===================== -->
 
-  <!-- ===================== 6 · GRÁFICO (gviz) ===================== -->
-  <section class="slide grafico campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="6 de 13: O gargalo está na passagem para SQL">
+  <!-- ===================== GRÁFICO (gviz) ===================== -->
+  <section class="slide grafico campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="7 de 16: O gargalo está na passagem de lead para oportunidade">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 2 · o gargalo</span></div>
-    <div class="s-cab"><p class="s-rotulo">Bowtie M1 a M8</p><h2 class="s-titulo">O gargalo está na passagem para SQL</h2></div>
+    <div class="s-cab"><p class="s-rotulo">Do primeiro contato à expansão</p><h2 class="s-titulo">O gargalo está na passagem de <em class="neutro">lead para oportunidade</em></h2></div>
     <div class="grafico-corpo" data-gviz='{"tipo":"bowtie","valores":[1240,410,96,61,38,35,29,11],"taxas":true,"gargalo":2,"fonte":"Exemplo ilustrativo","data":"[período]","rodape":false}'></div>
     <div class="grafico-lado">
       <p class="s-rotulo">Leitura</p>
       <p class="s-apoio" style="font-size:22px">De cada 100 leads qualificados, só 23 viram oportunidade. Todas as outras etapas passam de 57%.</p>
       <p><span class="s-exemplo">Números de exemplo</span></p>
     </div>
-    <div class="s-rodape"><span>Fonte: exemplo ilustrativo · [período]</span><span class="s-num">06</span></div>
+    <div class="s-rodape"><span>Fonte: exemplo ilustrativo · [período]</span><span class="s-num">07</span></div>
     <aside class="notas"><p>O laranja marca a etapa-gargalo. Não comente as outras etapas: o ponto do slide é um só.</p></aside>
   </section>
 
-  <!-- ===================== 7 · COMPARAÇÃO ANTES E DEPOIS ===================== -->
-  <section class="slide compara campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="7 de 13: Do caos ao foco">
+  <section class="slide numero campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="8 de 16: Quanto custa não mudar">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 3 · quanto custa não mudar</span></div>
+    <div class="numero-miolo">
+      <p class="numero-grande"><span>62%</span><i class="ponto-foco" aria-hidden="true"></i></p>
+      <div class="numero-lado">
+        <p class="s-rotulo">Quanto custa não mudar</p>
+        <p class="numero-desc">da receita em aberto está em propostas paradas há mais de 9 dias</p>
+        <p><span class="s-exemplo">Número de exemplo</span></p>
+      </div>
+    </div>
+    <div class="s-rodape"><span>Fonte: [CRM do cliente], [período]. Exemplo ilustrativo até a leitura dos dados.</span><span class="s-num">08</span></div>
+    <aside class="notas"><p>Diga o número e cale. O ponto laranja é o foco: é o único laranja deste slide.</p><p>Troque pelo número real do cliente, com fonte e período no rodapé.</p></aside>
+  </section>
+
+  <!-- ===================== COMPARAÇÃO ANTES E DEPOIS ===================== -->
+  <section class="slide compara campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="9 de 16: Do caos ao foco">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 3 · o que muda</span></div>
-    <div class="s-cab"><p class="s-rotulo">Antes e depois</p><h2 class="s-titulo">Do caos ao foco</h2></div>
+    <div class="s-cab"><p class="s-rotulo">Antes e depois</p><h2 class="s-titulo">Do caos ao <em>foco</em></h2></div>
     <div class="compara-grade">
       <div class="compara-lado compara-sem">
         <p class="s-rotulo" style="color:var(--dia-apoio)">Sem foco</p>
@@ -496,26 +618,26 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
         </ul>
       </div>
     </div>
-    <div class="s-rodape"><span>GrowAI · o inimigo é o caos, não a falta de ferramenta</span><span class="s-num">07</span></div>
+    <div class="s-rodape"><span>GrowAI · o inimigo é o caos, não a falta de ferramenta</span><span class="s-num">09</span></div>
     <aside class="notas"><p>Leia a coluna da esquerda devagar: o dono se reconhece nela. A direita é a promessa da GrowAI.</p></aside>
   </section>
 
-  <!-- ===================== 8 · O CAMINHO DAS 3 LINHAS ===================== -->
-  <section class="slide caminho campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="8 de 13: Um caminho, três linhas">
+  <!-- ===================== O CAMINHO DAS 3 LINHAS ===================== -->
+  <section class="slide caminho campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="10 de 16: Um caminho, três linhas">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 4 · como trabalhamos</span></div>
-    <div class="s-cab"><p class="s-rotulo">A GrowAI</p><h2 class="s-titulo">Um caminho, três linhas: aprender, organizar, escalar</h2></div>
+    <div class="s-cab"><p class="s-rotulo">A GrowAI</p><h2 class="s-titulo">Um caminho, três linhas: <em class="neutro">aprender, organizar, escalar</em></h2></div>
     <div class="caminho-corpo" data-gforms="caminho" data-gforms-opts='{"atual":"auto"}'></div>
-    <div class="s-rodape"><span>O ponto laranja mostra onde esta conversa está no caminho.</span><span class="s-num">08</span></div>
+    <div class="s-rodape"><span>O ponto laranja mostra onde esta conversa está no caminho.</span><span class="s-num">10</span></div>
     <aside class="notas"><p>O ponto laranja acompanha a linha desta apresentação (data-linha no body).</p><p>Educação: você aprende o método. Strategy: a GrowAI organiza a receita junto com você. Agentes: agentes de IA trabalham dentro da sua receita.</p></aside>
   </section>
 
-  <!-- ===================== 9 · CICLO DO GARGALO ===================== -->
-  <section class="slide ciclo campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="9 de 13: O ciclo do gargalo">
+  <!-- ===================== CICLO DO GARGALO ===================== -->
+  <section class="slide ciclo campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="11 de 16: O ciclo do gargalo">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 4 · método</span></div>
     <div class="ciclo-forma" data-gforms="ciclo" data-gforms-opts='{"aria":"Ciclo do gargalo: Medir, Diagnosticar, Focar, Destravar, Escalar"}'></div>
     <div class="ciclo-texto">
       <p class="s-rotulo">O método</p>
-      <h2 class="s-titulo" style="font-size:48px">O ciclo do gargalo</h2>
+      <h2 class="s-titulo" style="font-size:56px">O ciclo do <em class="neutro">gargalo</em></h2>
       <ol class="ciclo-lista">
         <li><span class="n">01</span><p><b>Medir</b><span>Conectamos os dados do negócio e lemos tudo junto.</span></p></li>
         <li><span class="n">02</span><p><b>Diagnosticar</b><span>Os dados apontam onde a receita trava.</span></p></li>
@@ -524,31 +646,52 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
         <li><span class="n">05</span><p><b>Escalar</b><span>Agentes onde o processo já funciona.</span></p></li>
       </ol>
     </div>
-    <div class="s-rodape"><span>Quando o ponteiro mexe, o ciclo recomeça no próximo gargalo.</span><span class="s-num">09</span></div>
+    <div class="s-rodape"><span>Quando o ponteiro mexe, o ciclo recomeça no próximo gargalo.</span><span class="s-num">11</span></div>
     <aside class="notas"><p>Focar é o passo que quase ninguém faz. É ele que está em laranja.</p></aside>
   </section>
 
-  <!-- ===================== 10 · CITAÇÃO ===================== -->
-  <section class="slide citacao campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="10 de 13: Foco é a nossa tecnologia">
-    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Citação</span></div>
-    <figure class="citacao-miolo">
-      <blockquote><p>Foco é a nossa tecnologia.</p></blockquote>
-      <figcaption><b>GrowAI</b> · síntese da marca · [troque por depoimento real de cliente, com autorização por escrito]</figcaption>
-    </figure>
-    <span class="s-num">10</span>
-    <aside class="notas"><p>Depoimento só com nome, cargo e empresa reais e autorização por escrito. Nunca invente frase de cliente.</p></aside>
+  <!-- ===================== LINHA DO TEMPO (Dia) ===================== -->
+  <section class="slide tempo campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="12 de 16: Do diagnóstico ao ponteiro mexendo">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 4 · cronograma</span></div>
+    <div class="s-cab"><p class="s-rotulo">Primeiros 90 dias</p><h2 class="s-titulo">Do diagnóstico ao <em class="neutro">ponteiro mexendo</em></h2></div>
+    <ol class="tempo-lista">
+      <li><i class="tempo-marca" aria-hidden="true"></i><span class="tempo-data">Semana 1</span><b>Conectar os dados</b><span class="t">CRM, financeiro e atendimento lidos juntos.</span></li>
+      <li class="foco"><i class="tempo-marca" aria-hidden="true"></i><span class="tempo-data">Semana 2</span><b>Diagnóstico do Gargalo</b><span class="t">Um ponto escolhido, com número e prazo.</span></li>
+      <li><i class="tempo-marca" aria-hidden="true"></i><span class="tempo-data">Mês 2</span><b>Destravar</b><span class="t">Processo ajustado antes de automatizar.</span></li>
+      <li><i class="tempo-marca" aria-hidden="true"></i><span class="tempo-data">Mês 3</span><b>Escalar</b><span class="t">Agentes onde o processo já roda.</span></li>
+    </ol>
+    <div class="s-rodape"><span>Prazos de exemplo. O cronograma real sai da conversa de escopo.</span><span class="s-num">12</span></div>
+    <aside class="notas"><p>Quatro marcos, no máximo. O ponto laranja marca o marco que importa para esta conversa: em geral, o diagnóstico.</p></aside>
   </section>
 
-  <!-- ===================== 11 · PROPOSTA E INVESTIMENTO ===================== -->
-  <section class="slide proposta campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="11 de 13: Proposta e investimento">
+  <!-- ===================== CITAÇÃO ===================== -->
+
+  <!-- ===================== RETRATO COM DEPOIMENTO (Dia) ===================== -->
+  <section class="slide retrato campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="13 de 16: Quem conduz o diagnóstico">
+    <div class="retrato-foto">
+      <div class="retrato-reserva" data-gforms="aneis" data-gforms-opts='{"n":4,"tamanho":420,"campo":"noite","foco":false}' aria-hidden="true"></div>
+      <img src="assets/fotos/rafael-nasch.jpg" alt="Rafael Nasch, fundador da GrowAI, em retrato" onerror="this.remove()">
+    </div>
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Quem conduz</span></div>
+    <figure class="retrato-cit">
+      <p class="s-rotulo">Quem conduz</p>
+      <blockquote><p>Toda receita tem um gargalo. <em>Os dados dizem qual.</em></p></blockquote>
+      <figcaption><span class="retrato-nome">Rafael Nasch</span><span class="retrato-cargo">Fundador da GrowAI · consultor de RevOps com IA</span></figcaption>
+    </figure>
+    <div class="s-rodape"><span>Retrato oficial do fundador. Para depoimento de cliente: nome, cargo, empresa e autorização por escrito.</span><span class="s-num">13</span></div>
+    <aside class="notas"><p>Use este slide para apresentar quem conduz o trabalho ou para um depoimento real de cliente. Foto documental, olhar fora da câmera ou em conversa; nunca pose de banco de imagem.</p><p>Nunca invente frase de cliente. Sem autorização por escrito, fique com o retrato de quem conduz.</p></aside>
+  </section>
+
+  <!-- ===================== PROPOSTA E INVESTIMENTO ===================== -->
+  <section class="slide proposta campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="14 de 16: Proposta e investimento">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Proposta</span></div>
-    <div class="s-cab"><p class="s-rotulo">Proposta</p><h2 class="s-titulo">Diagnóstico do Gargalo em [n] semanas</h2></div>
+    <div class="s-cab"><p class="s-rotulo">Proposta</p><h2 class="s-titulo">Diagnóstico do Gargalo em <em>[n] semanas</em></h2></div>
     <div class="proposta-grade">
       <div class="proposta-col">
         <h3>O que a GrowAI faz</h3>
         <ul>
           <li>Conecta os dados de vendas, financeiro e atendimento</li>
-          <li>Lê o bowtie de M1 a M8 com o seu time</li>
+          <li>Lê o caminho do cliente, do primeiro contato à renovação, com o seu time</li>
           <li>Aponta um gargalo, com número e prazo</li>
         </ul>
       </div>
@@ -569,14 +712,14 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
         </dl>
       </div>
     </div>
-    <div class="s-rodape"><span>Valores e prazos entram só depois da conversa de escopo. Nada aqui é estimativa.</span><span class="s-num">11</span></div>
+    <div class="s-rodape"><span>Valores e prazos entram só depois da conversa de escopo. Nada aqui é estimativa.</span><span class="s-num">14</span></div>
     <aside class="notas"><p>Nunca preencha o valor sem a proposta aprovada. O slide existe para mostrar a estrutura.</p></aside>
   </section>
 
-  <!-- ===================== 12 · PRÓXIMO PASSO (um só botão laranja) ===================== -->
-  <section class="slide passo campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="12 de 13: Próximo passo">
+  <!-- ===================== PRÓXIMO PASSO (um só botão laranja) ===================== -->
+  <section class="slide passo campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="15 de 16: Próximo passo">
     <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 5 · próximo passo</span></div>
-    <div class="s-cab"><p class="s-rotulo">Próximo passo</p><h2 class="s-titulo">Uma decisão: ler os seus dados</h2></div>
+    <div class="s-cab"><p class="s-rotulo">Próximo passo</p><h2 class="s-titulo">Uma decisão: <em class="neutro">ler os seus dados</em></h2></div>
     <ol class="passo-lista">
       <li><span class="n">01</span><b>Liberar o acesso</b><span>CRM e financeiro, só leitura.</span></li>
       <li><span class="n">02</span><b>Leitura dos dados</b><span>A GrowAI cruza tudo e prepara o diagnóstico.</span></li>
@@ -586,26 +729,26 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
       <a class="botao" href="#12">Agendar o Diagnóstico do Gargalo <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <span class="botao-nota">[link de agendamento] · [prazo para resposta]</span>
     </div>
-    <div class="s-rodape"><span>Um botão por apresentação: é este.</span><span class="s-num">12</span></div>
-    <aside class="notas"><p>Peça uma decisão só. Troque o href do botão pelo link real de agendamento.</p></aside>
+    <div class="s-rodape"><span>Um botão por apresentação: é este.</span><span class="s-num">15</span></div>
+    <aside class="notas"><p>Peça uma decisão só. Troque o href do botão pelo link de contratação ou agendamento do Diagnóstico do Gargalo (pago).</p></aside>
   </section>
 
-  <!-- ===================== 13 · ENCERRAMENTO (Noite) ===================== -->
-  <section class="slide fim campo-noite" data-campo="noite" aria-roledescription="slide" aria-label="13 de 13: Toda receita tem um gargalo">
+  <!-- ===================== ENCERRAMENTO (Noite) ===================== -->
+  <section class="slide fim campo-noite" data-campo="noite" aria-roledescription="slide" aria-label="16 de 16: Toda receita tem um gargalo">
     <div class="fim-aneis" data-gforms="aneis" data-gforms-opts='{"n":5,"tamanho":720,"foco":{"angulo":-130,"raio":0.8}}' aria-hidden="true"></div>
     <div class="fim-miolo">
       <img class="s-marca" src="assets/growai-logo-claro.svg" alt="GrowAI" width="420" height="160">
-      <p class="fim-frase">Toda receita tem um gargalo. Os dados dizem qual.</p>
+      <p class="fim-frase">Toda receita tem um gargalo. <em class="neutro">Os dados dizem qual.</em></p>
     </div>
     <div class="fim-contato">
       <span>Contato<b>[nome] · [e-mail]</b></span>
       <span>Site<b>growai.com.br</b></span>
     </div>
-    <span class="s-num">13</span>
+    <span class="s-num">16</span>
     <aside class="notas"><p>Encerramento sem pergunta nova. Se a decisão não saiu no slide anterior, volte a ele.</p></aside>
   </section>
 
-  <p class="contador" aria-hidden="true"><b id="c-atual">01</b><span>/</span><span id="c-total">13</span></p>
+  <p class="contador" aria-hidden="true"><b id="c-atual">01</b><span>/</span><span id="c-total">16</span></p>
 </main>
 </div>
 
@@ -637,7 +780,7 @@ body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
 <script src="gforms.js"></script>
 <script>
 /* =====================================================================
-   NAVEGAÇÃO DO DECK · Radar de Foco v3
+   NAVEGAÇÃO DO DECK · Radar de Foco v4
    ===================================================================== */
 (function(){
   try {

@@ -9,15 +9,23 @@ O que faz:
 3. um script troca todo src/href/srcset que começa com "assets/" pela imagem
    embutida, inclusive nos elementos que os motores criam depois;
 4. url(assets/...) do CSS vira data URI direto;
-5. embute as fontes do Google Fonts (Sora, Source Sans 3 e JetBrains Mono) em
-   woff2, só os alfabetos latin e latin-ext, dentro da própria <style>: o arquivo
+5. embute as fontes do Google Fonts (Newsreader, Hanken Grotesk e IBM Plex Mono)
+   em woff2, só os alfabetos latin e latin-ext, dentro da própria <style>: o arquivo
    aberto sem internet (WhatsApp, e-mail) continua com as letras certas. Os woff2
    ficam guardados em assets/fontes/ e servem de reserva quando não há internet.
    As três fontes têm licença SIL Open Font License (podem ser distribuídas).
+6. foto embute só a versão leve (assets/fotos/web/, 1200 px; 480 px nas miniaturas)
+   e o srcset sai; link de download (href para assets/) e link para outra página
+   do pacote viram endereço público https://rafaelnasch.github.io/branding-growai/,
+   para o arquivo enviado sozinho não carregar peso de download nem link quebrado.
 Blocos <template> e textos de código não são alterados.
 
-Uso (só Python padrão):
-  python3 autocontido.py                      # gera dist/ com os três arquivos
+7. com Pillow instalado (pip install pillow), foto e imagem grande são recodificadas
+   antes de embutir: o brand book fica abaixo de 15 MB, o que passa como anexo de
+   e-mail. Sem Pillow funciona igual, com o arquivo maior.
+
+Uso (Python padrão; Pillow opcional):
+  python3 autocontido.py                      # gera dist/ com os quatro arquivos
   python3 autocontido.py meu-material.html    # gera dist/meu-material.html
 """
 import base64, hashlib, json, mimetypes, os, re, sys, urllib.request
@@ -33,6 +41,8 @@ FONTES = os.path.join(RAIZ, "assets", "fontes")
 RE_LINK_FONTES = re.compile(r'<link\b[^>]*href="(https://fonts\.googleapis\.com/css2\?[^"]+)"[^>]*>\n?')
 RE_PRECONNECT = re.compile(r'<link rel="preconnect" href="https://fonts\.(?:googleapis|gstatic)\.com"[^>]*>\n?')
 ALFABETOS = ("latin", "latin-ext")
+PUBLICO = "https://rafaelnasch.github.io/branding-growai/"
+FOTOS_WEB = os.path.join(RAIZ, "assets", "fotos", "web")
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 
 
@@ -101,14 +111,67 @@ document.addEventListener("DOMContentLoaded",function(){walk(document.documentEl
 </script>"""
 
 
+LEVE = 220 * 1024  # imagem raster acima disso é reduzida (se houver Pillow) antes de embutir
+
+
 def data_uri(caminho):
     tipo = mimetypes.guess_type(caminho)[0] or "application/octet-stream"
     with open(caminho, "rb") as f:
-        return "data:%s;base64,%s" % (tipo, base64.b64encode(f.read()).decode())
+        dado = f.read()
+    foto = "/fotos/web/" in caminho.replace(os.sep, "/")
+    if (len(dado) > LEVE or (foto and len(dado) > 40 * 1024)) and tipo in ("image/png", "image/jpeg"):
+        try:  # opcional: sem Pillow, embute o arquivo como está
+            import io
+            from PIL import Image
+            im = Image.open(io.BytesIO(dado))
+            im.thumbnail((1000, 1000) if foto else (1400, 1400))
+            saida = io.BytesIO()
+            if im.mode in ("RGBA", "LA", "P") and "A" in im.convert("RGBA").getbands() and im.convert("RGBA").getextrema()[3][0] < 255:
+                im.convert("RGBA").save(saida, "PNG", optimize=True)
+                novo, novo_tipo = saida.getvalue(), "image/png"
+            else:
+                im.convert("RGB").save(saida, "JPEG", quality=68 if foto else 78, optimize=True, progressive=True)
+                novo, novo_tipo = saida.getvalue(), "image/jpeg"
+            if len(novo) < len(dado):
+                dado, tipo = novo, novo_tipo
+        except Exception:
+            pass
+    return "data:%s;base64,%s" % (tipo, base64.b64encode(dado).decode())
+
+
+def foto_leve(caminho, lado=1200):
+    """assets/fotos/x.jpg -> assets/fotos/web/x-1200.jpg, quando a versão leve existe."""
+    m = re.match(r"assets/fotos/([a-z0-9-]+)\.jpg$", caminho)
+    if m and os.path.isfile(os.path.join(FOTOS_WEB, "%s-%d.jpg" % (m.group(1), lado))):
+        return "assets/fotos/web/%s-%d.jpg" % (m.group(1), lado)
+    return caminho
+
+
+def enxugar(html):
+    """Fotos na versão leve, sem srcset; links de download e de outras páginas viram endereço público."""
+    def img(m):
+        tag = m.group(0)
+        mini = re.search(r'sizes="(\d+)px"', tag)
+        lado = 480 if mini and int(mini.group(1)) <= 480 else 1200
+        tag = re.sub(r'\s(?:srcset|sizes)="[^"]*"', "", tag)
+        return re.sub(r'src="(assets/fotos/[a-z0-9-]+\.jpg)"', lambda f: 'src="%s"' % foto_leve(f.group(1), lado), tag)
+    html = re.sub(r"<img\b[^>]*>", img, html)
+    # url(assets/fotos/x.jpg) e caminhos de foto em dados (data-gforms, JSON) também,
+    # mas nunca dentro de <pre>, <code>, <template> ou <textarea> (texto de documentação)
+    partes = re.split(r"(<(pre|code|template|textarea)\b[\s\S]*?</\2>)", html)
+    html = "".join(p if i % 3 else re.sub(r"assets/fotos/[a-z0-9-]+\.jpg", lambda m: foto_leve(m.group(0)), p)
+                   for i, p in enumerate(partes) if i % 3 != 2)
+    # <a href="assets/..."> (download): o arquivo fica no endereço público, não no HTML
+    html = re.sub(r'(<a\b[^>]*\shref=")(assets/[^"]+)"', lambda m: '%s%s%s"' % (m.group(1), PUBLICO, m.group(2)), html)
+    # <a href="pagina.html#ancora">: vira o endereço público, que abre de qualquer lugar
+    html = re.sub(r'(<a\b[^>]*\shref=")([a-z0-9-]+\.html)(#[^"]*)?"',
+                  lambda m: '%s%s%s%s"' % (m.group(1), PUBLICO, m.group(2), m.group(3) or ""), html)
+    return html
 
 
 def autocontido(origem, destino):
     html = open(origem, encoding="utf-8").read()
+    html = enxugar(html)
     # 0. fontes do Google embutidas na própria <style> (continua uma <style> só)
     link = RE_LINK_FONTES.search(html)
     if link:

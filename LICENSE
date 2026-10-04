@@ -8,8 +8,8 @@ Copyright (c) 2026 GrowAI (Rafael Nasch)
 
 The skill anatomy (SKILL.md spec + self-documenting brand-book.html) is
 modeled on "Robo Style - a drop-in design skill for Claude Code", licensed
-under CC BY 4.0. The visual design system documented here (GrowAI v6
-"Liquid Glass") and the GVIZ/GFORMS engines are original work by GrowAI.
+under CC BY 4.0. The visual design system documented here (GrowAI v4
+"Radar de Foco") and the GVIZ/GFORMS engines are original work by GrowAI.
 
 You are free to:
   - Share - copy and redistribute the material in any medium or format
@@ -22,6 +22,19 @@ Under the following terms:
     manner, but not in any way that suggests the licensor endorses you or your use.
   - No additional restrictions - You may not apply legal terms or technological
     measures that legally restrict others from doing anything the license permits.
+
+Exceptions (NOT covered by CC BY 4.0):
+  - assets/fotos/* (including assets/fotos/web/*): third-party photographs
+    under the Unsplash License or the Pexels License of each author, listed
+    in assets/fotos/creditos.json. They are not relicensed here, may not be
+    sold as they are, and may not be used to suggest that the people shown
+    endorse a product, service or result.
+  - assets/fotos/rafael-nasch*.jpg: portrait of the founder. All rights
+    reserved by GrowAI; no image or likeness rights are granted.
+  - assets/fontes/*: Newsreader, Hanken Grotesk and IBM Plex Mono, under the
+    SIL Open Font License 1.1 (see assets/fontes/OFL.txt).
+  - assets/icones/*: Lucide icons, under the ISC License
+    (see assets/icones/LICENSE-lucide.txt).
 
 Note on trademarks: the CC BY 4.0 license covers the skill's text, code and
 design documentation. It does not grant rights to use the GrowAI name or logo

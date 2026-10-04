@@ -1,9 +1,10 @@
 {
  "marca": "GrowAI",
- "sistema": "Radar de Foco v3",
+ "sistema": "Radar de Foco v4",
  "gerado_em": "2026-10-03",
  "cores": {
   "laranja_foco": "#FF6A1A",
+  "laranja_titulo_dia": "#D9530C",
   "laranja_texto_em_dia": "#B33E0A",
   "laranja_texto_em_noite": "#FF8A4C",
   "botao": {
@@ -89,10 +90,24 @@
   "medicao": "regressão por coluna sobre 1,1 milhão de pixels opacos do g no PNG de 7856 px: canal R constante (~254), G de 148 a 26 e B de 38 a 5, lineares (erro médio de 1,7 e 0,5 níveis em 255)"
  },
  "tipografia": {
-  "titulos": "Sora 500/600",
-  "texto": "Source Sans 3 400/600",
-  "numeros_e_rotulos": "JetBrains Mono 400/500",
-  "lockups": "Sora 600 convertida em contorno (sem dependência de fonte)"
+  "display_e_titulos": "Newsreader 400 (display de 48 px ou mais) e 500 (títulos de seção e cards); font-optical-sizing:auto; letter-spacing -0,02em no grande",
+  "destaque_do_foco": "trecho do título em Newsreader Italic + laranja (#FF6A1A na Noite; #D9530C no Dia em título de 24 px ou mais; #B33E0A no Dia abaixo de 24 px); um por título; com botão, ponto aceso ou barra de gargalo na peça, o itálico fica na cor do texto",
+  "texto": "Hanken Grotesk 400/500/600 (18 px desktop, 17 px celular, entrelinha 1,6)",
+  "numeros_e_rotulos": "IBM Plex Mono 400/500 (rótulo em caixa alta, 11–12 px, letter-spacing .12–.14em)",
+  "lockups": "Newsreader 500 (opsz 36) convertida em contorno (sem dependência de fonte)",
+  "google_fonts": "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap",
+  "substitutas_sem_internet": {
+   "display": "Georgia",
+   "texto": "Arial, Helvetica",
+   "numeros": "Courier New"
+  },
+  "fora_de_uso": [
+   "Sora",
+   "Source Sans 3",
+   "JetBrains Mono",
+   "Satoshi",
+   "Inter"
+  ]
  },
  "unidade": "1 unidade do viewBox = 10 px do PNG original de 7856 px; altura do logo = 234,17 unidades",
  "anatomia": {
@@ -167,13 +182,13 @@
    "viewBox": [
     0,
     0,
-    1211.27,
+    1199.53,
     234.17
    ],
-   "proporcao_l_por_a": 5.1726,
+   "proporcao_l_por_a": 5.1225,
    "respiro_x": 97.9,
    "respiro_x_em_fracao_da_altura": 0.4181,
-   "respiro_x_em_fracao_da_largura": 0.0808,
+   "respiro_x_em_fracao_da_largura": 0.0816,
    "minimo_tela_px_largura": 160,
    "minimo_impresso_mm_largura": 44,
    "minimo_obs": "o logo da peça mantém o mínimo de 80 px / 22 mm; o nome da linha tem 55% da altura x do logo"
@@ -182,13 +197,13 @@
    "viewBox": [
     0,
     0,
-    1151.17,
+    1139.96,
     234.17
    ],
-   "proporcao_l_por_a": 4.916,
+   "proporcao_l_por_a": 4.8681,
    "respiro_x": 97.9,
    "respiro_x_em_fracao_da_altura": 0.4181,
-   "respiro_x_em_fracao_da_largura": 0.085,
+   "respiro_x_em_fracao_da_largura": 0.0859,
    "minimo_tela_px_largura": 160,
    "minimo_impresso_mm_largura": 44,
    "minimo_obs": "o logo da peça mantém o mínimo de 80 px / 22 mm; o nome da linha tem 55% da altura x do logo"
@@ -197,20 +212,20 @@
    "viewBox": [
     0,
     0,
-    1143.41,
+    1119.53,
     234.17
    ],
-   "proporcao_l_por_a": 4.8828,
+   "proporcao_l_por_a": 4.7808,
    "respiro_x": 97.9,
    "respiro_x_em_fracao_da_altura": 0.4181,
-   "respiro_x_em_fracao_da_largura": 0.0856,
+   "respiro_x_em_fracao_da_largura": 0.0874,
    "minimo_tela_px_largura": 160,
    "minimo_impresso_mm_largura": 44,
    "minimo_obs": "o logo da peça mantém o mínimo de 80 px / 22 mm; o nome da linha tem 55% da altura x do logo"
   }
  },
  "lockup_de_linha": {
-  "composicao": "logo (sem mudar de cor) + espaço 0,5x + filete vertical + espaço 0,5x + nome da linha em Sora 600 convertido em contorno",
+  "composicao": "logo (sem mudar de cor) + espaço 0,5x + filete vertical + espaço 0,5x + nome da linha em Newsreader 500 (opsz 36) convertido em contorno",
   "espaco_logo_filete": 48.95,
   "espaco_filete_nome": 48.95,
   "filete_largura": 3.0,
@@ -219,14 +234,16 @@
    "ate_y": 145.27,
    "obs": "do topo do pingo do i até a linha de base"
   },
-  "nome_corpo_unidades": 100.83,
+  "nome_corpo_unidades": 118.08,
   "nome_altura_x": 53.84,
   "nome_linha_de_base": 145.27,
-  "nome_tracking_em": -0.01,
+  "nome_tracking_em": -0.005,
   "cor_nome_e_filete": {
    "dia": "cor Texto da linha",
    "noite": "cor Sobre noite da linha"
-  }
+  },
+  "nome_familia": "Newsreader 500, eixo óptico 36, do repositório google/fonts (ofl/newsreader/Newsreader[opsz,wght].ttf)",
+  "regra_do_corpo": "altura x do nome = 55% da altura x do logo (medida no glifo x da Newsreader)"
  },
  "versoes_de_cor": {
   "oficial": {
@@ -247,7 +264,7 @@
   "branco": {
    "arquivo": "growai-logo-branco.svg",
    "descricao": "uma cor #FFFFFF",
-   "quando": "vazado sobre fundo colorido (cor de linha, laranja) ou foto onde o degradê some"
+   "quando": "vazado sobre cor de linha (Framboesa, Cobalto) ou foto onde o degradê some; nunca sobre fundo laranja (Verde Pulso leva a versão preta)"
   },
   "simbolo": {
    "arquivos": [

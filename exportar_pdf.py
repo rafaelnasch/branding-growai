@@ -41,4 +41,27 @@ with sync_playwright() as p:
             print_background=True,
             prefer_css_page_size=True)
     nav.close()
-print("PDF gravado em", SAIDA)
+
+# conferência: um PDF sem nenhum texto é um PDF em branco (o rasterizador
+# de impressão pode desistir em silêncio). Falha em voz alta.
+dados = SAIDA.read_bytes()
+paginas = dados.count(b"/Type /Page") - dados.count(b"/Type /Pages")
+texto = None
+try:
+    from pypdf import PdfReader
+    leitor = PdfReader(str(SAIDA))
+    texto = sum(len((pg.extract_text() or "").strip()) for pg in leitor.pages[:40])
+except ImportError:
+    try:
+        import fitz  # PyMuPDF
+        doc = fitz.open(str(SAIDA))
+        texto = sum(len(doc[i].get_text().strip()) for i in range(min(40, len(doc))))
+    except ImportError:
+        texto = None
+if texto is None:
+    # sem leitor de PDF: procura ao menos uma fonte embutida
+    texto = 1 if b"/FontFile" in dados else 0
+if not texto:
+    sys.exit("ERRO: o PDF saiu sem texto (páginas em branco). Abra o HTML no Chrome, "
+             "Imprimir, e confira; ou exporte por partes.")
+print("PDF gravado em", SAIDA, "·", paginas, "páginas")

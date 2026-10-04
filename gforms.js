@@ -1,5 +1,5 @@
 /* =====================================================================
-   GFORMS · formas da GrowAI · sistema Radar de Foco v3
+   GFORMS · formas da GrowAI · sistema Radar de Foco v4 (tipografia Editorial)
    Quando uma peça precisa de uma FORMA (o Radar, anéis, o ponto de foco, a grade de
    pontos, o caminho das 3 linhas, o ciclo do gargalo, o ponteiro, o cartão de aviso),
    ela sai daqui: nunca de banco de imagem, de emoji ou de desenho feito na hora.
@@ -147,9 +147,11 @@ const gforms = (() => {
   }
 
   /* ---------- texto: medida e quebra ---------- */
-  const TIT = "font-family:'Sora',system-ui,sans-serif";
-  const LAB = "font-family:'Source Sans 3','Source Sans Pro',system-ui,sans-serif";
-  const MONO = "font-family:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace";
+  /* tipografia v4: Newsreader (títulos), Hanken Grotesk (texto), IBM Plex Mono (rótulos) */
+  const TIT = "font-family:'Newsreader',Georgia,'Times New Roman',serif;font-optical-sizing:auto";
+  const TITI = TIT + ";font-style:italic";
+  const LAB = "font-family:'Hanken Grotesk',Arial,Helvetica,system-ui,sans-serif";
+  const MONO = "font-family:'IBM Plex Mono','Courier New',ui-monospace,Menlo,monospace";
   const estilo = (fam, peso, tam, ls) => `${fam};font-weight:${peso};font-size:${f(tam)}px` + (ls ? `;letter-spacing:${f(ls)}px` : '');
   const T = (x, y, txt, fam, peso, tam, cor, anc, ls) => `<text x="${f(x)}" y="${f(y)}"${anc && anc !== 'start' ? ` text-anchor="${anc}"` : ''} fill="${cor}" style="${estilo(fam, peso, tam, ls)}">${esc(txt)}</text>`;
   const C = (cx, cy, r, fill, extra) => `<circle cx="${f(cx)}" cy="${f(cy)}" r="${f(r)}" fill="${fill}"${extra || ''}/>`;
@@ -177,7 +179,7 @@ const gforms = (() => {
         w = t.getComputedTextLength();
       }
     } catch (err) { w = 0; }
-    if (!w) w = txt.length * (fam === MONO ? 0.6 : 0.52) * tam + (ls || 0) * txt.length;
+    if (!w) w = txt.length * (fam === MONO ? 0.6 : (fam.indexOf('Newsreader') > 0 ? 0.47 : 0.53)) * tam + (ls || 0) * txt.length;
     cacheTxt.set(k, w);
     return w;
   }
@@ -273,13 +275,13 @@ const gforms = (() => {
         pos = `${lado};${alto};max-width:min(240px,44%)`;
       }
       a.style.cssText = `position:absolute;${pos};background:${c.escuro ? 'rgba(20,24,33,.94)' : 'rgba(255,255,255,.96)'};border:1px solid ${c.fio};border-left:3px solid ${FOCO};border-radius:10px;padding:10px 12px;` +
-        `font:400 13px/1.38 'Source Sans 3',system-ui,sans-serif;color:${c.texto};opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s;pointer-events:none`;
+        `font:400 13px/1.42 'Hanken Grotesk',Arial,system-ui,sans-serif;color:${c.texto};opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s;pointer-events:none`;
       const b = a.querySelector('b');
-      if (b) b.style.cssText = `display:block;font:500 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:${c.focoTxt};margin-bottom:3px`;
+      if (b) b.style.cssText = `display:block;font:500 11px/1.4 'IBM Plex Mono','Courier New',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:${c.focoTxt};margin-bottom:3px`;
       if (semMovimento()) a.style.transition = 'none';
     }
     if (st.leitura) {
-      st.leitura.style.cssText = `position:absolute;left:3%;${st.aviso && w < 380 ? 'top:3%' : 'bottom:4%'};display:grid;gap:2px;font:400 11.5px/1.4 'JetBrains Mono',ui-monospace,monospace;color:${c.apoio};pointer-events:none`;
+      st.leitura.style.cssText = `position:absolute;left:3%;${st.aviso && w < 380 ? 'top:3%' : 'bottom:4%'};display:grid;gap:2px;font:400 11.5px/1.4 'IBM Plex Mono','Courier New',ui-monospace,monospace;color:${c.apoio};pointer-events:none`;
       Array.prototype.forEach.call(st.leitura.querySelectorAll('b'), b => { b.style.fontWeight = '500'; if (!b.style.color) b.style.color = c.texto; });
     }
   }
@@ -488,7 +490,7 @@ const gforms = (() => {
     const tr = TRECHOS.map((t, i) => Object.assign({}, t, (o.trechos || [])[i] || {}));
     const atual = o.atual == null ? -1 : +o.atual, desc = o.descricao !== false;
     let s = '', h;
-    const titulo = (x, y, i, tam) => `<text x="${f(x)}" y="${f(y)}" fill="${c.texto}" style="${estilo(TIT, 600, tam, -tam * 0.02)}">GrowAI <tspan fill="${c.corTxt(ORDEM[i])}">${esc(tr[i].nome)}</tspan></text>`;
+    const titulo = (x, y, i, tam) => `<text x="${f(x)}" y="${f(y)}" fill="${c.texto}" style="${estilo(TIT, 500, tam, -tam * 0.015)}">GrowAI <tspan fill="${c.corTxt(ORDEM[i])}" style="font-style:italic">${esc(tr[i].nome)}</tspan></text>`;
     if (W >= 600) {
       const col = W / 3, yL = 46, gap = 6;
       for (let i = 0; i < 3; i++) {
@@ -503,7 +505,7 @@ const gforms = (() => {
         let y = yL + 34;
         s += T(tx, y, dois(i + 1) + ' · ' + tr[i].rotulo.toUpperCase(), MONO, 500, 12, c.corTxt(ORDEM[i]), 'start', 1.4);
         y += 30;
-        const tam = Math.min(22, Math.max(16, col / 15));
+        const tam = Math.min(26, Math.max(19, col / 13));
         s += titulo(tx, y, i, tam, 'start');
         if (desc && tr[i].texto) { y += 10; quebra(tr[i].texto, LAB, 400, 16, tw, 4).forEach(l => { y += 23; s += T(tx, y - 5, l, LAB, 400, 16, c.apoio, 'start'); }); }
         h = Math.max(h || 0, y + 8);
@@ -520,7 +522,7 @@ const gforms = (() => {
         if (i === atual) { s += T(tx, yy - 2, 'VOCÊ ESTÁ AQUI', MONO, 500, 11, c.focoTxt, 'start', 1.3); yy += 20; }
         s += T(tx, yy, dois(i + 1) + ' · ' + tr[i].rotulo.toUpperCase(), MONO, 500, 12, c.corTxt(ORDEM[i]), 'start', 1.4);
         yy += 28;
-        s += titulo(tx, yy, i, 20, 'start');
+        s += titulo(tx, yy, i, 23, 'start');
         if (desc && tr[i].texto) { yy += 6; quebra(tr[i].texto, LAB, 400, 16, tw, 4).forEach(l => { yy += 23; s += T(tx, yy - 5, l, LAB, 400, 16, c.apoio, 'start'); }); }
         y = yy + 26;
       }
@@ -576,9 +578,10 @@ const gforms = (() => {
     }
     if (o.centro !== false) {
       const txt = o.centro || 'Um gargalo por vez';
-      const ls = quebra(txt, TIT, 600, R < 110 ? 13 : 16, R * 1.15, 3);
-      const lh = (R < 110 ? 13 : 16) * 1.25;
-      ls.forEach((l, i) => { s += T(cx, cy - (ls.length - 1) * lh / 2 + i * lh + 5, l, TIT, 600, R < 110 ? 13 : 16, c.texto, 'middle'); });
+      const tc = R < 110 ? 15 : 19;
+      const ls = quebra(txt, TITI, 400, tc, R * 1.15, 3);
+      const lh = tc * 1.18;
+      ls.forEach((l, i) => { s += T(cx, cy - (ls.length - 1) * lh / 2 + i * lh + tc * 0.3, l, TITI, 400, tc, c.texto, 'middle'); });
     }
     const off = minY < 0 ? -minY : 0;
     return { w: W, h: maxY + off + 6, s: off ? `<g transform="translate(0 ${f(off)})">${s}</g>` : s };
