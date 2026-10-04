@@ -1,601 +1,748 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#F1F4F8">
-<title>Deck GrowAI — Template</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='%23FF6A1A'/%3E%3Ctext x='100' y='135' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='152' fill='%23FFFFFF'%3Eg%3C/text%3E%3C/svg%3E">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apresentação GrowAI</title>
+<meta name="description" content="Esqueleto de apresentação da GrowAI no sistema Radar de Foco v3: treze tipos de slide em 1440 × 900, com navegação por teclado, clique e toque, notas do apresentador e impressão em PDF.">
+<meta name="theme-color" content="#0B0D12">
+<link rel="icon" type="image/svg+xml" href="assets/growai-favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!--
+  APRESENTAÇÃO GROWAI · esqueleto de deck · sistema Radar de Foco v3
+
+  COMO USAR
+  1. Duplique este arquivo na mesma pasta de gviz.js, gforms.js e assets/ (caminhos
+     relativos). Cada slide é um palco de 1440 × 900 escalado para caber na janela.
+  2. A LINHA manda na cor de identificação: troque data-linha no <body> por
+     "educacao" (Framboesa), "strategy" (Cobalto) ou "agentes" (Verde Pulso). Muda a
+     faixa da capa, os rótulos, o nome da linha no fólio, a série dos gráficos e o
+     trecho atual do caminho. Sem data-linha, a peça é da marca-mãe (rótulos neutros).
+     O logo e o botão de ação NÃO mudam: são sempre os da marca-mãe.
+  3. Cada slide é <section class="slide TIPO campo-noite|campo-dia">. Tipos prontos:
+     capa, agenda, capitulo, afirmacao, numero, grafico, compara, caminho, ciclo,
+     citacao, proposta, passo, fim. Para um slide novo, copie o do mesmo tipo e
+     troque o texto, mantendo as classes (s-folio, s-rotulo, s-titulo, s-apoio, s-rodape).
+  4. Noite para impacto (capa, abertura de capítulo, encerramento); Dia para a leitura.
+  5. Notas do apresentador: <aside class="notas"> em cada slide. Tecla P abre o painel.
+  6. Gráficos: atributo data-gviz (gviz.js). Formas: data-gforms (gforms.js).
+
+  REGRAS DO SLIDE (Radar de Foco)
+  Título em frase curta que diz a conclusão. Uma linha de apoio; nenhum parágrafo
+  longo; um visual por slide. UM ponto laranja por slide (o foco) e UM botão de ação
+  por apresentação (no slide de próximo passo). Laranja nunca é enfeite de título.
+  Número de exemplo sempre marcado como exemplo; número real sempre com fonte e data.
+  Preço nunca inventado: "R$ [valor]" até a proposta fechar. Sem pessoas, banco de
+  imagem ou rosto gerado por IA. Palavras fora: solução, implementação, transformação
+  digital, 10x, garantido, robô/bot (é "agente"). O nome é sempre GrowAI.
+
+  NAVEGAÇÃO
+  Setas, PageUp, PageDown, espaço, Home e End. Clique: terço esquerdo volta, o resto
+  avança. Toque: deslize para os lados. P: notas. F: tela cheia. O número do slide fica
+  no endereço (#3 abre o terceiro). No celular os slides empilham e a página rola.
+  PDF: Cmd+P no Chrome, Paisagem, margens Nenhuma, gráficos de segundo plano ligados
+  (uma página de 1440 × 900 por slide; o radar e as animações saem parados).
+-->
+<script>document.documentElement.classList.add('js');</script>
 <style>
-  /* ═══ DECK GROWAI v1 · Liquid Glass — tokens do design system v6 ═══ */
-  html { color-scheme: light; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
-  :root{
-    --bg:#F1F4F8; --ink:#0C0F14; --ink-2:#3A4150; --muted:#5B6472; --faint:#67717F; --line:#E7EAF0;
-    --accent:#FF6A1A; --accent-2:#FF9A3D; --accent-deep:#C8470C; --accent-ink:#B33E0A;
-    --glass:rgba(255,255,255,.66); --glass-line:rgba(255,255,255,.78); --r:18px;
-    --shadow:0 1px 2px rgba(12,15,20,.04), 0 18px 50px rgba(12,15,20,.10);
-    --display:'Satoshi','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:var(--sans); background:var(--ink); -webkit-font-smoothing:antialiased; }
-  .slide { height:100vh; scroll-snap-align:start; overflow:hidden; position:relative; }
-  .nav { position:fixed; right:20px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:9px; z-index:10; mix-blend-mode:difference; }
-  .nav a { width:7px; height:7px; border-radius:50%; background:#888; display:block; }
-  .nav a:hover { background:var(--accent); }
+:root{
+  --noite:#0B0D12; --noite-sup:#141821; --noite-fio:#232936; --noite-texto:#EEF1F5; --noite-apoio:#9AA3B2;
+  --dia:#FFFFFF; --dia-sup:#F6F7F8; --dia-fio:#E4E7EB; --dia-texto:#0C0F14; --dia-apoio:#4A525E;
+  --foco:#FF6A1A; --foco-txt:#B33E0A; --foco-noite:#FF8A4C; --botao-txt:#170A02;
+  --titulo:'Sora',system-ui,sans-serif; --texto:'Source Sans 3',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  /* cor de identificação (padrão: marca-mãe, neutra) */
+  --linha:#4A525E; --linha-txt:#4A525E; --linha-noite:#9AA3B2; --linha-claro:#F6F7F8; --linha-nome:'';
+  --s-margem:96px; --gut:16px;
+}
+body[data-linha="educacao"]{ --linha:#D63A7A; --linha-txt:#A82259; --linha-noite:#FF8DB8; --linha-claro:#FCEAF2; }
+body[data-linha="strategy"]{ --linha:#2F5BEA; --linha-txt:#1E3FB8; --linha-noite:#8FA8FF; --linha-claro:#EAF0FF; }
+body[data-linha="agentes"]{ --linha:#12A877; --linha-txt:#0B7A56; --linha-noite:#3DDC9F; --linha-claro:#E5F7EF; }
 
-  /* superfícies */
-  .paper { background:var(--bg); color:var(--ink); }
-  .paper::before { content:""; position:absolute; inset:0; pointer-events:none;
-    background: radial-gradient(44% 36% at 84% -4%, rgba(255,106,26,.12), transparent 72%),
-                radial-gradient(38% 34% at 6% 104%, rgba(255,154,61,.09), transparent 72%); }
-  .dark { background:linear-gradient(160deg,#141923,#0C0F14); color:#D7D9E3; }
-  .dark::before { content:""; position:absolute; inset:0; pointer-events:none;
-    background: radial-gradient(52% 60% at 82% 18%, rgba(255,106,26,.22), transparent 62%),
-                radial-gradient(40% 44% at 10% 96%, rgba(230,60,10,.10), transparent 70%); }
-  .slide > * { position:relative; z-index:1; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{ background:var(--noite); color:var(--dia-texto); font-family:var(--texto); font-size:18px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+img{ max-width:100%; }
+h1,h2,h3,p,ol,ul,blockquote,figure,dl,dd{ margin:0; }
+ol,ul{ padding:0; list-style:none; }
 
-  .mid { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 7vw; text-align:center; }
-  .split { display:grid; grid-template-columns:1fr 1.1fr; align-items:center; gap:4.5vw; padding:0 7vw; }
+/* ---------- campos ---------- */
+.slide{ position:relative; overflow:hidden; }
+.campo-noite{ background:var(--noite); color:var(--noite-texto); --f-texto:var(--noite-texto); --f-apoio:var(--noite-apoio); --f-fio:var(--noite-fio); --f-sup:var(--noite-sup); --f-linha:var(--linha-noite); --f-foco-txt:var(--foco-noite); color-scheme:dark; }
+.campo-dia{ background:var(--dia); color:var(--dia-texto); --f-texto:var(--dia-texto); --f-apoio:var(--dia-apoio); --f-fio:var(--dia-fio); --f-sup:var(--dia-sup); --f-linha:var(--linha-txt); --f-foco-txt:var(--foco-txt); color-scheme:light; }
 
-  /* tipografia do deck */
-  h2.sec { font-family:var(--display); font-weight:600; font-size:clamp(36px,5vw,72px); letter-spacing:-0.04em; line-height:1.04; }
-  .hl { background:linear-gradient(120deg,#EF6008,#E4560A 55%,#C8470C); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .dark .hl { background:linear-gradient(120deg,#FF9A3D,#FF6A1A 52%,#E63C0A); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .dark h2.sec { color:#FFF; text-shadow:0 2px 30px rgba(255,106,26,.25); }
-  .kick { font-size:12.5px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted); }
-  .sup { font-size:clamp(15px,1.5vw,18px); color:var(--muted); line-height:1.55; margin-top:2.4vh; max-width:56ch; }
-  .dark .sup { color:#9EA3B2; }
+/* ---------- componentes do slide ---------- */
+.s-folio{ display:flex; justify-content:space-between; align-items:center; gap:24px; font:500 13px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-apoio); }
+.s-folio .linha-id{ display:inline-flex; align-items:center; gap:12px; color:var(--f-texto); }
+.s-folio .linha-id::before{ content:""; width:28px; height:3px; border-radius:2px; background:var(--linha); }
+.campo-noite .s-folio .linha-id::before{ background:var(--linha-noite); }
+.s-rotulo{ font:500 14px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-linha); }
+.s-titulo{ font:600 60px/1.06 var(--titulo); letter-spacing:-.03em; text-wrap:balance; color:var(--f-texto); }
+.s-apoio{ font:400 24px/1.5 var(--texto); color:var(--f-apoio); max-width:40em; }
+.s-pequeno{ font:400 16px/1.5 var(--texto); color:var(--f-apoio); }
+.s-exemplo{ display:inline-block; font:500 12px/1.4 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--f-apoio); border:1px solid var(--f-fio); border-radius:6px; padding:4px 8px; }
+.s-rodape{ display:flex; justify-content:space-between; align-items:center; gap:24px; font:400 14px/1.4 var(--texto); color:var(--f-apoio); }
+.s-num{ font:500 13px/1 var(--mono); letter-spacing:.14em; color:var(--f-apoio); }
+.s-marca{ display:block; height:auto; }
+.ic{ width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+aside.notas{ display:none; }
 
-  /* lockup GrowAI (canônico) */
-  .logo-wrap { display:flex; align-items:center; gap:12px; margin-bottom:28px; justify-content:center; }
-  .logo-mark { height:44px; width:44px; flex-shrink:0; border-radius:50%; box-shadow:0 6px 18px rgba(255,106,26,.32); }
-  .logo-word { font-family:var(--display); font-weight:700; font-size:24px; letter-spacing:-0.025em; color:var(--ink); }
-  .dark .logo-word { color:#FFF; }
+/* capa */
+.capa-faixa{ position:absolute; left:0; top:0; bottom:0; width:8px; background:var(--linha-noite); }
+body:not([data-linha]) .capa-faixa{ background:var(--noite-fio); }
+.capa .s-marca{ width:236px; }
+.capa-titulo{ font:600 84px/1.02 var(--titulo); letter-spacing:-.035em; color:var(--noite-texto); text-wrap:balance; }
+.capa .s-apoio{ font-size:26px; color:var(--noite-texto); opacity:.82; }
+.capa-meta{ display:flex; gap:40px; font:500 13px/1.5 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--noite-apoio); }
+.capa-meta b{ display:block; font-weight:500; color:var(--noite-texto); }
 
-  /* capa */
-  .cov h1 { font-family:var(--display); font-weight:600; font-size:clamp(48px,6.6vw,108px); letter-spacing:-0.045em; line-height:1.02; }
-  .cov .sub { margin-top:3vh; }
+/* agenda */
+.agenda-lista{ display:grid; gap:0; counter-reset:item; }
+.agenda-lista li{ display:grid; grid-template-columns:96px minmax(0,1fr) auto; align-items:baseline; gap:24px; padding:22px 0; border-top:1px solid var(--f-fio); }
+.agenda-lista li:last-child{ border-bottom:1px solid var(--f-fio); }
+.agenda-lista .n{ font:500 20px/1 var(--mono); color:var(--f-linha); }
+.agenda-lista .t{ font:600 32px/1.2 var(--titulo); letter-spacing:-.02em; }
+.agenda-lista .d{ font:400 18px/1.4 var(--texto); color:var(--f-apoio); text-align:right; }
 
-  /* stats gigantes */
-  .stats { display:flex; gap:0; margin-top:5vh; padding:4.4vh 3.4vw; border-radius:22px;
-    background:var(--glass); -webkit-backdrop-filter:blur(22px) saturate(155%); backdrop-filter:blur(22px) saturate(155%);
-    border:1px solid var(--glass-line); box-shadow:var(--shadow); }
-  .stat { padding:0 3vw; display:flex; flex-direction:column; align-items:center; }
-  .stat + .stat { border-left:1px solid var(--line); }
-  .stat .n { font-family:var(--display); font-weight:700; font-size:clamp(48px,6.6vw,100px); letter-spacing:-0.05em; line-height:.98; color:var(--ink); font-variant-numeric:tabular-nums; }
-  .stat .n.hot { background:linear-gradient(120deg,#EF6008,#E4560A 55%,#C8470C); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .stat .t { font-size:clamp(13px,1.3vw,16px); color:var(--muted); margin-top:1.8vh; line-height:1.45; max-width:22ch; }
+/* capítulo */
+.cap-num{ font:500 220px/.9 var(--mono); letter-spacing:-.04em; color:var(--linha-noite); }
+body:not([data-linha]) .cap-num{ color:var(--noite-texto); }
+.cap-titulo{ font:600 72px/1.04 var(--titulo); letter-spacing:-.035em; text-wrap:balance; }
 
-  /* painel de gráfico */
-  .chart-hero { width:min(860px,88vw); margin-top:4vh; padding:3.4vh 2.8vw; border-radius:22px;
-    background:var(--glass); -webkit-backdrop-filter:blur(22px) saturate(155%); backdrop-filter:blur(22px) saturate(155%);
-    border:1px solid var(--glass-line); box-shadow:var(--shadow); }
-  .dark .chart-hero { background:rgba(255,255,255,.045); border-color:rgba(255,255,255,.09); box-shadow:0 30px 80px rgba(12,15,20,.30); }
-  .chart-title { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:14px; text-align:left; }
-  .dark .chart-title { color:#9EA3B2; }
+/* afirmação */
+.frase{ font:600 72px/1.08 var(--titulo); letter-spacing:-.035em; text-wrap:balance; }
+.frase .apoio-cor{ color:var(--f-apoio); }
 
-  /* stat-list (beat dark) */
-  .fnums { display:flex; flex-direction:column; gap:2.8vh; margin-top:3.8vh; text-align:left; }
-  .fnum { display:grid; grid-template-columns:180px 1fr; gap:18px; align-items:baseline; }
-  .fnum .v { font-family:var(--display); font-weight:700; font-size:clamp(24px,2.5vw,36px); letter-spacing:-0.04em; color:#FFB37A; font-variant-numeric:tabular-nums; }
-  .fnum .d { font-size:clamp(13.5px,1.3vw,16px); color:#B7BBC6; line-height:1.5; }
+/* número grande */
+.numero-grande{ display:flex; align-items:flex-start; gap:18px; font:500 260px/.86 var(--mono); letter-spacing:-.05em; color:var(--f-texto); }
+.ponto-foco{ flex:none; width:28px; height:28px; border-radius:50%; background:var(--foco); box-shadow:0 0 0 12px rgba(255,106,26,.18); margin-top:.12em; }
+.numero-desc{ font:600 36px/1.2 var(--titulo); letter-spacing:-.02em; text-wrap:balance; }
 
-  /* cards (vendedoras) */
-  .cards { display:flex; flex-direction:column; gap:16px; text-align:left; }
-  .gcard { display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center; padding:22px 26px; border-radius:var(--r);
-    background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%);
-    border:1px solid var(--glass-line); box-shadow:var(--shadow); }
-  .gcard.popular { border:1.5px solid var(--accent); box-shadow:0 1px 2px rgba(12,15,20,.04), 0 14px 40px rgba(255,106,26,.16); position:relative; }
-  .gcard.popular::before { content:"LÍDER"; position:absolute; top:-11px; left:22px; background:var(--accent-deep); color:#FFF; font-size:10.5px; font-weight:600; letter-spacing:0.07em; padding:4px 12px; border-radius:8px; box-shadow:0 4px 14px rgba(200,71,12,.38); }
-  .gcard .t { font-family:var(--display); font-weight:600; font-size:clamp(15px,1.5vw,19px); letter-spacing:-0.02em; color:var(--ink); }
-  .gcard .s { font-size:13.5px; font-weight:500; color:var(--muted); margin-top:5px; }
-  .gcard.popular .s { color:var(--accent-ink); font-weight:600; }
-  .gcard .big { font-family:var(--display); font-weight:700; font-size:clamp(22px,2.3vw,32px); letter-spacing:-0.04em; color:var(--ink-2); font-variant-numeric:tabular-nums; }
-  .gcard.popular .big { background:linear-gradient(120deg,#EF6008,#E4560A 55%,#C8470C); -webkit-background-clip:text; background-clip:text; color:transparent; }
+/* gráfico */
+.grafico-lado{ border-left:3px solid var(--linha); padding-left:24px; display:grid; gap:12px; }
+body:not([data-linha]) .grafico-lado{ border-left-color:var(--dia-fio); }
 
-  /* regras (o que fazer) */
-  .rules { display:grid; grid-template-columns:1fr 1fr; gap:3.4vh 4vw; margin-top:4.5vh; text-align:left; width:min(1120px,90vw); }
-  .rule { border-top:1px solid var(--line); padding-top:1.8vh; }
-  .rule .n { font-family:var(--display); font-weight:700; font-size:clamp(18px,1.8vw,24px); letter-spacing:-0.03em; background:linear-gradient(120deg,#EF6008,#E4560A 62%,#C8470C); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .rule .t { font-family:var(--display); font-weight:600; font-size:clamp(16px,1.7vw,21px); letter-spacing:-0.02em; color:var(--ink); margin-top:4px; }
-  .rule .d { font-size:clamp(13.5px,1.35vw,16px); color:var(--muted); margin-top:6px; line-height:1.55; }
+/* comparação */
+.compara-grade{ display:grid; grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr); align-items:stretch; }
+.compara-lado{ border:1px solid var(--f-fio); border-radius:16px; padding:32px 36px; display:grid; align-content:start; gap:18px; }
+.compara-com{ background:var(--f-sup); border-color:transparent; }
+.compara-t{ font:600 32px/1.15 var(--titulo); letter-spacing:-.02em; }
+.compara-lista{ display:grid; gap:4px; }
+.compara-lista li{ display:grid; grid-template-columns:24px minmax(0,1fr); gap:14px; align-items:start; padding:10px 0; font:400 21px/1.4 var(--texto); border-top:1px solid var(--f-fio); }
+.compara-sem .compara-lista li{ color:var(--f-apoio); }
+.compara-lista .ic{ margin-top:3px; }
+.compara-sem .ic{ color:var(--f-apoio); }
+.compara-com .ic{ color:var(--linha-txt); }
+body:not([data-linha]) .compara-com .ic{ color:var(--dia-texto); }
+.compara-seta{ display:flex; align-items:center; justify-content:center; color:var(--f-apoio); }
 
-  /* aura de crescimento — assinatura da capa e do encerramento */
-  .gaura { position:absolute; left:0; right:0; bottom:0; z-index:0; pointer-events:none; }
+/* citação */
+.citacao blockquote p{ font:600 80px/1.06 var(--titulo); letter-spacing:-.035em; text-wrap:balance; }
+.citacao blockquote p::before{ content:"“"; display:block; font:500 120px/.6 var(--titulo); color:var(--f-linha); margin-bottom:24px; }
+.citacao figcaption{ margin-top:36px; font:500 14px/1.5 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-apoio); }
+.citacao figcaption b{ color:var(--f-texto); font-weight:500; }
 
-  @media (max-width:820px) {
-    html { scroll-snap-type:none; }
-    .slide { height:auto; min-height:100vh; padding-top:9vh; padding-bottom:9vh; }
-    .split { grid-template-columns:1fr; gap:4vh; padding:0 8vw; text-align:center; }
-    .split .fnums, .split .cards { text-align:left; }
-    .stats { flex-direction:column; padding:3vh 8vw; }
-    .stat { padding:2vh 0; }
-    .stat + .stat { border-left:none; border-top:1px solid var(--line); }
-    .rules { grid-template-columns:1fr; }
-    .nav { display:none; }
-  }
+/* ciclo */
+.ciclo-lista{ display:grid; gap:0; }
+.ciclo-lista li{ display:grid; grid-template-columns:56px minmax(0,1fr); gap:16px; padding:14px 0; border-top:1px solid var(--f-fio); }
+.ciclo-lista .n{ font:500 15px/1.6 var(--mono); color:var(--f-apoio); }
+.ciclo-lista b{ font:600 21px/1.3 var(--titulo); letter-spacing:-.01em; display:block; }
+.ciclo-lista span{ font:400 17px/1.45 var(--texto); color:var(--f-apoio); }
+.ciclo-lista li.foco .n{ color:var(--foco-txt); }
 
-  @media print {
-    html { scroll-snap-type:none !important; }
-    .nav { display:none !important; }
-    .slide { height:900px !important; min-height:900px !important; break-after:page; page-break-after:always; }
-    .slide:last-of-type { break-after:auto; page-break-after:auto; }
-    /* gradiente de texto vaza um fio de box no PDF do Chromium → sólido no print */
-    .hl, .stat .n.hot, .rule .n, .gcard.popular .big {
-      background:none !important; -webkit-background-clip:initial !important; background-clip:initial !important;
-      color:#DF5406 !important; -webkit-text-fill-color:#DF5406 !important;
-    }
-    .dark .hl { color:#FF8A3D !important; -webkit-text-fill-color:#FF8A3D !important; }
+/* proposta */
+.proposta-grade{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) 380px; gap:24px; }
+.proposta-col{ border-top:3px solid var(--linha); padding-top:22px; display:grid; align-content:start; gap:14px; }
+body:not([data-linha]) .proposta-col{ border-top-color:var(--dia-texto); }
+.proposta-col h3{ font:500 13px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--f-linha); }
+.proposta-col li{ font:400 20px/1.45 var(--texto); padding:8px 0; border-bottom:1px solid var(--f-fio); }
+.proposta-inv{ background:var(--f-sup); border-radius:16px; padding:28px; border-top:0; }
+.proposta-valor{ font:500 52px/1.1 var(--mono); letter-spacing:-.03em; }
+.proposta-inv dl{ display:grid; gap:10px; }
+.proposta-inv dt{ font:500 12px/1.4 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--f-apoio); }
+.proposta-inv dd{ font:400 19px/1.4 var(--texto); }
 
-  }
+/* próximo passo */
+.passo-lista{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; counter-reset:p; }
+.passo-lista li{ border-top:1px solid var(--f-fio); padding-top:18px; display:grid; gap:8px; }
+.passo-lista .n{ font:500 14px/1 var(--mono); letter-spacing:.12em; color:var(--f-linha); }
+.passo-lista b{ font:600 24px/1.25 var(--titulo); letter-spacing:-.015em; }
+.passo-lista span{ font:400 18px/1.45 var(--texto); color:var(--f-apoio); }
+.botao{ display:inline-flex; align-items:center; gap:12px; background:var(--foco); color:var(--botao-txt); font:600 24px/1 var(--titulo); letter-spacing:-.01em; padding:24px 34px; border-radius:14px; text-decoration:none; }
+.botao:focus-visible{ outline:3px solid var(--dia-texto); outline-offset:4px; }
+.botao .ic{ width:26px; height:26px; stroke-width:2; }
+.botao-nota{ font:400 17px/1.4 var(--texto); color:var(--f-apoio); }
+
+/* encerramento */
+.fim .s-marca{ width:420px; }
+.fim-frase{ font:600 56px/1.1 var(--titulo); letter-spacing:-.03em; text-wrap:balance; }
+.fim-contato{ display:flex; gap:48px; font:500 15px/1.5 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--noite-apoio); }
+.fim-contato b{ display:block; color:var(--noite-texto); font-weight:500; }
+
+/* ---------- posição no palco de 1440 × 900 (tela maior que 640 × 500, e impressão) ----------
+   Margem 96. Fólio em y 44; conteúdo entre y 132 e y 796; rodapé em y 820–856. */
+@media print, screen and (min-width:641px) and (min-height:501px){
+  .slide{ width:1440px; height:900px; }
+  .s-folio{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:44px; }
+  .s-rodape{ position:absolute; left:var(--s-margem); right:220px; bottom:44px; min-height:20px; }
+  .s-cab{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:140px; display:grid; gap:18px; }
+  .slide > .s-num{ position:absolute; right:var(--s-margem); bottom:44px; line-height:20px; }
+
+  .capa-texto{ position:absolute; left:var(--s-margem); top:96px; bottom:96px; width:700px; display:flex; flex-direction:column; }
+  .capa-titulos{ margin-top:auto; display:grid; gap:24px; }
+  .capa-meta{ margin-top:48px; }
+  .capa-radar{ position:absolute; right:40px; top:50%; width:640px; transform:translateY(-50%); }
+
+  .agenda-lista{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:300px; }
+
+  .cap-num{ position:absolute; left:var(--s-margem); bottom:110px; }
+  .cap-texto{ position:absolute; left:640px; right:var(--s-margem); bottom:150px; display:grid; gap:22px; }
+  .cap-aneis{ position:absolute; right:-140px; top:-140px; width:620px; opacity:.9; }
+
+  .afirmacao-miolo{ position:absolute; left:var(--s-margem); top:190px; width:1080px; display:grid; gap:36px; }
+  .afirmacao-grade{ position:absolute; left:0; right:0; bottom:0; height:260px; }
+
+  .numero-miolo{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:170px; bottom:120px; display:grid; grid-template-columns:780px minmax(0,1fr); gap:48px; align-items:center; }
+  .numero-lado{ display:grid; gap:22px; }
+
+  .grafico-corpo{ position:absolute; left:var(--s-margem); top:340px; width:860px; }
+  .grafico-lado{ position:absolute; left:1030px; right:var(--s-margem); top:360px; }
+
+  .compara-grade{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:300px; }
+
+  /* formas com texto: desenhadas mais estreitas e ampliadas (zoom), para ler a distância */
+  .caminho-corpo{ position:absolute; left:68.57px; top:257px; width:892px; zoom:1.4; }  /* left e top já divididos pelo zoom: 96 e 360 no palco */
+
+  .ciclo-forma{ position:absolute; left:51.2px; top:120px; width:560px; zoom:1.25; }  /* 64 e 150 no palco */
+  .ciclo-texto{ position:absolute; left:820px; right:var(--s-margem); top:140px; display:grid; gap:20px; }
+
+  .citacao-miolo{ position:absolute; left:var(--s-margem); right:280px; top:50%; transform:translateY(-50%); }
+
+  .proposta-grade{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:330px; }
+
+  .passo-lista{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:340px; }
+  .passo-acao{ position:absolute; left:var(--s-margem); right:var(--s-margem); bottom:150px; display:flex; align-items:center; gap:32px; }
+
+  .fim-miolo{ position:absolute; left:var(--s-margem); right:var(--s-margem); top:150px; display:grid; gap:44px; }
+  .fim-contato{ position:absolute; left:var(--s-margem); bottom:100px; }
+  .fim-aneis{ position:absolute; right:-180px; bottom:-200px; width:720px; }
+}
+
+/* ---------- interface: progresso, contador, painel de notas ---------- */
+.progresso,.contador,.painel-notas{ display:none; }
+
+/* ---------- modo palco (tela maior que 640 × 500, com JavaScript) ---------- */
+@media screen and (min-width:641px) and (min-height:501px){
+  html.js,html.js body{ height:100%; }
+  html.js body{ background:#05060A; }
+  html.js .palco-deck{ position:fixed; inset:0; overflow:hidden; }
+  html.js.com-notas .palco-deck{ right:380px; }
+  html.js .deck{ position:absolute; left:50%; top:50%; width:1440px; height:900px; transform:translate(-50%,-50%) scale(var(--k,1)); transform-origin:50% 50%; }
+  html.js .slide{ position:absolute; inset:0; opacity:0; visibility:hidden; transition:opacity .25s ease,visibility 0s linear .25s; }
+  html.js .slide.ativo{ opacity:1; visibility:visible; transition:opacity .25s ease; }
+  html.js .s-num{ visibility:hidden; }
+  html.js .progresso{ display:block; position:absolute; left:0; top:0; right:0; height:3px; z-index:5; pointer-events:none; }
+  html.js .progresso span{ display:block; height:100%; width:100%; background:var(--linha-noite); transform-origin:0 50%; transform:scaleX(var(--p,.1)); transition:transform .25s ease; }
+  html.js .deck[data-campo="dia"] .progresso span{ background:var(--linha); }
+  html.js body:not([data-linha]) .progresso span{ background:var(--noite-apoio); }
+  html.js .contador{ display:flex; gap:.5em; position:absolute; right:var(--s-margem); bottom:44px; z-index:5; pointer-events:none; font:500 13px/20px var(--mono); letter-spacing:.14em; color:var(--noite-apoio); font-variant-numeric:tabular-nums; }
+  html.js .contador b{ font-weight:500; color:var(--noite-texto); }
+  html.js .deck[data-campo="dia"] .contador{ color:var(--dia-apoio); }
+  html.js .deck[data-campo="dia"] .contador b{ color:var(--dia-texto); }
+  html.js .painel-notas{ display:flex; flex-direction:column; position:fixed; top:0; right:0; bottom:0; width:380px; z-index:10; background:var(--noite-sup); color:var(--noite-texto); border-left:1px solid var(--noite-fio); padding:32px 28px 28px; transform:translateX(100%); visibility:hidden; }
+  html.js.com-notas .painel-notas{ transform:none; visibility:visible; }
+}
+@media screen and (min-width:641px) and (min-height:501px) and (prefers-reduced-motion:reduce){
+  html.js .slide,html.js .slide.ativo,html.js .progresso span{ transition:none; }
+}
+.painel-rotulo{ font:500 12px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--noite-apoio); }
+.painel-cab{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding-bottom:18px; border-bottom:1px solid var(--noite-fio); }
+.painel-num{ font:500 28px/1 var(--mono); color:var(--noite-texto); }
+.painel-num span{ color:var(--noite-apoio); font-size:16px; }
+.painel-tit{ margin-top:22px; font:600 22px/1.25 var(--titulo); letter-spacing:-.01em; }
+.painel-txt{ margin-top:16px; flex:1 1 auto; overflow:auto; font-size:16px; line-height:1.65; color:#C9CFD8; }
+.painel-txt p + p{ margin-top:12px; }
+.painel-prox{ margin-top:16px; padding-top:16px; border-top:1px solid var(--noite-fio); font-size:14px; line-height:1.5; color:var(--noite-apoio); }
+.painel-prox b{ color:var(--noite-texto); font-weight:600; }
+.painel-teclas{ margin-top:12px; font-size:13px; line-height:1.7; color:var(--noite-apoio); }
+.painel-teclas kbd{ display:inline-block; min-width:1.9em; padding:0 .45em; border:1px solid var(--noite-fio); border-bottom-width:2px; border-radius:4px; font:500 12px/1.6 var(--mono); color:var(--noite-texto); text-align:center; }
+
+/* ---------- celular (até 640 px, ou deitado com até 500 de altura): slides empilhados ---------- */
+@media screen and (max-width:640px), screen and (max-height:500px){
+  :root{ --gut:16px; }
+  body{ font-size:17px; }
+  .progresso,.contador,.painel-notas{ display:none!important; }
+  .slide{ display:flex; flex-direction:column; gap:0; padding:28px var(--gut) 36px; }
+  .slide + .slide{ border-top:1px solid var(--noite-fio); }
+  .s-folio{ order:0; margin-bottom:32px; font-size:11px; flex-wrap:wrap; gap:6px 16px; }
+  .s-folio > span:last-child{ display:none; }
+  .s-rodape{ order:30; margin-top:32px; padding-top:14px; border-top:1px solid var(--f-fio); font-size:13px; flex-wrap:wrap; gap:6px 16px; }
+  .s-cab{ display:grid; gap:12px; }
+  .s-rotulo{ font-size:12px; }
+  .s-titulo{ font-size:32px; line-height:1.1; }
+  .s-apoio{ font-size:18px; }
+  .s-pequeno{ font-size:15px; }
+  .slide > .s-num{ order:40; margin-top:28px; }
+  .ciclo-texto{ order:1; }
+  .ciclo-forma{ order:2; }
+
+  .capa{ min-height:auto; padding-left:calc(var(--gut) + 8px); }
+  .capa-faixa{ width:6px; }
+  .capa .s-marca{ width:164px; }
+  .capa-texto{ display:grid; gap:28px; }
+  .capa-titulo{ font-size:44px; }
+  .capa .s-apoio{ font-size:19px; }
+  .capa-titulos{ display:grid; gap:14px; }
+  .capa-meta{ flex-direction:column; gap:12px; font-size:11px; margin-top:4px; }
+  .capa-radar{ margin-top:28px; width:100%; }
+
+  .agenda-lista{ margin-top:24px; }
+  .agenda-lista li{ grid-template-columns:44px minmax(0,1fr); gap:8px 12px; padding:16px 0; }
+  .agenda-lista .n{ font-size:15px; }
+  .agenda-lista .t{ font-size:21px; }
+  .agenda-lista .d{ grid-column:2; text-align:left; font-size:15px; }
+
+  .capitulo{ padding-top:28px; }
+  .cap-aneis{ display:none; }
+  .cap-num{ font-size:120px; order:2; }
+  .cap-texto{ order:3; display:grid; gap:14px; margin-top:16px; }
+  .cap-titulo{ font-size:38px; }
+
+  .frase{ font-size:34px; }
+  .afirmacao-miolo{ display:grid; gap:20px; }
+  .afirmacao-grade{ margin:28px calc(var(--gut) * -1) -36px; height:140px; }
+
+  .numero-miolo{ display:grid; gap:20px; }
+  .numero-grande{ font-size:clamp(104px,34vw,150px); gap:10px; }
+  .ponto-foco{ width:16px; height:16px; box-shadow:0 0 0 7px rgba(255,106,26,.18); }
+  .numero-lado{ display:grid; gap:14px; }
+  .numero-desc{ font-size:24px; }
+
+  .grafico-corpo{ margin-top:24px; }
+  .grafico-lado{ margin-top:24px; }
+
+  .compara-grade{ grid-template-columns:minmax(0,1fr); margin-top:24px; gap:0; }
+  .compara-lado{ padding:22px 18px; }
+  .compara-t{ font-size:24px; }
+  .compara-lista li{ font-size:17px; grid-template-columns:20px minmax(0,1fr); gap:12px; }
+  .compara-lista .ic{ width:20px; height:20px; }
+  .compara-seta{ height:52px; }
+  .compara-seta .ic{ transform:rotate(90deg); }
+
+  .caminho-corpo{ margin-top:28px; }
+
+  .ciclo-forma{ margin-top:20px; }
+  .ciclo-texto{ display:grid; gap:14px; margin-top:20px; }
+  .ciclo-lista b{ font-size:18px; }
+  .ciclo-lista span{ font-size:15px; }
+
+  .citacao blockquote p{ font-size:38px; }
+  .citacao blockquote p::before{ font-size:80px; margin-bottom:12px; }
+  .citacao figcaption{ font-size:11px; margin-top:20px; }
+
+  .proposta-grade{ grid-template-columns:minmax(0,1fr); margin-top:24px; gap:28px; }
+  .proposta-col li{ font-size:17px; }
+  .proposta-valor{ font-size:36px; }
+  .proposta-inv{ padding:20px; }
+
+  .passo-lista{ grid-template-columns:minmax(0,1fr); margin-top:24px; gap:18px; }
+  .passo-lista b{ font-size:20px; }
+  .passo-lista span{ font-size:16px; }
+  .passo-acao{ margin-top:28px; display:grid; gap:12px; }
+  .botao{ font-size:18px; padding:18px 20px; width:100%; justify-content:center; text-align:center; white-space:normal; }
+
+  .fim .s-marca{ width:220px; }
+  .fim-miolo{ display:grid; gap:24px; }
+  .fim-frase{ font-size:32px; }
+  .fim-contato{ flex-direction:column; gap:12px; margin-top:28px; font-size:12px; }
+  .fim-aneis{ display:none; }
+}
+
+/* ---------- impressão e PDF: 1440 × 900, um slide por página ---------- */
+@page{ size:1440px 900px; margin:0; }
+@media print{
+  html,body{ background:var(--noite); margin:0; padding:0; }
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .palco-deck,.deck{ position:static; transform:none; width:auto; height:auto; }
+  .slide{ position:relative; width:1440px; height:900px; opacity:1!important; visibility:visible!important; break-after:page; page-break-after:always; break-inside:avoid; }
+  .deck > section.slide:last-of-type{ break-after:auto; page-break-after:auto; }
+  .progresso,.contador,.painel-notas,aside.notas{ display:none!important; }
+  .s-num{ visibility:visible; }
+  *,*::before,*::after{ transition:none!important; animation:none!important; }
+}
 </style>
 </head>
-<body>
+<body data-linha="strategy">
+<div class="palco-deck" id="palco">
+<main class="deck" id="deck" aria-roledescription="apresentação" aria-label="GrowAI: Diagnóstico do Gargalo">
+  <div class="progresso" aria-hidden="true"><span></span></div>
 
-<nav class="nav"><a href="#s1"></a><a href="#s2"></a><a href="#s3"></a><a href="#s4"></a><a href="#s5"></a><a href="#s6"></a><a href="#s7"></a><a href="#s8"></a><a href="#s9"></a><a href="#s10"></a></nav>
-
-<!-- S1 · CAPA -->
-<section class="slide paper mid cov" id="s1">
-<div class="logo-wrap reveal" data-brand="growai">
-  <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="GrowAI">
-    <defs>
-      <linearGradient id="growaiG" x1="12%" y1="6%" x2="88%" y2="96%">
-        <stop offset="0%" stop-color="#FF9A3D"/>
-        <stop offset="52%" stop-color="#FF6A1A"/>
-        <stop offset="100%" stop-color="#E63C0A"/>
-      </linearGradient>
-    </defs>
-    <circle cx="100" cy="100" r="100" fill="url(#growaiG)"/>
-    <text x="100" y="135" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="152" fill="#FFFFFF">g</text>
-  </svg>
-  <span class="logo-word">GrowAI</span>
-</div>
-  <h1>Nome da Oferta<br><span class="hl">Tema</span></h1>
-  <div class="kick sub">período · ano</div>
-  <div class="gaura"><div id="auraCapa"></div></div>
-</section>
-
-<!-- S2 · STATS -->
-<section class="slide paper mid" id="s2">
-  <h2 class="sec">O período em <span class="hl">três números</span></h2>
-  <div class="stats">
-    <div class="stat"><div class="n">R$ 000<span style="font-size:.45em"> mil</span></div><div class="t">métrica principal</div></div>
-    <div class="stat"><div class="n">000</div><div class="t">segunda métrica</div></div>
-    <div class="stat"><div class="n hot">0,0%</div><div class="t">a métrica-destaque</div></div>
-  </div>
-</section>
-
-<!-- S3 · RECEITA MENSAL -->
-<section class="slide paper mid" id="s3">
-  <h2 class="sec">O período do <span class="hl">pico</span></h2>
-  <div class="chart-hero">
-    <div class="chart-title">Métrica por período</div>
-    <div id="gvMeses"></div>
-  </div>
-  <div class="sup">Uma linha de apoio: o que o gráfico prova, dito em uma frase (inclua ali qualquer ressalva de dado).</div>
-</section>
-
-<!-- S4 · O ACHADO (dark) -->
-<section class="slide dark split" id="s4">
-  <div>
-    <h2 class="sec">O achado<br>que <span class="hl">decide</span></h2>
-    <div class="fnums">
-      <div class="fnum"><div class="v">000</div><div class="d">o número que sustenta o achado</div></div>
-      <div class="fnum"><div class="v">R$ 0.000</div><div class="d">segundo número de apoio</div></div>
-      <div class="fnum"><div class="v">0×</div><div class="d">a comparação que dá escala</div></div>
+  <!-- ===================== 1 · CAPA (Noite + radar parado + logo claro + faixa da linha) ===================== -->
+  <section class="slide capa campo-noite ativo" data-campo="noite" aria-roledescription="slide" aria-label="1 de 13: Diagnóstico do Gargalo">
+    <div class="capa-faixa" aria-hidden="true"></div>
+    <div class="capa-texto">
+      <img class="s-marca" src="assets/growai-logo-claro.svg" alt="GrowAI" width="236" height="90">
+      <div class="capa-titulos">
+        <p class="s-rotulo"><span class="linha-nome">GrowAI Strategy</span> · consultoria de RevOps com IA</p>
+        <h1 class="capa-titulo">Diagnóstico do Gargalo</h1>
+        <p class="s-apoio">Toda receita tem um gargalo. Os dados dizem qual.</p>
+      </div>
+      <div class="capa-meta">
+        <span>Para<b>[Empresa]</b></span>
+        <span>Data<b>[dd/mm/aaaa]</b></span>
+        <span>Com<b>[nome de quem apresenta]</b></span>
+      </div>
     </div>
-  </div>
-  <div class="chart-hero" style="margin-top:0;">
-    <div class="chart-title">O funil no beat escuro (dark:true)</div>
-    <div id="gvFunil"></div>
-  </div>
-</section>
+    <div class="capa-radar" data-gforms="radar-svg" data-gforms-opts='{"tamanho":640,"aria":"Radar de Foco com o ponto de foco aceso"}'></div>
+    <span class="s-num">01</span>
+    <aside class="notas"><p>Abra pela assinatura: toda receita tem um gargalo, e hoje a conversa é sobre qual é o dele. Não apresente a GrowAI ainda.</p><p>Troque os campos entre colchetes antes de enviar.</p></aside>
+  </section>
 
-<!-- S5 · VELOCIDADE -->
-<section class="slide paper mid" id="s5">
-  <h2 class="sec">O percentual que <span class="hl">decide</span></h2>
-  <div class="chart-hero" style="width:min(430px,82vw);">
-    <div id="gvJanela"></div>
-  </div>
-  <div class="sup">Uma linha de apoio pro anel: o que esse percentual muda na decisão.</div>
-</section>
+  <!-- ===================== 2 · AGENDA ===================== -->
+  <section class="slide agenda campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="2 de 13: O que vamos ver hoje">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Diagnóstico do Gargalo</span></div>
+    <div class="s-cab"><p class="s-rotulo">Agenda</p><h2 class="s-titulo">O que vamos ver hoje</h2></div>
+    <ol class="agenda-lista">
+      <li><span class="n">01</span><span class="t">Onde a receita está hoje</span><span class="d">os números, sem opinião</span></li>
+      <li><span class="n">02</span><span class="t">O gargalo que os dados apontam</span><span class="d">um ponto, com número</span></li>
+      <li><span class="n">03</span><span class="t">O que muda com o foco</span><span class="d">antes e depois</span></li>
+      <li><span class="n">04</span><span class="t">Como a GrowAI trabalha</span><span class="d">aprender, organizar, escalar</span></li>
+      <li><span class="n">05</span><span class="t">Próximo passo</span><span class="d">uma decisão</span></li>
+    </ol>
+    <div class="s-rodape"><span>GrowAI · o sistema de foco da sua empresa</span><span class="s-num">02</span></div>
+    <aside class="notas"><p>Cinco itens, no máximo. Leia só os títulos; o detalhe vem em cada parte.</p></aside>
+  </section>
 
-<!-- S6 · TIME -->
-<section class="slide paper split" id="s6">
-  <div style="text-align:left;">
-    <h2 class="sec">O ranking com <span class="hl">um líder</span></h2>
-    <div class="sup">Uma linha de apoio: por que o líder lidera, e o que replicar.</div>
-  </div>
-  <div class="cards">
-    <div class="gcard popular"><div><div class="t">Item líder</div><div class="s">sub-métrica por extenso · detalhe</div></div><div class="big">R$ 000k</div></div>
-    <div class="gcard"><div><div class="t">Segundo item</div><div class="s">sub-métrica por extenso · detalhe</div></div><div class="big">R$ 00k</div></div>
-  </div>
-</section>
+  <!-- ===================== 3 · ABERTURA DE CAPÍTULO (Noite) ===================== -->
+  <section class="slide capitulo campo-noite" data-campo="noite" aria-roledescription="slide" aria-label="3 de 13: Onde a receita está hoje">
+    <div class="cap-aneis" data-gforms="aneis" data-gforms-opts='{"n":5,"tamanho":620}' aria-hidden="true"></div>
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 1 de 5</span></div>
+    <p class="cap-num" aria-hidden="true">01</p>
+    <div class="cap-texto">
+      <p class="s-rotulo">Parte 1</p>
+      <h2 class="cap-titulo">Onde a receita está hoje</h2>
+      <p class="s-apoio">Antes de opinar, lemos os números.</p>
+    </div>
+    <span class="s-num">03</span>
+    <aside class="notas"><p>Pausa curta. Abertura de capítulo não tem dado: só anuncia a parte.</p></aside>
+  </section>
 
-<!-- S7 · PRODUTOS -->
-<section class="slide paper split" id="s7">
-  <div class="chart-hero" style="margin-top:0;">
-    <div class="chart-title">A métrica que prova a headline</div>
-    <div id="gvProdutos"></div>
-  </div>
-  <div style="text-align:left;">
-    <h2 class="sec">O motor converte <span class="hl">2×</span></h2>
-    <div class="sup">Uma linha de apoio: o contexto e a ressalva de dado, se houver. O gráfico mostra a MESMA métrica da headline.</div>
-  </div>
-</section>
+  <!-- ===================== 4 · AFIRMAÇÃO GRANDE ===================== -->
+  <section class="slide afirmacao campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="4 de 13: Crescer é destravar um ponto">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Princípio</span></div>
+    <div class="afirmacao-miolo">
+      <p class="s-rotulo">Um gargalo por vez</p>
+      <p class="frase">Crescer não é fazer mais coisas. <span class="apoio-cor">É destravar o ponto que segura todo o resto.</span></p>
+    </div>
+    <div class="afirmacao-grade" data-gforms="grade" data-gforms-opts='{"espaco":28,"raio":1.5}' aria-hidden="true"></div>
+    <div class="s-rodape"><span>Princípios GrowAI: dado antes de opinião · um gargalo por vez · processo antes de automação</span><span class="s-num">04</span></div>
+    <aside class="notas"><p>Uma frase por slide. Deixe a frase respirar e espere a reação antes de seguir.</p></aside>
+  </section>
 
-<!-- S8 · RECORRÊNCIA -->
-<section class="slide paper mid" id="s8">
-  <h2 class="sec">A comparação que <span class="hl">surpreende</span></h2>
-  <div class="stats">
-    <div class="stat"><div class="n">R$ 0.000</div><div class="t">situação A</div></div>
-    <div class="stat"><div class="n hot">R$ 0.000</div><div class="t">situação B (a destacada)</div></div>
-    <div class="stat"><div class="n">00</div><div class="t">contexto curto</div></div>
-  </div>
-  <div class="sup">Uma linha de apoio: a consequência prática da comparação.</div>
-</section>
+  <!-- ===================== 5 · NÚMERO GRANDE ===================== -->
+  <section class="slide numero campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="5 de 13: 62% da receita em aberto está parada">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>O dado</span></div>
+    <div class="numero-miolo">
+      <p class="numero-grande"><span>62%</span><i class="ponto-foco" aria-hidden="true"></i></p>
+      <div class="numero-lado">
+        <p class="s-rotulo">Receita em aberto</p>
+        <p class="numero-desc">da receita em aberto está em propostas paradas há mais de 9 dias</p>
+        <p><span class="s-exemplo">Número de exemplo</span></p>
+      </div>
+    </div>
+    <div class="s-rodape"><span>Fonte: [CRM do cliente], [período]. Exemplo ilustrativo até a leitura dos dados.</span><span class="s-num">05</span></div>
+    <aside class="notas"><p>Diga o número e cale. O ponto laranja é o foco: é o único laranja deste slide.</p><p>Troque pelo número real do cliente, com fonte e período no rodapé.</p></aside>
+  </section>
 
-<!-- S9 · O QUE FAZER -->
-<section class="slide paper mid" id="s9">
-  <h2 class="sec">O que fazer <span class="hl">agora</span></h2>
-  <div class="rules">
-    <div class="rule"><div class="n">01</div><div class="t">Ação um</div><div class="d">uma linha: o que fazer e o retorno esperado.</div></div>
-    <div class="rule"><div class="n">02</div><div class="t">Ação dois</div><div class="d">uma linha: o que fazer e o retorno esperado.</div></div>
-    <div class="rule"><div class="n">03</div><div class="t">Ação três</div><div class="d">uma linha: o que fazer e o retorno esperado.</div></div>
-    <div class="rule"><div class="n">04</div><div class="t">Ação quatro</div><div class="d">uma linha: o que fazer e o retorno esperado.</div></div>
-    <div class="rule"><div class="n">05</div><div class="t">Ação cinco</div><div class="d">uma linha: o que fazer e o retorno esperado.</div></div>
-    <div class="rule"><div class="n">06</div><div class="t">Ação seis</div><div class="d">uma linha: o que fazer e o retorno esperado.</div></div>
-  </div>
-</section>
+  <!-- ===================== 6 · GRÁFICO (gviz) ===================== -->
+  <section class="slide grafico campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="6 de 13: O gargalo está na passagem para SQL">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 2 · o gargalo</span></div>
+    <div class="s-cab"><p class="s-rotulo">Bowtie M1 a M8</p><h2 class="s-titulo">O gargalo está na passagem para SQL</h2></div>
+    <div class="grafico-corpo" data-gviz='{"tipo":"bowtie","valores":[1240,410,96,61,38,35,29,11],"taxas":true,"gargalo":2,"fonte":"Exemplo ilustrativo","data":"[período]","rodape":false}'></div>
+    <div class="grafico-lado">
+      <p class="s-rotulo">Leitura</p>
+      <p class="s-apoio" style="font-size:22px">De cada 100 leads qualificados, só 23 viram oportunidade. Todas as outras etapas passam de 57%.</p>
+      <p><span class="s-exemplo">Números de exemplo</span></p>
+    </div>
+    <div class="s-rodape"><span>Fonte: exemplo ilustrativo · [período]</span><span class="s-num">06</span></div>
+    <aside class="notas"><p>O laranja marca a etapa-gargalo. Não comente as outras etapas: o ponto do slide é um só.</p></aside>
+  </section>
 
-<!-- S10 · CLOSER (dark) -->
-<section class="slide dark mid" id="s10">
-  <div class="logo-wrap" data-brand="growai" style="margin-bottom:3.4vh;">
-    <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="GrowAI">
-      <defs>
-        <linearGradient id="growaiG2" x1="12%" y1="6%" x2="88%" y2="96%">
-          <stop offset="0%" stop-color="#FF9A3D"/>
-          <stop offset="52%" stop-color="#FF6A1A"/>
-          <stop offset="100%" stop-color="#E63C0A"/>
-        </linearGradient>
-      </defs>
-      <circle cx="100" cy="100" r="100" fill="url(#growaiG2)"/>
-      <text x="100" y="135" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="152" fill="#FFFFFF">g</text>
-    </svg>
-    <span class="logo-word">GrowAI</span>
-  </div>
-  <h2 class="sec" style="font-size:clamp(44px,6.4vw,102px);">A frase<br><span class="hl">final</span></h2>
-  <div class="kick" style="margin-top:3vh; color:#9EA3B2;">cliente · data · growai</div>
-  <div class="gaura"><div id="auraClo"></div></div>
-</section>
+  <!-- ===================== 7 · COMPARAÇÃO ANTES E DEPOIS ===================== -->
+  <section class="slide compara campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="7 de 13: Do caos ao foco">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 3 · o que muda</span></div>
+    <div class="s-cab"><p class="s-rotulo">Antes e depois</p><h2 class="s-titulo">Do caos ao foco</h2></div>
+    <div class="compara-grade">
+      <div class="compara-lado compara-sem">
+        <p class="s-rotulo" style="color:var(--dia-apoio)">Sem foco</p>
+        <h3 class="compara-t">Cada um puxa para um lado</h3>
+        <ul class="compara-lista">
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Decisão por achismo</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Dado espalhado em planilhas e conversas</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Cada time com uma prioridade</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Dono decidindo no escuro</li>
+        </ul>
+      </div>
+      <div class="compara-seta" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="compara-lado compara-com">
+        <p class="s-rotulo">Com foco</p>
+        <h3 class="compara-t">Todo mundo olha para o mesmo ponto</h3>
+        <ul class="compara-lista">
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Decisão com dado, não com opinião</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Os números do negócio num lugar só</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Um gargalo por vez, até o ponteiro mexer</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Clareza para decidir, coragem para crescer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="s-rodape"><span>GrowAI · o inimigo é o caos, não a falta de ferramenta</span><span class="s-num">07</span></div>
+    <aside class="notas"><p>Leia a coluna da esquerda devagar: o dono se reconhece nela. A direita é a promessa da GrowAI.</p></aside>
+  </section>
+
+  <!-- ===================== 8 · O CAMINHO DAS 3 LINHAS ===================== -->
+  <section class="slide caminho campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="8 de 13: Um caminho, três linhas">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 4 · como trabalhamos</span></div>
+    <div class="s-cab"><p class="s-rotulo">A GrowAI</p><h2 class="s-titulo">Um caminho, três linhas: aprender, organizar, escalar</h2></div>
+    <div class="caminho-corpo" data-gforms="caminho" data-gforms-opts='{"atual":"auto"}'></div>
+    <div class="s-rodape"><span>O ponto laranja mostra onde esta conversa está no caminho.</span><span class="s-num">08</span></div>
+    <aside class="notas"><p>O ponto laranja acompanha a linha desta apresentação (data-linha no body).</p><p>Educação: você aprende o método. Strategy: a GrowAI organiza a receita junto com você. Agentes: agentes de IA trabalham dentro da sua receita.</p></aside>
+  </section>
+
+  <!-- ===================== 9 · CICLO DO GARGALO ===================== -->
+  <section class="slide ciclo campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="9 de 13: O ciclo do gargalo">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 4 · método</span></div>
+    <div class="ciclo-forma" data-gforms="ciclo" data-gforms-opts='{"aria":"Ciclo do gargalo: Medir, Diagnosticar, Focar, Destravar, Escalar"}'></div>
+    <div class="ciclo-texto">
+      <p class="s-rotulo">O método</p>
+      <h2 class="s-titulo" style="font-size:48px">O ciclo do gargalo</h2>
+      <ol class="ciclo-lista">
+        <li><span class="n">01</span><p><b>Medir</b><span>Conectamos os dados do negócio e lemos tudo junto.</span></p></li>
+        <li><span class="n">02</span><p><b>Diagnosticar</b><span>Os dados apontam onde a receita trava.</span></p></li>
+        <li class="foco"><span class="n">03</span><p><b>Focar</b><span>Um gargalo por vez, com meta e prazo.</span></p></li>
+        <li><span class="n">04</span><p><b>Destravar</b><span>Processo antes de automação.</span></p></li>
+        <li><span class="n">05</span><p><b>Escalar</b><span>Agentes onde o processo já funciona.</span></p></li>
+      </ol>
+    </div>
+    <div class="s-rodape"><span>Quando o ponteiro mexe, o ciclo recomeça no próximo gargalo.</span><span class="s-num">09</span></div>
+    <aside class="notas"><p>Focar é o passo que quase ninguém faz. É ele que está em laranja.</p></aside>
+  </section>
+
+  <!-- ===================== 10 · CITAÇÃO ===================== -->
+  <section class="slide citacao campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="10 de 13: Foco é a nossa tecnologia">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Citação</span></div>
+    <figure class="citacao-miolo">
+      <blockquote><p>Foco é a nossa tecnologia.</p></blockquote>
+      <figcaption><b>GrowAI</b> · síntese da marca · [troque por depoimento real de cliente, com autorização por escrito]</figcaption>
+    </figure>
+    <span class="s-num">10</span>
+    <aside class="notas"><p>Depoimento só com nome, cargo e empresa reais e autorização por escrito. Nunca invente frase de cliente.</p></aside>
+  </section>
+
+  <!-- ===================== 11 · PROPOSTA E INVESTIMENTO ===================== -->
+  <section class="slide proposta campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="11 de 13: Proposta e investimento">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Proposta</span></div>
+    <div class="s-cab"><p class="s-rotulo">Proposta</p><h2 class="s-titulo">Diagnóstico do Gargalo em [n] semanas</h2></div>
+    <div class="proposta-grade">
+      <div class="proposta-col">
+        <h3>O que a GrowAI faz</h3>
+        <ul>
+          <li>Conecta os dados de vendas, financeiro e atendimento</li>
+          <li>Lê o bowtie de M1 a M8 com o seu time</li>
+          <li>Aponta um gargalo, com número e prazo</li>
+        </ul>
+      </div>
+      <div class="proposta-col">
+        <h3>O que você recebe</h3>
+        <ul>
+          <li>O Diagnóstico do Gargalo, por escrito</li>
+          <li>Um plano de [n] dias focado nesse gargalo</li>
+          <li>O painel com o ponteiro que vai mexer</li>
+        </ul>
+      </div>
+      <div class="proposta-col proposta-inv">
+        <h3>Investimento</h3>
+        <p class="proposta-valor">R$ [valor]</p>
+        <dl>
+          <div><dt>Forma de pagamento</dt><dd>[condição]</dd></div>
+          <div><dt>Validade</dt><dd>[data]</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="s-rodape"><span>Valores e prazos entram só depois da conversa de escopo. Nada aqui é estimativa.</span><span class="s-num">11</span></div>
+    <aside class="notas"><p>Nunca preencha o valor sem a proposta aprovada. O slide existe para mostrar a estrutura.</p></aside>
+  </section>
+
+  <!-- ===================== 12 · PRÓXIMO PASSO (um só botão laranja) ===================== -->
+  <section class="slide passo campo-dia" data-campo="dia" aria-roledescription="slide" aria-label="12 de 13: Próximo passo">
+    <div class="s-folio"><span class="linha-id">GrowAI Strategy</span><span>Parte 5 · próximo passo</span></div>
+    <div class="s-cab"><p class="s-rotulo">Próximo passo</p><h2 class="s-titulo">Uma decisão: ler os seus dados</h2></div>
+    <ol class="passo-lista">
+      <li><span class="n">01</span><b>Liberar o acesso</b><span>CRM e financeiro, só leitura.</span></li>
+      <li><span class="n">02</span><b>Leitura dos dados</b><span>A GrowAI cruza tudo e prepara o diagnóstico.</span></li>
+      <li><span class="n">03</span><b>Conversa de resultado</b><span>O gargalo, com número, e o que fazer primeiro.</span></li>
+    </ol>
+    <div class="passo-acao">
+      <a class="botao" href="#12">Agendar o Diagnóstico do Gargalo <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span class="botao-nota">[link de agendamento] · [prazo para resposta]</span>
+    </div>
+    <div class="s-rodape"><span>Um botão por apresentação: é este.</span><span class="s-num">12</span></div>
+    <aside class="notas"><p>Peça uma decisão só. Troque o href do botão pelo link real de agendamento.</p></aside>
+  </section>
+
+  <!-- ===================== 13 · ENCERRAMENTO (Noite) ===================== -->
+  <section class="slide fim campo-noite" data-campo="noite" aria-roledescription="slide" aria-label="13 de 13: Toda receita tem um gargalo">
+    <div class="fim-aneis" data-gforms="aneis" data-gforms-opts='{"n":5,"tamanho":720,"foco":{"angulo":-130,"raio":0.8}}' aria-hidden="true"></div>
+    <div class="fim-miolo">
+      <img class="s-marca" src="assets/growai-logo-claro.svg" alt="GrowAI" width="420" height="160">
+      <p class="fim-frase">Toda receita tem um gargalo. Os dados dizem qual.</p>
+    </div>
+    <div class="fim-contato">
+      <span>Contato<b>[nome] · [e-mail]</b></span>
+      <span>Site<b>growai.com.br</b></span>
+    </div>
+    <span class="s-num">13</span>
+    <aside class="notas"><p>Encerramento sem pergunta nova. Se a decisão não saiu no slide anterior, volte a ele.</p></aside>
+  </section>
+
+  <p class="contador" aria-hidden="true"><b id="c-atual">01</b><span>/</span><span id="c-total">13</span></p>
+</main>
+</div>
+
+<aside class="painel-notas" aria-label="Notas do apresentador">
+  <div class="painel-cab"><span class="painel-rotulo">Notas</span><span class="painel-num" id="p-num">01</span></div>
+  <p class="painel-tit" id="p-tit"></p>
+  <div class="painel-txt" id="p-txt"></div>
+  <p class="painel-prox" id="p-prox"></p>
+  <p class="painel-teclas"><kbd>←</kbd> <kbd>→</kbd> navegar · <kbd>P</kbd> notas · <kbd>F</kbd> tela cheia</p>
+</aside>
 
 <script>
-/* ═══════════ GVIZ — motor de gráficos GrowAI v1.1 (SVG, zero dependências) ═══════════
-   A técnica de dados da casa: todo número vira forma por aqui. Copie este bloco
-   VERBATIM pra dentro do <script> de cada artefato (documento ou deck).
-   Regras embutidas: UM destaque laranja (gradiente da marca + glow) por gráfico,
-   série neutra em cinza frio, números em Satoshi tabular, zero gridlines,
-   baseline em hairline. `dark:true` troca a paleta neutra pros slides escuros.
-   Determinístico: sem Math.random, mesmo input → mesmo desenho.
-   v1.1: funil proporcional (piso 8%) com rótulo externo quando não cabe; hbars
-   reserva largura real do maior vlabel (fim do clipping); colunas ancoram na
-   baseline (canto arredondado só no topo); texto dentro de barra sempre forte. */
-const gviz = (() => {
-  let n = 0;
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const el$ = e => typeof e === 'string' ? document.getElementById(e) : e;
-  const pal = d => d ? {
-    bar: 'rgba(255,255,255,.20)', bar2: 'rgba(255,255,255,.32)', lab: '#9EA3B2', val: '#FFFFFF',
-    axis: 'rgba(255,255,255,.14)', valHi: '#FFB37A', ringBg: 'rgba(255,255,255,.14)', inBar: 'rgba(255,255,255,.92)'
-  } : {
-    bar: '#C9D1DE', bar2: '#DDE3EC', lab: '#5B6472', val: '#3A4150',
-    axis: '#E7EAF0', valHi: '#B33E0A', ringBg: '#E7EAF0', inBar: '#3A4150'
-  };
-  const F = {
-    num: "font-family:var(--display,'Satoshi',sans-serif);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em",
-    lab: "font-family:var(--sans,'Inter',sans-serif);font-weight:500"
-  };
-  const defs = id => `<defs>
-    <linearGradient id="gv${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF9A3D"/><stop offset=".55" stop-color="#FF6A1A"/><stop offset="1" stop-color="#E63C0A"/></linearGradient>
-    <linearGradient id="gh${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF9A3D"/><stop offset=".55" stop-color="#FF6A1A"/><stop offset="1" stop-color="#E63C0A"/></linearGradient>
-    <filter id="gf${id}" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
-  </defs>`;
-  const wrap = (e, W, H, id, inner, label) => {
-    const t = el$(e); if (!t) return;
-    t.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label || 'gráfico')}" style="width:100%;height:auto;display:block">${defs(id)}${inner}</svg>`;
-  };
-  /* coluna ancorada na baseline: canto arredondado SÓ no topo */
-  const barTop = (x, y, w, h, r) => { r = Math.min(r, w / 2, h); return `M${x},${y + h} L${x},${y + r} Q${x},${y} ${x + r},${y} L${x + w - r},${y} Q${x + w},${y} ${x + w},${y + r} L${x + w},${y + h} Z`; };
-  /* barra horizontal: canto arredondado SÓ na ponta direita */
-  const barRight = (x, y, w, h, r) => { r = Math.min(r, h / 2, w); return `M${x},${y} L${x + w - r},${y} Q${x + w},${y} ${x + w},${y + r} L${x + w},${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} L${x},${y + h} Z`; };
-
-  /* Colunas — comparação/tendência mensal. highlight = índice do período que importa. */
-  function bars(e, o) {
-    const id = ++n, p = pal(o.dark), W = o.w || 640, H = o.h || 300, pb = 46, pt = 34;
-    const max = Math.max(...o.values), ph = H - pt - pb, cw = W / o.values.length;
-    let s = '';
-    o.values.forEach((v, i) => {
-      const bh = Math.max(4, v / max * ph), bw = cw * .56, x = i * cw + (cw - bw) / 2, y = H - pb - bh, hi = i === o.highlight;
-      const d = barTop(x, y, bw, bh, 9);
-      if (hi) s += `<path d="${d}" fill="url(#gv${id})" opacity=".5" filter="url(#gf${id})"/>`;
-      s += `<path d="${d}" fill="${hi ? `url(#gv${id})` : p.bar}"/>`;
-      s += `<text x="${i * cw + cw / 2}" y="${y - 10}" text-anchor="middle" font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(o.vlabels ? o.vlabels[i] : v)}</text>`;
-      s += `<text x="${i * cw + cw / 2}" y="${H - pb + 22}" text-anchor="middle" font-size="12" style="${F.lab};fill:${hi ? p.valHi : p.lab};${hi ? 'font-weight:600' : ''}">${esc(o.labels[i])}</text>`;
-    });
-    s += `<line x1="0" y1="${H - pb}" x2="${W}" y2="${H - pb}" stroke="${p.axis}" stroke-width="1"/>`;
-    wrap(e, W, H, id, s, o.aria);
-  }
-
-  /* Barras horizontais — ranking. Reserva a largura REAL do maior vlabel (sem clipping). */
-  function hbars(e, o) {
-    const id = ++n, p = pal(o.dark), W = o.w || 640, rowH = 44, gap = 14, labW = o.labw || 150;
-    const vls = o.values.map((v, i) => String(o.vlabels ? o.vlabels[i] : v));
-    const valW = Math.max(...vls.map(t => t.length)) * 8 + 20;
-    const H = o.values.length * (rowH + gap) - gap, max = Math.max(...o.values), bw = W - labW - valW - 16;
-    let s = '';
-    o.values.forEach((v, i) => {
-      const y = i * (rowH + gap), w = Math.max(4, v / max * bw), hi = i === o.highlight;
-      const d = barRight(labW, y + 6, w, rowH - 12, 8);
-      s += `<text x="${labW - 12}" y="${y + rowH / 2 + 4}" text-anchor="end" font-size="13" style="${F.lab};fill:${hi ? p.val : p.lab};${hi ? 'font-weight:600' : ''}">${esc(o.labels[i])}</text>`;
-      if (hi) s += `<path d="${d}" fill="url(#gh${id})" opacity=".5" filter="url(#gf${id})"/>`;
-      s += `<path d="${d}" fill="${hi ? `url(#gh${id})` : p.bar}"/>`;
-      s += `<text x="${labW + w + 12}" y="${y + rowH / 2 + 5}" font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(vls[i])}</text>`;
-    });
-    wrap(e, W, H, id, s, o.aria);
-  }
-
-  /* Anel — percentual único (conversão, share, "X% em N dias"). value 0–100. */
-  function ring(e, o) {
-    const id = ++n, p = pal(o.dark), S = o.s || 300, c = S / 2, r = c - 26, C = 2 * Math.PI * r;
-    const frac = Math.min(1, Math.max(0, o.value / 100));
-    const arc = x => `<circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="url(#gh${id})" stroke-width="22" stroke-linecap="round" stroke-dasharray="${C * frac} ${C}" transform="rotate(-90 ${c} ${c})" ${x || ''}/>`;
-    let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${p.ringBg}" stroke-width="22"/>`;
-    s += arc(`opacity=".5" filter="url(#gf${id})"`) + arc();
-    s += `<text x="${c}" y="${c + S * .03}" text-anchor="middle" font-size="${S * .21}" style="${F.num};fill:${p.val}">${esc(o.vlabel || (o.value + '%'))}</text>`;
-    if (o.label) s += `<text x="${c}" y="${c + S * .15}" text-anchor="middle" font-size="11.5" letter-spacing="1.6" style="${F.lab};fill:${p.lab};text-transform:uppercase">${esc(o.label)}</text>`;
-    wrap(e, S, S, id, s, o.aria);
-  }
-
-  /* Funil — estágios do pipeline. Largura ∝ valor (piso de 8%); quando o texto
-     não cabe dentro da barra, rótulo e valor saem pra DIREITA da barra. */
-  function funnel(e, o) {
-    const id = ++n, p = pal(o.dark), W = o.w || 560, rowH = 48, gap = 10;
-    const H = o.stages.length * (rowH + gap) - gap, max = Math.max(...o.stages.map(t => t.value));
-    let s = '';
-    o.stages.forEach((st, i) => {
-      const y = i * (rowH + gap), w = Math.max(W * .08, st.value / max * W), x = (W - w) / 2, hi = i === o.highlight;
-      const vv = String(st.vlabel != null ? st.vlabel : st.value);
-      if (hi) s += `<rect x="${x}" y="${y}" width="${w}" height="${rowH}" rx="11" fill="url(#gh${id})" opacity=".5" filter="url(#gf${id})"/>`;
-      s += `<rect x="${x}" y="${y}" width="${w}" height="${rowH}" rx="11" fill="${hi ? `url(#gh${id})` : p.bar}"/>`;
-      const lw = st.label.length * 6.9 + 16, vw = vv.length * 8 + 16;
-      if (lw + vw + 12 <= w) {
-        s += `<text x="${x + 16}" y="${y + rowH / 2 + 4}" font-size="12.5" style="${F.lab};fill:${hi ? 'rgba(255,255,255,.92)' : p.inBar}">${esc(st.label)}</text>`;
-        s += `<text x="${x + w - 16}" y="${y + rowH / 2 + 5}" text-anchor="end" font-size="15" style="${F.num};fill:${hi ? '#FFFFFF' : p.val}">${esc(vv)}</text>`;
-      } else {
-        /* fora da barra: escolhe o lado com mais espaço; se uma linha não couber, empilha em duas */
-        const rs = W - (x + w) - 12, ls = x - 12;
-        const side = rs >= ls ? { x: x + w + 12, a: 'start' } : { x: x - 12, a: 'end' };
-        const sp = Math.max(rs, ls);
-        if (lw + vw + 8 <= sp) {
-          s += `<text x="${side.x}" y="${y + rowH / 2 + 5}" text-anchor="${side.a}" font-size="12.5" style="${F.lab};fill:${p.lab}">${esc(st.label)} <tspan font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(vv)}</tspan></text>`;
-        } else {
-          s += `<text x="${side.x}" y="${y + rowH / 2 - 5}" text-anchor="${side.a}" font-size="12.5" style="${F.lab};fill:${p.lab}">${esc(st.label)}</text>`;
-          s += `<text x="${side.x}" y="${y + rowH / 2 + 14}" text-anchor="${side.a}" font-size="15" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(vv)}</text>`;
-        }
-      }
-    });
-    wrap(e, W, H, id, s, o.aria);
-  }
-
-  /* Barra de composição 100% — concentração/participação (top 10, top 30, resto). */
-  function share(e, o) {
-    const id = ++n, p = pal(o.dark), W = o.w || 640, barH = 30, H = barH + 48;
-    const tot = o.segments.reduce((a, t) => a + t.value, 0);
-    let x = 0, s = `<clipPath id="gc${id}"><rect x="0" y="0" width="${W}" height="${barH}" rx="10"/></clipPath><g clip-path="url(#gc${id})">`;
-    o.segments.forEach((sg, i) => {
-      const w = sg.value / tot * W, hi = i === o.highlight;
-      s += `<rect x="${x}" y="0" width="${w}" height="${barH}" fill="${hi ? `url(#gh${id})` : (i % 2 ? p.bar2 : p.bar)}"/>`;
-      x += w;
-    });
-    s += '</g>';
-    let lx = 0; const lw = o.legw || W / o.segments.length;
-    o.segments.forEach((sg, i) => {
-      const hi = i === o.highlight;
-      s += `<circle cx="${lx + 5}" cy="${barH + 27}" r="5" fill="${hi ? '#FF6A1A' : (i % 2 ? p.bar2 : p.bar)}"/>`;
-      s += `<text x="${lx + 16}" y="${barH + 31}" font-size="12" style="${F.lab};fill:${p.lab}">${esc(sg.label)} <tspan style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(sg.vlabel != null ? sg.vlabel : sg.value)}</tspan></text>`;
-      lx += lw;
-    });
-    wrap(e, W, H, id, s, o.aria);
-  }
-
-  /* Linha — tendência com ponto-destaque. area:false desliga o preenchimento suave. */
-  function line(e, o) {
-    const id = ++n, p = pal(o.dark), W = o.w || 640, H = o.h || 260, pb = 40, pt = 30, px0 = 36;
-    const max = Math.max(...o.values), min = Math.min(...o.values), rng = (max - min) || 1;
-    const px = i => px0 + i * (W - 2 * px0) / (o.values.length - 1);
-    const py = v => pt + (1 - (v - min) / rng) * (H - pt - pb);
-    const pts = o.values.map((v, i) => `${px(i)},${py(v)}`).join(' ');
-    let s = '';
-    if (o.area !== false) s += `<polygon points="${px(0)},${H - pb} ${pts} ${px(o.values.length - 1)},${H - pb}" fill="url(#gv${id})" opacity=".10"/>`;
-    s += `<polyline points="${pts}" fill="none" stroke="${p.val}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
-    o.values.forEach((v, i) => {
-      const hi = i === o.highlight;
-      if (hi) s += `<circle cx="${px(i)}" cy="${py(v)}" r="12" fill="#FF6A1A" opacity=".35" filter="url(#gf${id})"/><circle cx="${px(i)}" cy="${py(v)}" r="6" fill="url(#gv${id})"/>`;
-      else s += `<circle cx="${px(i)}" cy="${py(v)}" r="4" fill="${p.val}"/>`;
-      s += `<text x="${px(i)}" y="${py(v) - 14}" text-anchor="middle" font-size="13.5" style="${F.num};fill:${hi ? p.valHi : p.val}">${esc(o.vlabels ? o.vlabels[i] : v)}</text>`;
-      s += `<text x="${px(i)}" y="${H - pb + 22}" text-anchor="middle" font-size="12" style="${F.lab};fill:${hi ? p.valHi : p.lab}">${esc(o.labels[i])}</text>`;
-    });
-    s += `<line x1="0" y1="${H - pb}" x2="${W}" y2="${H - pb}" stroke="${p.axis}"/>`;
-    wrap(e, W, H, id, s, o.aria);
-  }
-
-  /* Fluxo — diagrama de etapas com conectores no MESMO sistema de coordenadas
-     (regra de diagramas da casa: seta nunca posicionada na mão sobre HTML).
-     steps: [{label, sub}] · highlight marca a etapa que importa. Rótulos curtos. */
-  function flow(e, o) {
-    const id = ++n, p = pal(o.dark), W = o.w || 640, boxH = 66, arrowW = 40, pad = 4;
-    const k = o.steps.length, boxW = (W - arrowW * (k - 1) - pad * 2) / k, H = boxH + 16;
-    const boxFill = o.dark ? 'rgba(255,255,255,.07)' : '#FFFFFF';
-    const boxLine = o.dark ? 'rgba(255,255,255,.13)' : '#E7EAF0';
-    let s = '';
-    o.steps.forEach((st, i) => {
-      const x = pad + i * (boxW + arrowW), y = 8, hi = i === o.highlight, cx = x + boxW / 2;
-      if (hi) s += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="13" fill="url(#gh${id})" opacity=".5" filter="url(#gf${id})"/>`;
-      s += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="13" fill="${hi ? `url(#gh${id})` : boxFill}" ${hi ? '' : `stroke="${boxLine}" stroke-width="1.5"`}/>`;
-      const ly = st.sub ? y + boxH / 2 - 5 : y + boxH / 2 + 5;
-      s += `<text x="${cx}" y="${ly}" text-anchor="middle" font-size="13.5" style="${F.lab};font-weight:600;fill:${hi ? '#FFFFFF' : (o.dark ? p.val : '#0C0F14')}">${esc(st.label)}</text>`;
-      if (st.sub) s += `<text x="${cx}" y="${y + boxH / 2 + 15}" text-anchor="middle" font-size="11.5" style="${F.lab};fill:${hi ? 'rgba(255,255,255,.85)' : p.lab}">${esc(st.sub)}</text>`;
-      if (i < k - 1) {
-        const ax = x + boxW + 7, ay = y + boxH / 2, ae = x + boxW + arrowW - 7;
-        s += `<line x1="${ax}" y1="${ay}" x2="${ae - 6}" y2="${ay}" stroke="${p.lab}" stroke-width="2" stroke-linecap="round"/>`;
-        s += `<path d="M${ae - 8},${ay - 5.5} L${ae},${ay} L${ae - 8},${ay + 5.5}" fill="none" stroke="${p.lab}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
-      }
-    });
-    wrap(e, W, H, id, s, o.aria);
-  }
-
-  return { bars, hbars, ring, funnel, share, line, flow };
+/* A LINHA (data-linha no body) entra nos gráficos e no caminho antes dos motores montarem */
+(function(){
+  var linha = document.body.getAttribute('data-linha');
+  var ordem = ['educacao', 'strategy', 'agentes'];
+  Array.prototype.forEach.call(document.querySelectorAll('[data-gviz]'), function(el){
+    try { var c = JSON.parse(el.getAttribute('data-gviz')); if (linha && !c.linha) c.linha = linha; el.setAttribute('data-gviz', JSON.stringify(c)); } catch (e) {}
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-gforms="caminho"]'), function(el){
+    try { var o = JSON.parse(el.getAttribute('data-gforms-opts') || '{}'); if (o.atual === 'auto') o.atual = linha ? ordem.indexOf(linha) : -1; el.setAttribute('data-gforms-opts', JSON.stringify(o)); } catch (e) {}
+  });
+  /* nome da linha no fólio e no rótulo da capa */
+  var nomes = { educacao: 'GrowAI Educação', strategy: 'GrowAI Strategy', agentes: 'GrowAI Agentes' };
+  Array.prototype.forEach.call(document.querySelectorAll('.linha-id, .linha-nome'), function(el){ el.textContent = nomes[linha] || 'GrowAI'; });
 })();
+</script>
+<script src="gviz.js"></script>
+<script src="gforms.js"></script>
+<script>
+/* =====================================================================
+   NAVEGAÇÃO DO DECK · Radar de Foco v3
+   ===================================================================== */
+(function(){
+  try {
+  var raiz = document.documentElement, deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+  var total = slides.length, atual = 0;
+  var barra = deck.querySelector('.progresso span');
+  var cAtual = document.getElementById('c-atual');
+  var pNum = document.getElementById('p-num'), pTit = document.getElementById('p-tit');
+  var pTxt = document.getElementById('p-txt'), pProx = document.getElementById('p-prox');
+  var dois = function(n){ return (n < 10 ? '0' : '') + n; };
+  document.getElementById('c-total').textContent = dois(total);
+  var celular = function(){ return window.matchMedia('(max-width:640px), (max-height:500px)').matches; };
+  var tituloDe = function(s){ return (s.getAttribute('aria-label') || '').replace(/^\d+ de \d+:\s*/, ''); };
 
-gviz.bars('gvMeses', { w:780, h:360, labels:['per 1','per 2','per 3','per 4','per 5'], values:[42,38,71,55,63], vlabels:['42','38','71','55','63'], highlight:2, aria:'Métrica por período' });
-gviz.funnel('gvFunil', { dark:true, w:540, stages:[ {label:'Topo', value:1200, vlabel:'1.200'}, {label:'O estágio que trava', value:480, vlabel:'480 · R$ 000k'}, {label:'Meio', value:190, vlabel:'190'}, {label:'Fundo', value:62, vlabel:'62'} ], highlight:1, aria:'Funil de exemplo' });
-gviz.ring('gvJanela', { value:64, vlabel:'64%', label:'o rótulo do percentual', s:340, aria:'Percentual de exemplo' });
-gviz.hbars('gvProdutos', { w:620, labels:['Categoria líder','Categoria B','Categoria C','Categoria D'], values:[12,5.5,4.8,2.5], vlabels:['12,0%','5,5%','4,8%','2,5%'], highlight:0, labw:180, aria:'Ranking de exemplo' });
-
-
-/* ═══════════ GFORMS — formas conceituais GrowAI v1 (SVG, zero dependências) ═══════════
-   A ilustração da casa: quando o slide precisa de uma FORMA (não de um dado),
-   ela sai daqui — nunca de imagem de banco nem de emoji. Copie este bloco
-   VERBATIM pro <script> do artefato, junto com o gviz quando houver dados.
-   Linguagem: pontos e gradiente da marca sobre neutro frio, UM foco laranja
-   por forma, glow discreto. `dark:true` pros slides escuros.
-   Determinístico: ruído por seno (pn), nunca Math.random — mesmo input,
-   mesmo desenho, em tela e no PDF.
-   Conceitos: orbe = núcleo/foco/produto · aneis = crescimento/expansão ·
-   horizonte = começo/lançamento (capa e closer) · campo = mercado/audiência ·
-   seta = transformação/direção · onda = momentum/tendência. */
-const gforms = (() => {
-  let n = 0;
-  const el$ = e => typeof e === 'string' ? document.getElementById(e) : e;
-  const pn = (x, y) => { const v = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return v - Math.floor(v); };
-  const neutral = d => d ? 'rgba(255,255,255,.26)' : '#C9D1DE';
-  const defs = id => `<defs>
-    <linearGradient id="gfG${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A3D"/><stop offset=".55" stop-color="#FF6A1A"/><stop offset="1" stop-color="#E63C0A"/></linearGradient>
-    <filter id="gfF${id}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="16"/></filter>
-  </defs>`;
-  const wrap = (e, W, H, id, inner) => {
-    const t = el$(e); if (!t) return;
-    t.innerHTML = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" aria-hidden="true">${defs(id)}${inner}</svg>`;
-  };
-
-  /* ORBE — o núcleo em gradiente (eco do logo). Conceito: foco, produto, o centro. */
-  function orbe(e, o = {}) {
-    const id = ++n, S = o.s || 320, c = S / 2, r = S * .30;
-    let s = `<circle cx="${c}" cy="${c + S * .04}" r="${r * 1.08}" fill="url(#gfG${id})" opacity=".45" filter="url(#gfF${id})"/>`;
-    s += `<circle cx="${c}" cy="${c}" r="${r}" fill="url(#gfG${id})"/>`;
-    s += `<ellipse cx="${c - r * .34}" cy="${c - r * .42}" rx="${r * .40}" ry="${r * .26}" fill="#FFFFFF" opacity=".20"/>`;
-    /* órbita pontilhada com um satélite no foco */
-    const or_ = r * 1.55;
-    for (let i = 0; i < 44; i++) {
-      const a = (i / 44) * Math.PI * 2;
-      s += `<circle cx="${(c + or_ * Math.cos(a)).toFixed(1)}" cy="${(c + or_ * .62 * Math.sin(a)).toFixed(1)}" r="1.8" fill="${neutral(o.dark)}"/>`;
-    }
-    s += `<circle cx="${c + or_ * Math.cos(-.6)}" cy="${c + or_ * .62 * Math.sin(-.6)}" r="6" fill="url(#gfG${id})"/>`;
-    wrap(e, S, S, id, s);
+  /* escala do palco: k = min(largura / 1440, altura / 900) */
+  function escalar(){
+    var palco = document.getElementById('palco');
+    var w = palco.clientWidth, h = palco.clientHeight;
+    if (!w || !h) return;
+    deck.style.setProperty('--k', Math.min(w / 1440, h / 900).toFixed(4));
   }
-
-  /* ANEIS — anéis de crescimento: núcleo + ondas concêntricas de pontos que se
-     expandem e desvanecem. Conceito: crescimento, expansão, alcance. */
-  function aneis(e, o = {}) {
-    const id = ++n, S = o.s || 320, c = S / 2;
-    let s = `<circle cx="${c}" cy="${c}" r="${S * .075}" fill="url(#gfG${id})"/>`;
-    s += `<circle cx="${c}" cy="${c}" r="${S * .10}" fill="url(#gfG${id})" opacity=".35" filter="url(#gfF${id})"/>`;
-    [.17, .25, .33, .41, .475].forEach((f, k) => {
-      const r = S * f, nd = Math.round(r * .55), op = .9 - k * .19;
-      for (let i = 0; i < nd; i++) {
-        const a = (i / nd) * Math.PI * 2 + k * .35;
-        s += `<circle cx="${(c + r * Math.cos(a)).toFixed(1)}" cy="${(c + r * Math.sin(a)).toFixed(1)}" r="${(2.6 - k * .38).toFixed(2)}" fill="${k === 1 ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${op.toFixed(2)}"/>`;
-      }
+  function mostrar(n, semHash){
+    atual = Math.max(0, Math.min(total - 1, n));
+    slides.forEach(function(s, i){
+      var ativo = i === atual;
+      s.classList.toggle('ativo', ativo);
+      if (!celular() && !ativo) s.setAttribute('aria-hidden', 'true'); else s.removeAttribute('aria-hidden');
     });
-    wrap(e, S, S, id, s);
+    var s = slides[atual];
+    deck.setAttribute('data-campo', s.getAttribute('data-campo') || 'dia');
+    if (barra) barra.style.setProperty('--p', ((atual + 1) / total).toFixed(4));
+    cAtual.textContent = dois(atual + 1);
+    pNum.innerHTML = dois(atual + 1) + '<span> / ' + dois(total) + '</span>';
+    pTit.textContent = tituloDe(s);
+    var nota = s.querySelector('aside.notas');
+    pTxt.innerHTML = nota ? nota.innerHTML : '<p>Sem notas para este slide.</p>';
+    pProx.innerHTML = atual < total - 1 ? '<b>Próximo:</b> ' + tituloDe(slides[atual + 1]) : '<b>Fim da apresentação.</b>';
+    if (!semHash) { try { history.replaceState(null, '', '#' + (atual + 1)); } catch (e) {} }
   }
+  var lerHash = function(){ var h = (location.hash || '').replace('#', ''); return /^\d+$/.test(h) ? parseInt(h, 10) - 1 : null; };
 
-  /* HORIZONTE — arcos de pontos nascendo da borda inferior (a "aura de
-     crescimento"). Conceito: começo, lançamento. É a assinatura de capa e closer. */
-  function horizonte(e, o = {}) {
-    const id = ++n, W = o.w || 1440, H = o.h || 240, cx = W / 2, cy = H + 70;
-    const rings = [{ r: 170, d: 4.4, op: .95 }, { r: 236, d: 3.6, op: .66 }, { r: 302, d: 2.9, op: .44 }, { r: 368, d: 2.3, op: .27 }, { r: 434, d: 1.8, op: .15 }];
-    let s = `<ellipse cx="${cx}" cy="${H + 44}" rx="${W * .30}" ry="96" fill="url(#gfG${id})" opacity="${o.dark ? .42 : .26}" filter="url(#gfF${id})"/>`;
-    rings.forEach(g => {
-      const nd = Math.round(g.r * .34);
-      for (let i = 0; i <= nd; i++) {
-        const a = Math.PI + (i / nd) * Math.PI;
-        const x = cx + g.r * Math.cos(a), y = cy + g.r * Math.sin(a);
-        if (y < 6 || y > H - 2) continue;
-        s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${g.d}" fill="url(#gfG${id})" opacity="${g.op}"/>`;
-      }
-    });
-    wrap(e, W, H, id, s);
-  }
-
-  /* CAMPO — campo de pontos com uma zona quente. Conceito: mercado, audiência,
-     base de clientes — e onde a energia está concentrada. */
-  function campo(e, o = {}) {
-    const id = ++n, W = o.w || 640, H = o.h || 300, step = o.step || 15;
-    const fx = .66, fy = .40;                     /* zona quente no terço direito */
-    let s = '';
-    for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
-      const u = x / W, v = y / H;
-      const base = .28 + pn(x * .11, y * .11) * .5;
-      const d = Math.hypot((u - fx) * 1.1, (v - fy)), hot = Math.max(0, 1 - d * 2.6);
-      const r = (base * .55 + hot * 1.1) * step * .30;
-      if (r < 1.1) continue;
-      s += `<circle cx="${x}" cy="${y}" r="${r.toFixed(2)}" fill="${hot > .38 ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${(hot > .38 ? .95 : .75).toFixed(2)}"/>`;
+  document.addEventListener('keydown', function(e){
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var alvo = e.target && e.target.tagName;
+    if (alvo === 'INPUT' || alvo === 'TEXTAREA' || alvo === 'SELECT') return;
+    var k = e.key;
+    if (k === 'p' || k === 'P') { raiz.classList.toggle('com-notas'); escalar(); return; }
+    if (k === 'f' || k === 'F') {
+      try { if (document.fullscreenElement) document.exitFullscreen(); else if (raiz.requestFullscreen) { var r = raiz.requestFullscreen(); if (r && r.catch) r.catch(function(){}); } } catch (err) {}
+      return;
     }
-    wrap(e, W, H, id, s);
+    if (celular()) return;
+    if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); mostrar(atual + 1); }
+    else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) { e.preventDefault(); mostrar(atual - 1); }
+    else if (k === 'Home') { e.preventDefault(); mostrar(0); }
+    else if (k === 'End') { e.preventDefault(); mostrar(total - 1); }
+  });
+  document.getElementById('palco').addEventListener('click', function(e){
+    if (celular() || e.target.closest('a,button')) return;
+    mostrar(atual + (e.clientX < window.innerWidth / 3 ? -1 : 1));
+  });
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function(e){ if (e.touches.length === 1) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; } }, { passive:true });
+  document.addEventListener('touchend', function(e){
+    if (x0 === null || celular()) { x0 = null; return; }
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive:true });
+  window.addEventListener('hashchange', function(){ var n = lerHash(); if (n !== null) mostrar(n, n >= 0 && n < total); });
+
+  /* GRÁFICOS: no palco o gráfico é desenhado mais estreito e ampliado 1,4 vez, para os
+     rótulos lerem a distância (rótulo de 14 unidades sai com cerca de 20 px). No celular
+     o motor usa a largura real. */
+  var AMPLIA = 1.4;
+  var graficos = Array.prototype.slice.call(deck.querySelectorAll('[data-gviz]'));
+  graficos.forEach(function(el){ try { el.__base = JSON.parse(el.getAttribute('data-gviz')); } catch (err) { el.__base = null; } });
+  function cfgPara(el){
+    var c = Object.assign({}, el.__base);
+    if (!celular()) { var w = el.offsetWidth; if (w) c.largura = Math.round(w / AMPLIA); }
+    return c;
+  }
+  function refazGraficos(){
+    if (!window.gviz) return;
+    graficos.forEach(function(el){ if (el.__base) window.gviz.render(el, el.__base.tipo, cfgPara(el)); });
   }
 
-  /* SETA — seta em matriz de pontos, adensando até a ponta em gradiente.
-     Conceito: transformação, direção, próximo passo. */
-  function seta(e, o = {}) {
-    const id = ++n, W = o.w || 640, H = o.h || 220, step = o.step || 13;
-    let s = '';
-    for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
-      const u = x / W, v = y / H;
-      const shaft = u < .60 && Math.abs(v - .5) < .17;
-      const head = u >= .60 && Math.abs(v - .5) < (1 - (u - .60) / .40) * .46;
-      if (!shaft && !head) continue;
-      const b = .18 + u * .82, r = b * step * .38;
-      s += `<circle cx="${x}" cy="${y}" r="${r.toFixed(2)}" fill="${u > .60 ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${(.55 + b * .45).toFixed(2)}"/>`;
-    }
-    wrap(e, W, H, id, s);
+  var modo = celular() ? 'celular' : 'palco';
+  function ajustar(){
+    escalar();
+    var m = celular() ? 'celular' : 'palco';
+    if (m !== modo) { modo = m; refazGraficos(); mostrar(atual, true); }
   }
-
-  /* ONDA — crista de pontos com flecos em gradiente. Conceito: momentum,
-     tendência, o movimento que não para. */
-  function onda(e, o = {}) {
-    const id = ++n, W = o.w || 640, H = o.h || 220, step = o.step || 12;
-    let s = '';
-    for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
-      const u = x / W, v = y / H;
-      const crest = .38 + .20 * Math.sin(u * 8) + .07 * Math.sin(u * 21 + 2);
-      const d = v - crest; if (d < 0) continue;
-      const b = Math.min(1, d * 2.4), r = (.9 + b * 2.6) * (step / 12);
-      const fleck = d < .10 && pn(x * .07, y * .07) > .62;
-      s += `<circle cx="${x}" cy="${y}" r="${r.toFixed(2)}" fill="${fleck ? `url(#gfG${id})` : neutral(o.dark)}" opacity="${(fleck ? .95 : .30 + b * .45).toFixed(2)}"/>`;
-    }
-    wrap(e, W, H, id, s);
-  }
-
-  return { orbe, aneis, horizonte, campo, seta, onda };
+  var inicial = lerHash();
+  mostrar(inicial === null ? 0 : inicial, inicial === null || (inicial >= 0 && inicial < total));
+  escalar();
+  refazGraficos();
+  if (window.document.fonts) document.fonts.ready.then(refazGraficos);
+  if (inicial !== null && celular() && slides[atual]) { try { slides[atual].scrollIntoView(); } catch (err) {} }
+  var espera = 0;
+  window.addEventListener('resize', function(){ clearTimeout(espera); espera = setTimeout(ajustar, 80); });
+  window.addEventListener('beforeprint', function(){ graficos.forEach(function(el){ if (el.__base) window.gviz.render(el, el.__base.tipo, Object.assign({}, el.__base, { largura: Math.round(el.offsetWidth / AMPLIA) || 640 })); }); });
+  } catch (e) { console.error('deck', e); }
 })();
-gforms.horizonte('auraCapa', { w:1440, h:240 });
-gforms.horizonte('auraClo', { w:1440, h:240, dark:true });
 </script>
 </body>
 </html>

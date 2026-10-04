@@ -1,0 +1,296 @@
+{
+ "marca": "GrowAI",
+ "sistema": "Radar de Foco v3",
+ "gerado_em": "2026-10-03",
+ "cores": {
+  "laranja_foco": "#FF6A1A",
+  "laranja_texto_em_dia": "#B33E0A",
+  "laranja_texto_em_noite": "#FF8A4C",
+  "botao": {
+   "fundo": "#FF6A1A",
+   "texto": "#170A02"
+  },
+  "noite": {
+   "fundo": "#0B0D12",
+   "superficie": "#141821",
+   "linha": "#232936",
+   "texto": "#EEF1F5",
+   "apoio": "#9AA3B2"
+  },
+  "dia": {
+   "fundo": "#FFFFFF",
+   "superficie": "#F6F7F8",
+   "linha": "#E4E7EB",
+   "texto": "#0C0F14",
+   "apoio": "#4A525E"
+  },
+  "semanticas_so_com_rotulo": {
+   "bom": "#0B7A56",
+   "atencao": "#B54708",
+   "critico": "#B42318"
+  },
+  "linhas": {
+   "educacao": {
+    "nome": "GrowAI Educação",
+    "papel": "aprender",
+    "base": "#D63A7A",
+    "texto": "#A82259",
+    "fundo_claro": "#FCEAF2",
+    "sobre_noite": "#FF8DB8",
+    "texto_sobre_base": "#FFFFFF"
+   },
+   "strategy": {
+    "nome": "GrowAI Strategy",
+    "papel": "organizar",
+    "base": "#2F5BEA",
+    "texto": "#1E3FB8",
+    "fundo_claro": "#EAF0FF",
+    "sobre_noite": "#8FA8FF",
+    "texto_sobre_base": "#FFFFFF"
+   },
+   "agentes": {
+    "nome": "GrowAI Agentes",
+    "papel": "escalar",
+    "base": "#12A877",
+    "texto": "#0B7A56",
+    "fundo_claro": "#E5F7EF",
+    "sobre_noite": "#3DDC9F",
+    "texto_sobre_base": "#0C0F14"
+   }
+  },
+  "letras_do_logo": {
+   "dia": "#0C0F14",
+   "noite": "#FFFFFF"
+  },
+  "formas_auxiliares": {
+   "anel_noite": "#343C4D",
+   "anel_dia": "#C5CBD4",
+   "ponto_dado_noite": [
+    "#6E7686",
+    "#9AA3B2"
+   ],
+   "ponto_dado_dia": [
+    "#98A0AC",
+    "#5E6673"
+   ],
+   "grade_noite": "#262C39",
+   "grade_dia": "#D3D8DF"
+  }
+ },
+ "degrade_do_g": {
+  "tipo": "linear, horizontal (esquerda para direita), sem variação vertical",
+  "inicio": "#FE9426",
+  "fim": "#FF1A05",
+  "x_inicio": 0,
+  "x_fim": 174.28,
+  "unidade": "unidades do viewBox (borda esquerda e direita do g)",
+  "svg": "<linearGradient id=\"growai-g\" gradientUnits=\"userSpaceOnUse\" x1=\"0\" y1=\"0\" x2=\"174.28\" y2=\"0\"><stop offset=\"0\" stop-color=\"#FE9426\"/><stop offset=\"1\" stop-color=\"#FF1A05\"/></linearGradient>",
+  "css": "linear-gradient(90deg, #FE9426 0%, #FF1A05 100%)",
+  "medicao": "regressão por coluna sobre 1,1 milhão de pixels opacos do g no PNG de 7856 px: canal R constante (~254), G de 148 a 26 e B de 38 a 5, lineares (erro médio de 1,7 e 0,5 níveis em 255)"
+ },
+ "tipografia": {
+  "titulos": "Sora 500/600",
+  "texto": "Source Sans 3 400/600",
+  "numeros_e_rotulos": "JetBrains Mono 400/500",
+  "lockups": "Sora 600 convertida em contorno (sem dependência de fonte)"
+ },
+ "unidade": "1 unidade do viewBox = 10 px do PNG original de 7856 px; altura do logo = 234,17 unidades",
+ "anatomia": {
+  "origem_px_fonte": [
+   812.19,
+   1075.35
+  ],
+  "escala": "1 unidade = 10 px do PNG de 7856 px",
+  "g_anel": {
+   "cx": 76.75,
+   "cy": 76.76,
+   "r_externo": 76.75,
+   "furo_cx": 75.88,
+   "furo_cy": 75.46,
+   "r_furo": 42.13
+  },
+  "g_haste": {
+   "x_direita": 174.28,
+   "y_topo": 0,
+   "y_base": 33.37
+  },
+  "g_arco": {
+   "cx": 76.75,
+   "cy": 158.95,
+   "cy_interno": 158.91,
+   "r_externo": 75.22,
+   "r_interno": 40.23,
+   "corte_y": 158.67
+  },
+  "g_largura": 174.28,
+  "largura": 613.68,
+  "altura": 234.17,
+  "altura_x": 97.9,
+  "linha_de_base": 145.27,
+  "topo_x": 47.37,
+  "topo_pingo_i": 17.27,
+  "letras_x0": 174.48
+ },
+ "respiro_regra": "x = altura da letra o (97.9 unidades = 41.8% da altura do logo); manter x livre nos quatro lados",
+ "layouts": {
+  "logo": {
+   "viewBox": [
+    0,
+    0,
+    613.68,
+    234.17
+   ],
+   "proporcao_l_por_a": 2.6207,
+   "respiro_x": 97.9,
+   "respiro_x_em_fracao_da_altura": 0.4181,
+   "respiro_x_em_fracao_da_largura": 0.1595,
+   "minimo_tela_px_largura": 80,
+   "minimo_impresso_mm_largura": 22,
+   "minimo_obs": "abaixo de 80 px de largura (ou 32 px de altura) use só o símbolo; 22 mm impresso dá letras de 3,5 mm de altura"
+  },
+  "simbolo": {
+   "viewBox": [
+    0,
+    0,
+    174.28,
+    234.17
+   ],
+   "proporcao_l_por_a": 0.7442,
+   "respiro_x": 97.9,
+   "respiro_x_em_fracao_da_altura": 0.4181,
+   "respiro_x_em_fracao_da_largura": 0.5617,
+   "minimo_tela_px_largura": 20,
+   "minimo_impresso_mm_largura": 6,
+   "minimo_obs": "g oficial legível a partir de 20 px de largura (27 px de altura); abaixo use growai-favicon.svg (arco inferior afastado 7 unidades para o vão não fechar). Mínimo impresso de 6 mm: a validar"
+  },
+  "linha_educacao": {
+   "viewBox": [
+    0,
+    0,
+    1211.27,
+    234.17
+   ],
+   "proporcao_l_por_a": 5.1726,
+   "respiro_x": 97.9,
+   "respiro_x_em_fracao_da_altura": 0.4181,
+   "respiro_x_em_fracao_da_largura": 0.0808,
+   "minimo_tela_px_largura": 160,
+   "minimo_impresso_mm_largura": 44,
+   "minimo_obs": "o logo da peça mantém o mínimo de 80 px / 22 mm; o nome da linha tem 55% da altura x do logo"
+  },
+  "linha_strategy": {
+   "viewBox": [
+    0,
+    0,
+    1151.17,
+    234.17
+   ],
+   "proporcao_l_por_a": 4.916,
+   "respiro_x": 97.9,
+   "respiro_x_em_fracao_da_altura": 0.4181,
+   "respiro_x_em_fracao_da_largura": 0.085,
+   "minimo_tela_px_largura": 160,
+   "minimo_impresso_mm_largura": 44,
+   "minimo_obs": "o logo da peça mantém o mínimo de 80 px / 22 mm; o nome da linha tem 55% da altura x do logo"
+  },
+  "linha_agentes": {
+   "viewBox": [
+    0,
+    0,
+    1143.41,
+    234.17
+   ],
+   "proporcao_l_por_a": 4.8828,
+   "respiro_x": 97.9,
+   "respiro_x_em_fracao_da_altura": 0.4181,
+   "respiro_x_em_fracao_da_largura": 0.0856,
+   "minimo_tela_px_largura": 160,
+   "minimo_impresso_mm_largura": 44,
+   "minimo_obs": "o logo da peça mantém o mínimo de 80 px / 22 mm; o nome da linha tem 55% da altura x do logo"
+  }
+ },
+ "lockup_de_linha": {
+  "composicao": "logo (sem mudar de cor) + espaço 0,5x + filete vertical + espaço 0,5x + nome da linha em Sora 600 convertido em contorno",
+  "espaco_logo_filete": 48.95,
+  "espaco_filete_nome": 48.95,
+  "filete_largura": 3.0,
+  "filete_altura": {
+   "de_y": 17.27,
+   "ate_y": 145.27,
+   "obs": "do topo do pingo do i até a linha de base"
+  },
+  "nome_corpo_unidades": 100.83,
+  "nome_altura_x": 53.84,
+  "nome_linha_de_base": 145.27,
+  "nome_tracking_em": -0.01,
+  "cor_nome_e_filete": {
+   "dia": "cor Texto da linha",
+   "noite": "cor Sobre noite da linha"
+  }
+ },
+ "versoes_de_cor": {
+  "oficial": {
+   "arquivo": "growai-logo-oficial.svg",
+   "descricao": "g em degradê + letras #0C0F14",
+   "quando": "padrão em fundos claros (Dia, branco, superfície #F6F7F8)"
+  },
+  "claro": {
+   "arquivo": "growai-logo-claro.svg",
+   "descricao": "g em degradê + letras #FFFFFF",
+   "quando": "padrão em Noite, fotos escuras de interface e vídeo"
+  },
+  "preto": {
+   "arquivo": "growai-logo-preto.svg",
+   "descricao": "uma cor #0C0F14",
+   "quando": "impressão a uma cor, carimbo, fax/PDF em escala de cinza, gravação"
+  },
+  "branco": {
+   "arquivo": "growai-logo-branco.svg",
+   "descricao": "uma cor #FFFFFF",
+   "quando": "vazado sobre fundo colorido (cor de linha, laranja) ou foto onde o degradê some"
+  },
+  "simbolo": {
+   "arquivos": [
+    "growai-simbolo-oficial.svg",
+    "growai-simbolo-branco.svg",
+    "growai-simbolo-preto.svg"
+   ],
+   "quando": "espaços quadrados ou estreitos, abaixo do mínimo do logo, marca d'água; mesmas regras de cor do logo"
+  },
+  "avatar": {
+   "arquivos": [
+    "growai-avatar.svg",
+    "growai-avatar-1080.png",
+    "growai-avatar-640.png"
+   ],
+   "quando": "foto de perfil (Instagram, LinkedIn, WhatsApp, YouTube); g com 56% da altura, cabe no recorte circular; ponto de foco #FF6A1A discreto no centro do anel"
+  },
+  "favicon": {
+   "arquivos": {
+    "growai-favicon.svg": "aba do navegador, fundo transparente, g simplificado",
+    "growai-favicon-32.png": "navegadores antigos",
+    "growai-favicon-180.png": "apple-touch-icon (fundo Noite)",
+    "growai-favicon-512.png": "PWA/manifest (fundo Noite)"
+   }
+  },
+  "compartilhamento": {
+   "arquivo": "growai-compartilhamento-1200x630.png",
+   "quando": "og:image / twitter:image do site e das páginas sem imagem própria"
+  }
+ },
+ "fidelidade_do_vetor": {
+  "metodo": "SVG renderizado no Chromium (Playwright) a 3068 px e comparado ao PNG original reduzido ao mesmo tamanho",
+  "iou_suave": 0.9955,
+  "iou_binaria": 0.9975,
+  "pixels_divergentes": "332 de 1.148.198 (0,03%)",
+  "diferenca_media_de_cor": "0,33 em 255",
+  "construcao": "g reconstruído em geometria pura (círculos medidos com resíduo < 1 px de 7856 e retângulo da haste); letras rowai por contorno subpixel do alfa + ajuste de curvas Bézier com cantos preservados"
+ },
+ "observacoes": [
+  "o furo do anel do g fica 0,87 unidade à esquerda e 1,3 acima do centro do anel externo, como no original; mantido por fidelidade",
+  "o arco inferior do g é um semicírculo cortado 0,28 unidade acima do centro, como no original",
+  "growai-favicon.svg e growai-favicon-32.png usam o g simplificado (arco 7 unidades mais baixo); não use essa versão acima de 48 px",
+  "formas/ têm fundo transparente; a versão -noite é desenhada para o fundo #0B0D12 e a -dia para #FFFFFF",
+  "um só ponto laranja por composição: radar, ponto de foco e ciclo (Focar) já trazem o seu"
+ ]
+}
